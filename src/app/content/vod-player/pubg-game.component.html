@@ -1,0 +1,26 @@
+<videojs-vod-player #vodPlayer>
+  <ng-template #videojsVodInfoTabEl>
+    <vod-player-game-info>
+      <ng-template #gameTimelineTabEl>
+        <mat-list-item *ngFor="let timeline of game.getRelations().timelines" (click)="vodPlayer.seek(timeline.getAttrs().elapsed_sec-7)">
+          {{vodPlayer.getElapsedTimeBySec(timeline.getAttrs().elapsed_sec)}} - {{timeline.getAttrs().type}}
+        </mat-list-item>
+      </ng-template>
+      <ng-template #gameResultTabEl>
+        <h3>게임 정보</h3>
+        <div>
+          <p>큐 사이즈: {{gameInfo.queue_size}}</p>
+        </div>
+        <h3>성과</h3>
+        <div>
+          <p>랭킹: {{gameInfo.participant.stats.rank}} 등</p>
+          <p>공격량: {{gameInfo.participant.stats.combat.damage.damage_dealt}}</p>
+          <p>기절 횟수: {{gameInfo.participant.stats.combat.dbno.knock_downs}} 회</p>
+          <p>킬 수: {{gameInfo.participant.stats.combat.kda.kills}} 회</p>
+          <p>어시스트 수: {{gameInfo.participant.stats.combat.kda.assists}} 회</p>
+          <p>헤드샷 수: {{gameInfo.participant.stats.combat.kda.headshot_kills}} 회</p>
+        </div>
+      </ng-template>
+    </vod-player-game-info>
+  </ng-template>
+</videojs-vod-player>

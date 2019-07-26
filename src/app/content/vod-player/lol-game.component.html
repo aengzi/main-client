@@ -1,0 +1,64 @@
+<videojs-vod-player #vodPlayer>
+  <ng-template #videojsVodInfoTabEl>
+    <vod-player-game-info>
+      <ng-template #gameTimelineTabEl>
+        <mat-list-item *ngFor="let timeline of game.getRelations().timelines" (click)="vodPlayer.seek(getTimelineSec(timeline)-7)">
+          {{vodPlayer.getElapsedTimeBySec(getTimelineSec(timeline))}} - {{timeline.getAttrs().type}}
+        </mat-list-item>
+      </ng-template>
+      <ng-template #gameResultTabEl>
+        <h6 class="font-weight-bold">같은팀 성과</h6>
+        <div>
+          <p>
+            승리: {{gameInfo.myTeam.win}}
+          </p>
+          <p>
+            첫 바론: {{gameInfo.myTeam.firstBaron ? '성공' : '실패'}}
+          </p>
+          <p>
+            첫 블러드: {{gameInfo.myTeam.firstBlood ? '성공' : '실패'}}
+          </p>
+          <p>
+            첫 드래곤: {{gameInfo.myTeam.firstDragon ? '성공' : '실패'}}
+          </p>
+          <p>
+            첫 억제기: {{gameInfo.myTeam.firstInhibitor ? '성공' : '실패'}}
+          </p>
+          <p>
+            전령: {{gameInfo.myTeam.firstRiftHerald ? '성공' : '실패'}}
+          </p>
+          <p>
+            바론킬 수: {{gameInfo.myTeam.baronKills}}
+          </p>
+          <p>
+            드레곤킬 수: {{gameInfo.myTeam.dragonKills}}
+          </p>
+        </div>
+        <h6 class="font-weight-bold">플레이어 성과</h6>
+        <div>
+          <p>
+            마지막 챔피언 레벨: {{gameInfo.player.stats.champLevel}}
+          </p>
+          <p>
+            골드 채굴량: {{gameInfo.player.stats.goldEarned}}
+          </p>
+          <p>
+            적 챔피언 공격량: {{gameInfo.player.stats.totalDamageDealtToChampions}}
+          </p>
+          <p>
+            미니언 킬수: {{gameInfo.player.stats.totalMinionsKilled + gameInfo.player.stats.neutralMinionsKilled}} 킬
+          </p>
+          <p>
+            최대 생존 시간: {{gameInfo.player.stats.longestTimeSpentLiving}} 초
+          </p>
+          <p>
+            최대 다중 킬: {{gameInfo.player.stats.largestMultiKill}}
+          </p>
+          <p>
+            최대 연속 킬: {{gameInfo.player.stats.largestKillingSpree}}
+          </p>
+        </div>
+      </ng-template>
+    </vod-player-game-info>
+  </ng-template>
+</videojs-vod-player>

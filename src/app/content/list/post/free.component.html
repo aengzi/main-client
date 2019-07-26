@@ -1,0 +1,90 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <h2>자유 게시판</h2>
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link [active]="search.order_by == undefined" queryParamsHandling="merge" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
+      최신 순
+    </a>
+    <a mat-tab-link [active]="search.order_by == 'like_count desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'like_count desc'}" [routerLink]="['./']">
+      호감 순
+    </a>
+  </nav>
+</div>
+<route-page-list #pageList [apiUrl]="'posts'" [apiParams]="{
+  expands: 'user',
+  type: 'free'
+}">
+  <ng-template #itemListEl>
+    <table mat-table [dataSource]="pageList.items" class="w-100 mt-2 mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th width="10%" mat-header-cell *matHeaderCellDef>
+          <div class="pl-3">ID</div>
+        </th>
+        <td width="10%" mat-cell *matCellDef="let element">
+          <div class="pl-3" [routerLink]="['/posts/', element.getAttrs().id]">
+            <span>
+              {{element.getAttrs().id}}
+            </span>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="user">
+        <th width="15%" mat-header-cell *matHeaderCellDef>
+          <div class="pl-3">닉네임</div>
+        </th>
+        <td width="15%" mat-cell *matCellDef="let element">
+          <div class="pl-3" [routerLink]="['/posts/', element.getAttrs().id]">
+            <span>
+              {{element.getRelations().user.getAttrs().nick}}
+            </span>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="title">
+        <th width="55%" mat-header-cell *matHeaderCellDef>
+          <div class="pl-3">제목</div>
+        </th>
+        <td width="55%" mat-cell *matCellDef="let element">
+          <div class="pl-3" [routerLink]="['/posts/', element.getAttrs().id]">
+            <span>
+              {{ element.getAttrs().title }}
+            </span>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="created_at">
+        <th width="20%" mat-header-cell *matHeaderCellDef>
+          <div class="pl-3">작성날짜</div>
+        </th>
+        <td width="20%" mat-cell *matCellDef="let element">
+          <div class="pl-3" [routerLink]="['/posts/', element.getAttrs().id]" fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+              <span>
+                {{ element.getAttrs().created_at.substr(0, 16) }}
+              </span>
+            </div>
+            <button *ngIf="authService.getUser() && authService.getUser().getAttrs().id == element.getAttrs().user_id" mat-icon-button [matMenuTriggerFor]="moreMenu" (click)="$event.stopPropagation()">
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #moreMenu>
+              <button mat-menu-item [routerLink]="['/posts', element.getAttrs().id, 'edit']">
+                수정
+              </button>
+              <button mat-menu-item (click)="removeThread()">
+                삭제
+              </button>
+            </mat-menu>
+          </div>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['id', 'user', 'title', 'created_at']">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['id', 'user', 'title', 'created_at'];" class="ripple" >
+      </tr>
+    </table>
+  </ng-template>
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button mat-raised-button class="mt-3" color="primary" [queryParams]="{type: 'free'}" [routerLink]="['/posts/create']">
+      글쓰기
+    </button>
+  </div>
+</route-page-list>

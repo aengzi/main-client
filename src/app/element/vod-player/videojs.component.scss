@@ -1,0 +1,14 @@
+#ad_intro, #ad_skip {
+  display: none;
+  z-index: 1;
+  position: absolute;
+  background: #fff;
+  color: #000;
+}
+
+#ad_skip {
+  font-size: 1.5em;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+}

@@ -1,0 +1,104 @@
+<div class="tab-wrap" fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <p>
+      정렬:
+    </p>
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link [active]="search.order_by == undefined || search.order_by.length == 0" queryParamsHandling="merge" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
+        최신날짜 순
+      </a>
+      <a mat-tab-link [active]="search.order_by != undefined && search.order_by.length != 0 && search.order_by[0] == 'status_kills desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'status_kills desc'}" [routerLink]="['./']">
+        킬수 많은 순
+      </a>
+      <a mat-tab-link [active]="search.order_by != undefined && search.order_by.length != 0 && search.order_by[0] == 'status_assists desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'status_assists desc'}" [routerLink]="['./']">
+        어시스트 많은 순
+      </a>
+      <a mat-tab-link [active]="search.order_by != undefined && search.order_by.length != 0 && search.order_by[0] == 'status_gold_earned desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'status_gold_earned desc'}" [routerLink]="['./']">
+        골드취득 많이한 순
+      </a>
+      <a mat-tab-link [active]="search.order_by != undefined && search.order_by.length != 0 && search.order_by[0] == 'game_duration desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'game_duration desc'}" [routerLink]="['./']">
+        러닝타임 긴 순
+      </a>
+    </nav>
+  </div>
+  <div>
+    <button *ngIf="!is_search_open" color="primary" mat-raised-button (click)="is_search_open = true">
+      검색 조건
+    </button>
+    <button *ngIf="is_search_open" color="primary" mat-raised-button (click)="is_search_open = false">
+      닫기
+    </button>
+  </div>
+</div>
+<div class="search-wrap small" *ngIf="is_search_open">
+  <div fxLayout="row">
+    <div fxFlex="15%" fxLayout="row" fxLayoutAlign="center center">
+      <span>플레이한 챔피언</span>
+    </div>
+    <mat-button-toggle-group fxFlex="85%" fxLayout="row wrap" fxLayoutAlign="start stretch" multiple appearance="standard">
+      <mat-button-toggle (click)="$event.target.click() || search.champion_ids = []" fxFlex="none">
+        전체
+      </mat-button-toggle>
+      <mat-button-toggle *ngFor="let champion of champions" [checked]="hasChampion(champion)" (change)="toggleChampion(champion)" fxFlex="none">
+        <span>{{champion.getAttrs().name}}</span>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div fxLayout="row">
+    <div fxFlex="15%" fxLayout="row" fxLayoutAlign="center center">
+      <span>게임 승패</span>
+    </div>
+    <div fxFlex="85%" fxLayout="row" fxLayoutAlign="start center">
+      <mat-radio-group (change)="search.is_win = $event.value">
+        <mat-radio-button [checked]="search.is_win == undefined" [value]="undefined">
+          전체
+        </mat-radio-button>
+        <mat-radio-button [checked]="search.is_win == 1" [value]="1">
+          승
+        </mat-radio-button>
+        <mat-radio-button [checked]="search.is_win == 0" [value]="0">
+          패
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <div fxLayout="row">
+    <div fxFlex="15%" fxLayout="row" fxLayoutAlign="center center">
+      <span>멀티킬 종류</span>
+    </div>
+    <div fxFlex="85%" fxLayout="row" fxLayoutAlign="start center">
+      <mat-checkbox [checked]="search.multi_kill_types.indexOf('double') != -1" (change)="toggleStatusMultiKills('double')">더블 킬</mat-checkbox>
+      <mat-checkbox [checked]="search.multi_kill_types.indexOf('triple') != -1" (change)="toggleStatusMultiKills('triple')">트리필 킬</mat-checkbox>
+      <mat-checkbox [checked]="search.multi_kill_types.indexOf('quadra') != -1" (change)="toggleStatusMultiKills('quadra')">쿼드라 킬</mat-checkbox>
+      <mat-checkbox [checked]="search.multi_kill_types.indexOf('penta') != -1" (change)="toggleStatusMultiKills('penta')">펜타 킬</mat-checkbox>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <button class="reset-btn" (click)="setSearchObj({order_by: search.order_by})" mat-raised-button>
+      조건 초기화
+    </button>
+    <button class="search-btn" color="primary" mat-raised-button [routerLink]="[selfUrl]" [queryParams]="getQueryParams()" (click)="is_search_open = false">
+      검색하기
+    </button>
+  </div>
+</div>
+<route-page-list #pageList [apiUrl]="'lol-games'" [apiParams]="{
+  expands: 'vod',
+  limit: 20
+}">
+  <ng-template #itemListEl>
+    <div class="ytb-vod-item" fxFlex="0 0 calc(25% - 20px)" *ngFor="let item of pageList.items">
+      <mat-card routerLink="/section/lol-games/{{item.getAttrs().id}}">
+        <img mat-card-image src="{{item.getAttrs().thumbnail}}" />
+        <mat-card-content>
+          <p class="text-ellipsis">
+            {{item.getRelations().vod.getAttrs().title}}
+          </p>
+          <p>
+            {{item.getAttrs().started_at.substr(0, 16)}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-template>
+</route-page-list>

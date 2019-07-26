@@ -1,0 +1,11 @@
+mat-radio-button, mat-checkbox {
+  margin: 1em;
+}
+.search-btn, .reset-btn {
+  min-width: 10em;
+  margin: 1em;
+}
+div[fxFlex="15%"] {
+  background-color: white;
+  border-right: solid 1px #ccc;
+}

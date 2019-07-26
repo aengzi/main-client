@@ -1,0 +1,83 @@
+<img fxFlex="50px" class="mr-3 mt-1 rounded-circle border" [src]="thread.getRelations().user.getAttrs().thumbnail ? thread.getRelations().user.getAttrs().thumbnail : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='" />
+<div fxFlex fxLayout="row wrap" fxLayoutAlign="start center" >
+  <ng-container *ngIf="!isEditing">
+    <div fxFlex>
+      <p class="small">
+        <user-menu-button class="d-inline-block font-weight-bold" [user]="thread.getRelations().user">
+          {{thread.getRelations().user.getAttrs().nick}}
+        </user-menu-button>
+        <span>
+          {{thread.getAttrs().created_at.substr(0, 19)}}
+        </span>
+      </p>
+      <p class="pt-2 pb-2">
+        {{thread.getAttrs().message}}
+      </p>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <span class="small color-grey">{{thread.getAttrs().like_count}}</span>
+        <button class="thumb" [ngClass]="{'mat-accent': thread.getRelations().like}" [disabled]="isThumbBtnLock || thread.getRelations().dislike" mat-button (click)="thread.getRelations().like ? authService.requireSignIn() || this.removeLike() : authService.requireSignIn() || this.addLike()">
+          <mat-icon>thumb_up</mat-icon>
+        </button>
+        <button class="thumb" [ngClass]="{'mat-accent': thread.getRelations().dislike}" [disabled]="isThumbBtnLock || thread.getRelations().like" mat-button (click)="thread.getRelations().dislike ? authService.requireSignIn() || this.removeDislike() : authService.requireSignIn() || this.addDislike()">
+          <mat-icon>thumb_down</mat-icon>
+        </button>
+        <button mat-button (click)="(isReplyAdding = true) && newReplyCtrl.setValue('')">답글</button>
+      </div>
+    </div>
+    <div fxFlex="40px" *ngIf="authService.getUser() && thread.getAttrs().user_id == authService.getUser().getAttrs().id">
+      <mat-menu #moreMenu>
+        <button mat-menu-item (click)="(isEditing = true) && editThreadCtrl.setValue(thread.getAttrs().message)">
+          수정
+        </button>
+        <button mat-menu-item (click)="removeThread()">
+          삭제
+        </button>
+      </mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="moreMenu">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+    </div>
+    <ng-container *ngIf="isReplyAdding">
+      <div fxFlex="100" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+        <img fxFlex="50px" class="rounded-circle border" [src]="authService.getUser() && authService.getUser().getAttrs().thumbnail ? authService.getUser().getAttrs().thumbnail : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='" />
+        <mat-form-field fxFlex [floatLabel]="'never'">
+          <input matInput placeholder="댓글 입력" [formControl]="newReplyCtrl" (click)="authService.requireSignIn()">
+        </mat-form-field>
+      </div>
+      <div fxFlex="100" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <button mat-button (click)="isReplyAdding = false">
+          취소
+        </button>
+        <button mat-button mat-raised-button color="primary" [disabled]="newReplyCtrl.invalid" (click)="addReply()">
+          쓰기
+        </button>
+      </div>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="isEditing">
+    <mat-form-field fxFlex="100" [floatLabel]="'never'">
+      <input matInput placeholder="댓글 입력" [formControl]="editThreadCtrl">
+    </mat-form-field>
+    <div fxFlex="100" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <button mat-button (click)="isEditing = false">
+        취소
+      </button>
+      <button mat-button mat-raised-button color="primary" [disabled]="editThreadCtrl.invalid" (click)="updateThread()">
+        쓰기
+      </button>
+    </div>
+  </ng-container>
+  <div fxFlex="100" class="small" *ngIf="isReplyShown">
+    <button mat-button (click)="isReplyShown = false">답글 숨기기</button>
+  </div>
+  <div fxFlex="100" class="small" *ngIf="!isReplyShown && thread.getAttrs().reply_count > 0">
+    <button mat-button (click)="(isReplyShown = true) && (replyList.length == 0 ? loadMoreReply() : false)">답글 보기</button>
+  </div>
+  <ng-container *ngFor="let reply of replyList">
+    <comment-reply class="mt-2" fxFlex="100" fxLayout="row" fxLayoutAlign="start start" [reply]="reply" *ngIf="isReplyShown || reply.isNew">
+    </comment-reply>
+  </ng-container>
+  <div fxFlex="100" class="small" *ngIf="isReplyShown && !isReplyLoadAll">
+    <button mat-button (click)="loadMoreReply()">답글 더보기</button>
+  </div>
+</div>

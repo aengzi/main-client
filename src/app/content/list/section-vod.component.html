@@ -1,0 +1,12 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <h2>주제별 부분영상</h2>
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link #rla1="routerLinkActive" [routerLink]="['/section/lol-games']" [active]="rla1.isActive" routerLinkActive>
+      리그 오브 레전드
+    </a>
+    <a mat-tab-link #rla2="routerLinkActive" [routerLink]="['/section/pubg-games']" [active]="rla2.isActive" routerLinkActive>
+      배틀그라운드
+    </a>
+  </nav>
+</div>
+<router-outlet></router-outlet>

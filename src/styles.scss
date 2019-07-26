@@ -1,0 +1,188 @@
+/* You can add global styles to this file, and also import other style files */
+/*
+.grid.effect-5 li.animate {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin: 50% 50% -300px;
+  transform-origin: 50% 50% -300px;
+  -webkit-transform: rotateX(-180deg);
+  transform: rotateX(-180deg);
+  -webkit-animation: fly .8s ease-in-out forwards;
+  animation: fly .8s ease-in-out forwards;
+}
+*/
+
+@import '~@angular/material/theming';
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-pink); // A200, A100, A400
+$grey: mat-palette($mat-grey);
+
+$theme: mat-light-theme($primary, $accent);
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+html {
+  height: 100%;
+}
+body {
+  font-size: 1em;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  background-color: map-get(map-get($theme, background), background);
+}
+.stretch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.video-js {
+  width: inherit;
+  height: inherit;
+  visibility: visible;
+}
+.video-js .vjs-tech {
+  position: inherit;
+}
+.video-js .vjs-time-divider {
+  display: block;
+}
+.player-dimensions {
+  width: inherit;
+  height: inherit;
+}
+a, a:visited, a:hover, a:active {
+  color: inherit;
+  text-decoration: none;
+}
+p.intro_msg {
+  margin: 2em 0em;
+  font-size: 1.1em;
+}
+mat-form-field mat-hint {
+  color: red !important;
+}
+.accent-color {
+  color: map-get(map-get($theme, accent), default);
+}
+.primary-color {
+  color: map-get(map-get($theme, primary), default);
+}
+.mat-step-header:hover {
+  background-color: rgba(0, 0, 0, 0);
+  cursor: inherit;
+}
+.jw-reset.jw-text-duration, .jw-reset.jw-icon-playback {
+  display: inherit !important;
+}
+div.iframe-wrap {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  iframe {
+    border: 0px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0px;
+  padding: 0px;
+}
+
+ng-component > div:first-child[fxlayoutalign="space-between center"] {
+  margin-bottom: 10px;
+}
+ng-component > div:first-child[fxlayoutalign="start center"] {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.vod-player {
+  margin-top: 20px;
+  .mat-tab-label {
+    min-width: auto;
+    padding: 0px 20px;
+  }
+  .mat-tab-header-pagination {
+    display: none !important;
+  }
+  mat-nav-list, mat-list {
+    position: absolute;
+    width: 100%;
+    overflow-y: scroll;
+    margin: 4px 0px !important;
+    padding: 0px;
+  }
+  mat-nav-list, mat-list {
+    height: calc(100% - 61px - 4px - 4px);
+  }
+  mat-list-item {
+    height: auto !important;
+    div.mat-list-item-content {
+      padding: 4px 8px !important;
+    }
+    img {
+      margin:0px auto;
+      width: 100%;
+    }
+  }
+  mat-ink-bar {
+    width: auto;
+  }
+}
+route-page-list, page-list {
+  .basic-vod-item, .ytb-vod-item {
+    margin: 10px;
+  }
+  .basic-vod-item:nth-child(5n+1) {
+    margin-left: 0px;
+  }
+  .basic-vod-item:nth-child(5n) {
+    margin-right: 0px;
+  }
+  .ytb-vod-item:nth-child(4n+1) {
+    margin-left: 0px;
+  }
+  .ytb-vod-item:nth-child(4n) {
+    margin-right: 0px;
+  }
+  mat-card:hover {
+    cursor: pointer;
+  }
+  mat-card-content p {
+    text-align: center;
+  }
+}
+[mat-table] {
+  > th, td {
+    max-width: 0;
+    > * {
+      text-overflow:ellipsis;
+      overflow:hidden;
+      white-space:nowrap;
+    }
+  }
+}
+button.thumb {
+  padding:0px 6px;
+  min-width: auto;
+  width: 36x;
+  height: 36px;
+  line-height: 36px;
+  color: map_get($mat-grey, 400);
+}
+.color-grey {
+  color: map_get($mat-grey, 400);
+}
+.text-ellipsis {
+  text-overflow:ellipsis;
+  overflow:hidden;
+  white-space:nowrap;
+}

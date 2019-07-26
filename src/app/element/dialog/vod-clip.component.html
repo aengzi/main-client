@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>
+  원하는 클립 저장
+</h2>
+<mat-dialog-content>
+  <div fxLayout="row wrap" fxLayoutAlign="center start">
+    <mat-form-field fxFlex="100%" [hideRequiredMarker]="false" [floatLabel]="'always'">
+      <mat-label>제목</mat-label>
+      <input matInput type="text" [formControl]="titleCtrl" placeholder="클립 제목" />
+      <mat-hint *ngIf="titleCtrl.touched && titleCtrl.invalid && titleCtrl.errors.constructor.keys(titleCtrl.errors)[0] == 'required'">
+        입력 필요.
+      </mat-hint>
+      <mat-hint *ngIf="titleCtrl.touched && titleCtrl.invalid && titleCtrl.errors.constructor.keys(titleCtrl.errors)[0] == 'maxlength'">
+        최대 32글자를 입력하세요.
+      </mat-hint>
+    </mat-form-field>
+    <mat-form-field fxFlex="33.3%" [hideRequiredMarker]="false" [floatLabel]="'always'">
+      <mat-label>시작 시점</mat-label>
+      <input matInput type="text" [formControl]="startTimeCtrl" placeholder="0:00" />
+      <mat-hint *ngIf="startTimeCtrl.touched && startTimeCtrl.invalid && startTimeCtrl.errors.constructor.keys(startTimeCtrl.errors)[0] == 'required'">
+        입력 필요.
+      </mat-hint>
+      <mat-hint *ngIf="startTimeCtrl.touched && startTimeCtrl.invalid && startTimeCtrl.errors.constructor.keys(startTimeCtrl.errors)[0] == 'pattern'">
+        부적절한 입력.
+      </mat-hint>
+    </mat-form-field>
+    <mat-form-field fxFlex="33.3%" [hideRequiredMarker]="false" [floatLabel]="'always'">
+      <mat-label>끝 시점</mat-label>
+      <input matInput type="text" [formControl]="endTimeCtrl" placeholder="0:00" />
+      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.constructor.keys(endTimeCtrl.errors)[0] == 'required'">
+        입력 필요.
+      </mat-hint>
+      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.constructor.keys(endTimeCtrl.errors)[0] == 'pattern'">
+        부적절한 입력.
+      </mat-hint>
+      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.constructor.keys(endTimeCtrl.errors)[0] == 'lt_start'">
+        시작보다 큼.
+      </mat-hint>
+      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.constructor.keys(endTimeCtrl.errors)[0] == 'gt_end'">
+        마지막보다 큼.
+      </mat-hint>
+      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.constructor.keys(endTimeCtrl.errors)[0] == 'lt_min_duration'">
+        최소범위 15초.
+      </mat-hint>
+      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.constructor.keys(endTimeCtrl.errors)[0] == 'gt_max_duration'">
+        최대범위 5분.
+      </mat-hint>
+    </mat-form-field>
+    <button fxFlex="33.3%" mat-button (click)="preview()" [disabled]="form.invalid">
+      미리보기
+    </button>
+  </div>
+  <div id="preview-outer">
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <button mat-button (click)="viewRef.close()">
+    취소
+  </button>
+  <button mat-raised-button color="primary" (click)="confirm()" [disabled]="form.invalid">
+    클립 하기
+  </button>
+</mat-dialog-actions>

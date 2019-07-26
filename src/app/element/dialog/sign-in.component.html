@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>
+  로그인 하기
+</h2>
+<mat-dialog-content>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>아이디</mat-label>
+      <input matInput type="email" placeholder="Email" [formControl]="email" />
+      <mat-hint *ngIf="email.touched && email.invalid && email.errors.constructor.keys(email.errors)[0] == 'required'">
+        이메일을 입력하세요.
+      </mat-hint>
+      <mat-hint *ngIf="email.touched && email.invalid && email.errors.constructor.keys(email.errors)[0] == 'email'">
+        이메일 형식이 아닙니다.
+      </mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>비밀번호</mat-label>
+      <input matInput type="password" placeholder="Password" [formControl]="password" />
+      <mat-hint *ngIf="password.touched && password.invalid && password.errors.constructor.keys(password.errors)[0] == 'required'">
+        비밀번호를 입력하세요.
+      </mat-hint>
+      <mat-hint *ngIf="password.touched && password.invalid && password.errors.constructor.keys(password.errors)[0] == 'minlength'">
+        최소 8글자를 입력하세요.
+      </mat-hint>
+      <mat-hint *ngIf="password.touched && password.invalid && password.errors.constructor.keys(password.errors)[0] == 'maxlength'">
+        최대 32글자를 입력하세요.
+      </mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <a class="else-links primary-color" [routerLink]="['/sign-up']" (click)="viewRef.close()">회원가입</a>
+    <span>/</span>
+    <a class="else-links primary-color" [routerLink]="['/password-find']" (click)="viewRef.close()">비밀번호 찾기</a>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <div>
+    <button mat-button (click)="viewRef.close()">
+      취소
+    </button>
+  </div>
+  <div>
+    <button mat-button color="primary" [disabled]="this.form.invalid" (click)="signIn()">
+      로그인
+    </button>
+  </div>
+</mat-dialog-actions>

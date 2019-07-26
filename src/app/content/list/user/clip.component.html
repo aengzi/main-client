@@ -1,0 +1,31 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <h2>유저 클립 영상</h2>
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link [active]="search.order_by == undefined" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
+      최근 순
+    </a>
+    <a mat-tab-link [active]="search.order_by == 'like_count desc'" [queryParams]="{order_by: 'like_count desc'}" [routerLink]="['./']">
+      좋아요 많은 순
+    </a>
+  </nav>
+</div>
+<route-page-list #pageList [apiUrl]="'clips'" [apiParams]="{
+  expands: 'vod, user',
+  limit: 20
+}">
+  <ng-template #itemListEl>
+    <div class="ytb-vod-item" fxFlex="0 0 calc(25% - 20px)" *ngFor="let item of pageList.items">
+      <mat-card [routerLink]="['/user/clips/', item.getAttrs().id]">
+        <img mat-card-image src="{{item.getRelations().vod.getAttrs().thumbnail}}" />
+        <mat-card-content>
+          <p class="text-ellipsis">
+            {{item.getRelations().vod.getAttrs().title}}
+          </p>
+          <p>
+            {{item.getAttrs().created_at.substr(0, 16)}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-template>
+</route-page-list>

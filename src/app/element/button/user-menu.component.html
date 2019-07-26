@@ -1,0 +1,8 @@
+<button class="menu-button" mat-button [matMenuTriggerFor]="moreMenu">
+</button>
+<ng-content></ng-content>
+<mat-menu #moreMenu xPosition="before">
+  <button mat-menu-item [routerLink]="['/users/', user.getAttrs().id]">
+    프로필 보기
+  </button>
+</mat-menu>

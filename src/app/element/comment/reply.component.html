@@ -1,0 +1,40 @@
+<img fxFlex="50px" class="mr-3 mt-1 rounded-circle border" [src]="reply.getRelations().user.getAttrs().thumbnail ? reply.getRelations().user.getAttrs().thumbnail : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='" />
+<div fxFlex fxLayout="row wrap" fxLayoutAlign="start center" >
+  <ng-container *ngIf="!isEditing">
+    <div fxFlex>
+      <p class="small">
+        {{reply.getRelations().user.getAttrs().nick}} {{reply.getAttrs().created_at.substr(0, 19)}}
+      </p>
+      <p class="pt-2 pb-2">
+        {{reply.getAttrs().message}}
+      </p>
+    </div>
+    <div fxFlex="40px" *ngIf="authService.getUser() && authService.getUser().getAttrs().id == reply.getAttrs().user_id">
+      <mat-menu #commentMenu>
+        <button mat-menu-item (click)="(isEditing = true) && editReplyCtrl.setValue(reply.getAttrs().message)">
+          수정
+        </button>
+        <button mat-menu-item (click)="removeReply()">
+          삭제
+        </button>
+      </mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="commentMenu">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="isEditing">
+    <mat-form-field fxFlex="100" [floatLabel]="'never'">
+      <input matInput placeholder="댓글 입력" [formControl]="editReplyCtrl">
+    </mat-form-field>
+    <div fxFlex="100" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <button mat-button (click)="isEditing = false">
+        취소
+      </button>
+      <button mat-button mat-raised-button color="primary" [disabled]="editReplyCtrl.invalid" (click)="updateReply()">
+        쓰기
+      </button>
+    </div>
+  </ng-container>
+</div>
+

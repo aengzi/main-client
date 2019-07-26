@@ -1,0 +1,63 @@
+@import 'src/styles.scss';
+
+#progress-bar {
+  display: none;
+}
+
+mat-sidenav-container {
+  background: mat-color($primary);
+}
+
+mat-sidenav-content {
+  width: 100%;
+  max-width: 960px;
+  margin: 0px auto;
+}
+
+.sidenav {
+  width: 240px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar div[fxFlex] {
+  font-size: 13px;
+}
+
+.mat-toolbar img.auth-user-img {
+  height: 35px;
+}
+
+.sidenav img.auth-user-img {
+  height: 50px;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+#sidenav-top-img {
+  width: 100%;
+}
+
+.mat-drawer-container {
+  position: inherit;
+}
+
+.mat-list-item-content {
+  padding: 0px !important;
+}
+
+.mat-list-item {
+  font-size: 12px;
+}
+
+img.round {
+  display: inline-block;
+  border-radius: 50%;
+  object-fit: cover;
+}

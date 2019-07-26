@@ -1,0 +1,141 @@
+<mat-progress-bar id="progress-bar" color="accent" mode="indeterminate">
+</mat-progress-bar>
+<mat-sidenav-container class="sidenav-container" color="primary">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [mode]="'over'" [opened]   ="false"
+  >
+    <img id="sidenav-top-img"src="assets/img/aengzi_icon_origin.jpg" />
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <div *ngIf="!authService.isSignIn()">
+        <button color="accent" mat-raised-button (click)="signInDialogOpen()">
+          로그인
+        </button>
+      </div>
+      <div *ngIf="authService.isSignIn()" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px">
+        <div>
+          <mat-icon class="auth-user-img round">add_a_photo</mat-icon>
+        </div>
+        <div>
+          <p>
+            닉네임: {{authService.getUser().getAttrs().nick}}
+            <button mat-button [matMenuTriggerFor]="accountMenu">
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <mat-nav-list>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            VOD 다시보기
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item [routerLink]="['/broadcasts']">
+            풀영상
+          </mat-list-item>
+          <mat-list-item [routerLink]="['/section']">
+            부분영상
+          </mat-list-item>
+          <mat-list-item [routerLink]="['/user/clips']">
+            유저 클립 영상
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-nav-list>
+    <mat-nav-list>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            기타 영상
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item [routerLink]="['/youtube']">
+            유튜브 영상
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-nav-list>
+    <mat-nav-list>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            게시판
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item [routerLink]="['/free-posts']">
+            자유게시판
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" mat-icon-button (click)="drawer.toggle()" fxShow fxHide.gt-sm
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <button mat-button [routerLink]="['/']">
+        <h1>AENG-ZI</h1>
+      </button>
+      <div fxHide fxShow.gt-sm>
+        <button mat-button [matMenuTriggerFor]="vodMenu" yPosition="below" xPosition="after">
+          <span>VOD 다시보기</span>
+        </button>
+        <button mat-button [matMenuTriggerFor]="otherVideoMenu" yPosition="below" xPosition="after">
+          <span>기타 영상</span>
+        </button>
+        <button mat-button [matMenuTriggerFor]="boardMenu" yPosition="below" xPosition="after">
+          <span>게시판</span>
+        </button>
+      </div>
+      <div fxHide fxShow.gt-sm *ngIf="authService.isSignIn()" fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+        <img width="50px" class="rounded-circle" *ngIf="authService.getUser().getAttrs().thumbnail" [src]="authService.getUser().getAttrs().thumbnail" />
+        <button *ngIf="!authService.getUser().getAttrs().thumbnail" mat-icon-button [routerLink]="['/user/profile']">
+          <mat-icon class="auth-user-img round">
+            add_a_photo
+          </mat-icon>
+        </button>
+        <p>닉네임: {{authService.getUser().getAttrs().nick}}</p>
+        <button mat-icon-button [matMenuTriggerFor]="accountMenu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+      </div>
+      <div fxHide fxShow.gt-sm *ngIf="!authService.isSignIn()" fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+        <button color="accent" mat-raised-button (click)="signInDialogOpen()">
+          로그인
+        </button>
+      </div>
+      <mat-menu #vodMenu>
+        <button mat-menu-item [routerLink]="['/broadcasts']">
+          풀영상
+        </button>
+        <button mat-menu-item [routerLink]="['/section']">
+          부분영상
+        </button>
+        <button mat-menu-item [routerLink]="['/user/clips']">
+          유저 클립 영상
+        </button>
+      </mat-menu>
+      <mat-menu #otherVideoMenu>
+        <button mat-menu-item [routerLink]="['/youtube']">
+          유튜브 영상
+        </button>
+      </mat-menu>
+      <mat-menu #boardMenu>
+        <button mat-menu-item [routerLink]="['/free-posts']">
+          자유게시판
+        </button>
+      </mat-menu>
+      <mat-menu #accountMenu xPosition="before">
+        <button mat-menu-item routerLink="/user/profile">프로필</button>
+        <button mat-menu-item routerLink="/user/account">계정 설정</button>
+        <button mat-menu-item (click)="signOut()">로그아웃</button>
+      </mat-menu>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>

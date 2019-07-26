@@ -1,0 +1,25 @@
+import { Injectable } from '@angular/core';
+import { Model } from 'src/app/model';
+
+export type PostAttributes = {
+  id: string,
+  type: string,
+  title: string,
+  content: string,
+  user_id: string,
+  like_count: string,
+  dislike_count: string,
+  thread_count: string,
+  created_at: string,
+  updated_at: string
+}
+
+export type PostRelations = {
+}
+
+@Injectable()
+export class Post extends Model<PostAttributes, PostRelations> {
+
+  protected readonly urlPath = 'posts';
+
+}

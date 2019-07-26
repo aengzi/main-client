@@ -1,0 +1,83 @@
+<div class="tab-wrap" fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <p>
+      정렬:
+    </p>
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link [active]="search.order_by == undefined || search.order_by.length == 0" queryParamsHandling="merge" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
+        최신날짜 순
+      </a>
+      <a mat-tab-link [active]="search.order_by != undefined && search.order_by.length != 0 && search.order_by[0] == 'kills desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'kills desc'}" [routerLink]="['./']">
+        킬수 많은 순
+      </a>
+      <a mat-tab-link [active]="search.order_by != undefined && search.order_by.length != 0 && search.order_by[0] == 'assists desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'assists desc'}" [routerLink]="['./']">
+        어시스트 많은 순
+      </a>
+      <a mat-tab-link [active]="search.order_by != undefined && search.order_by.length != 0 && search.order_by[0] == 'rank asc'" queryParamsHandling="merge" [queryParams]="{order_by: 'rank asc'}" [routerLink]="['./']">
+        탑 랭크 순
+      </a>
+      <a mat-tab-link [active]="search.order_by != undefined && search.order_by.length != 0 && search.order_by[0] == 'time_survived desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'time_survived desc'}" [routerLink]="['./']">
+        러닝타임 긴 순
+      </a>
+    </nav>
+  </div>
+  <div>
+    <button *ngIf="!is_search_open" color="primary" mat-raised-button (click)="is_search_open = true">
+      검색 조건
+    </button>
+    <button *ngIf="is_search_open" color="primary" mat-raised-button (click)="is_search_open = false">
+      닫기
+    </button>
+  </div>
+</div>
+<div class="search-wrap small" *ngIf="is_search_open">
+  <div fxLayout="row">
+    <div fxFlex="15%" fxLayout="row" fxLayoutAlign="center center">
+      <span>플레이 맵</span>
+    </div>
+    <div fxFlex="85%" fxLayout="row" fxLayoutAlign="start center">
+      <mat-checkbox [checked]="search.map_names.indexOf('Desert_Main') != -1" (change)="toggleMapNames('Desert_Main')">Desert</mat-checkbox>
+      <mat-checkbox [checked]="search.map_names.indexOf('DihorOtok_Main') != -1" (change)="toggleMapNames('DihorOtok_Main')">DihorOtok</mat-checkbox>
+      <mat-checkbox [checked]="search.map_names.indexOf('Erangel_Main') != -1" (change)="toggleMapNames('Erangel_Main')">Erangel</mat-checkbox>
+      <mat-checkbox [checked]="search.map_names.indexOf('Savage_Main') != -1" (change)="toggleMapNames('Savage_Main')">Savage</mat-checkbox>
+    </div>
+  </div>
+  <div fxLayout="row">
+    <div fxFlex="15%" fxLayout="row" fxLayoutAlign="center center">
+      <span>큐 사이즈</span>
+    </div>
+    <div fxFlex="85%" fxLayout="row" fxLayoutAlign="start center">
+      <mat-checkbox [checked]="search.queue_sizes.indexOf('1') != -1" (change)="toggleQueueSizes('1')">혼자</mat-checkbox>
+      <mat-checkbox [checked]="search.queue_sizes.indexOf('2') != -1" (change)="toggleQueueSizes('2')">두명</mat-checkbox>
+      <mat-checkbox [checked]="search.queue_sizes.indexOf('4') != -1" (change)="toggleQueueSizes('4')">네명</mat-checkbox>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <button class="reset-btn" (click)="setSearchObj({order_by: search.order_by})" mat-raised-button>
+      조건 초기화
+    </button>
+    <button class="search-btn" color="primary" mat-raised-button [routerLink]="[selfUrl]" [queryParams]="getQueryParams()" (click)="is_search_open = false">
+      검색하기
+    </button>
+  </div>
+</div>
+<route-page-list #pageList [apiUrl]="'pubg-games'" [apiParams]="{
+  expands: 'vod',
+  limit: 20
+}">
+  <ng-template #itemListEl>
+    <div class="ytb-vod-item" fxFlex="0 0 calc(25% - 20px)" *ngFor="let item of pageList.items">
+      <mat-card routerLink="/section/pubg-games/{{item.getAttrs().id}}">
+        <img mat-card-image src="{{item.getAttrs().thumbnail}}" />
+        <mat-card-content>
+          <p class="text-ellipsis">
+            {{item.getRelations().vod.getAttrs().title}}
+          </p>
+          <p>
+            {{item.getAttrs().started_at.substr(0, 16)}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-template>
+</route-page-list>

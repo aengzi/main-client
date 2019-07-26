@@ -1,0 +1,16 @@
+<div fxLayout="row" fxLayoutAlign="start center">
+  <h2>회원가입 완료</h2>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <div fxFlex="320px" *ngIf="isSubmit">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <p class="intro_msg">
+        회원가입이 완료되었습니다. 로그인하세요.
+      </p>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <img fxFlex="100%" src="assets/img/aengzi_icon_origin.jpg" />
+    </div>
+  </div>
+  <mat-spinner *ngIf="!isSubmit"></mat-spinner>
+</div>

@@ -1,0 +1,3 @@
+<button mat-raised-button [ngClass]="related.getRelations().like ? 'mat-accent' : ''" (click)="authService.requireSignIn() || (related.getRelations().like ? removeLike() : addLike())">
+  <mat-icon>favorite</mat-icon>좋아요
+</button>

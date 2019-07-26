@@ -1,0 +1,12 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <h2>유튜브</h2>
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link #rla1="routerLinkActive" [routerLink]="['/youtube/videos']" [active]="rla1.isActive" routerLinkActive>
+      편집 영상
+    </a>
+    <a mat-tab-link #rla2="routerLinkActive" [routerLink]="['/youtube/comments']" [active]="rla2.isActive" routerLinkActive>
+      최근 댓글
+    </a>
+  </nav>
+</div>
+<router-outlet></router-outlet>

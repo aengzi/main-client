@@ -1,0 +1,35 @@
+@import '~@angular/material/theming';
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-pink); // A200, A100, A400
+$theme: mat-light-theme($primary, $accent);
+
+.tab-wrap {
+  margin-bottom: 1em;
+  > div > p {
+    font-size: 14px;
+  }
+}
+.mat-tab-link {
+  min-width: auto;
+}
+mat-button-toggle-group {
+  border-radius: 0px;
+  border:solid 0px;
+}
+mat-button-toggle {
+  border:solid 0px !important;
+}
+mat-button-toggle:not(.mat-button-toggle-checked) {
+  background-color: map-get(map-get($theme, background), background);
+}
+mat-radio-button, mat-checkbox {
+  margin: 1em;
+}
+.search-btn, .reset-btn {
+  min-width: 10em;
+  margin: 1em;
+}
+div[fxFlex="15%"] {
+  background-color: white;
+  border-right: solid 1px #ccc;
+}

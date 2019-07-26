@@ -1,0 +1,12 @@
+<div class="mt-3 iframe-wrap">
+  <iframe [src]="url"></iframe>
+</div>
+<div fxLayout="row" fxLayoutAlign="end center">
+  <h4 fxFlex class="mt-3">
+    {{video.getAttrs().title}}
+  </h4>
+  <like-button class="mt-3" [related]="video">
+  </like-button>
+</div>
+<comment-thread-container class="d-block mt-3" [related]="video">
+</comment-thread-container>
