@@ -66,6 +66,9 @@ export class CommentThreadComponent {
       commentReply.isNew = true;
       this.replyList.push(commentReply);
       this.thread.getAttrs().reply_count += 1;
+      this.isReplyAdding = false;
+      this.newReplyCtrl.setValue('');
+      this.newReplyCtrl.markAsUntouched();
     });
   }
 

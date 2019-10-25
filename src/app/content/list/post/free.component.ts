@@ -18,7 +18,6 @@ export class FreePostListComponent {
   public search       : Params;
   public setSearchSub : Subscription;
   public authService  : AuthService;
-  public url          : string;
 
   public constructor(route: ActivatedRoute, router: Router, authService: AuthService) {
 
@@ -26,7 +25,6 @@ export class FreePostListComponent {
     this.setSearchSub = router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(event => {
-      this.url    = router.url;
       this.search = _.merge({}, route.snapshot.queryParams);
     });
   }
@@ -36,4 +34,9 @@ export class FreePostListComponent {
     this.setSearchSub.unsubscribe();
   }
 
+  public getItems() {
+    return this.pageList.items.filter((item) => {
+      return item.isExist;
+    });
+  }
 }

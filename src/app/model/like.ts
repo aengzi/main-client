@@ -18,6 +18,5 @@ export type LikeRelations = {
 @Injectable()
 export class Like extends Model<LikeAttributes, LikeRelations> {
 
-  protected readonly urlPath = 'likes';
-
+  public static apiBaseUrl = 'likes';
 }

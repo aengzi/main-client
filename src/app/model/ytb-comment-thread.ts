@@ -22,7 +22,7 @@ export type YtbCommentThreadRelations = {
 @Injectable()
 export class YtbCommentThread extends Model<YtbCommentThreadAttributes, YtbCommentThreadRelations> {
 
-  protected readonly urlPath = 'youtube/comment/threads';
+  public static apiBaseUrl = 'youtube/comment/threads';
 
 }
 

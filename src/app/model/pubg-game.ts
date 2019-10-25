@@ -6,7 +6,6 @@ import { LolTimeline } from 'src/app/model/lol-timeline';
 
 export type PubgGameAttributes = {
   id: string,
-  vod_id: string,
   match_id: string,
   participant_id: string,
   started_at: string,
@@ -25,6 +24,6 @@ export type PubgGameRelations = {
 @Injectable()
 export class PubgGame extends Model<PubgGameAttributes, PubgGameRelations> {
 
-  protected readonly urlPath = 'pubg-games';
-
+  public static apiBaseUrl = 'pubg-games';
+  public static routePageUrl = 'section/pubg-games';
 }

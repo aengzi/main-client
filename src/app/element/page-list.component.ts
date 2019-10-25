@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, Input, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
 import { Params } from '@angular/router';
 import { Model } from 'src/app/model';
 import { HttpService } from 'src/app/service/http.service';
@@ -28,6 +28,21 @@ export class PageListComponent implements OnInit {
 
   public ngOnInit() {
     this.getListWith();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+
+    let changed = false;
+
+    Object.keys(changes).forEach((key) => {
+      if (changes[key].previousValue && !_.isEqual(changes[key].previousValue, changes[key].currentValue)) {
+        changed = true;
+      }
+    });
+
+    if ( changed ) {
+      this.getListWith();
+    }
   }
 
   public getListWith(baseParams = {}) {

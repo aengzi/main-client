@@ -12,6 +12,5 @@ export type LolChampionRelations = {
 @Injectable()
 export class LolChampion extends Model<LolChampionAttributes, LolChampionRelations> {
 
-  protected readonly urlPath = 'lol-champions';
-
+  public static apiBaseUrl = 'lol-champions';
 }

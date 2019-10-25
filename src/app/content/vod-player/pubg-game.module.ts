@@ -41,7 +41,7 @@ const routes: Routes = [{
       return HttpService.api().get('pubg-games/'+snapshot.params.id, {
         params: {
           expands: 'vod.like, vod.review.bj, timelines',
-          fields: 'id, vod_id, summary'
+          fields: 'id, summary'
         }
       });
     }

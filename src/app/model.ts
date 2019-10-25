@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http'
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpService } from 'src/app/service/http.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 export type ModelAttribute = {
   [k: string]: string | number | undefined
@@ -19,11 +20,12 @@ export type ModelRelations = {
 @Injectable()
 export class Model<T extends ModelAttribute, R extends ModelRelations> {
 
-  protected urlPath   : string;
-  protected attrs     : T = <T>{};
-  protected relations : R = <R>{};
-  public isExist      : boolean = true;
-  public isNew        : boolean = false;
+  public static apiBaseUrl   : string;
+  public static routePageUrl : string;
+  protected attrs        : T = <T>{};
+  protected relations    : R = <R>{};
+  public isExist         : boolean = true;
+  public isNew           : boolean = false;
 
   constructor(attrs: ModelAttribute = {}) {
 
@@ -81,12 +83,46 @@ export class Model<T extends ModelAttribute, R extends ModelRelations> {
     _.set(this.relations, key, value);
   }
 
-  public load$(params: HttpParams): Observable<any> {
+  public static create$(params: HttpParams, pathPrefix='') {
 
-    return HttpService.api().get<Model<T,R>>(`${this.urlPath}/${this.attrs.id}`, {
+    return HttpService.api().post(pathPrefix+this.apiBaseUrl, params).pipe(
+      map((model: Model<any,any>) => {
+
+        model.isNew = true;
+        return model;
+      })
+    );
+  }
+
+  public delete$() {
+
+    return HttpService.api().delete((this.constructor as typeof Model).apiBaseUrl+'/'+this.getAttrs().id).pipe(
+      map(() => {
+        this.isExist = false;
+      })
+    );
+  }
+
+  public static find$(id, params: HttpParams) {
+
+    return HttpService.api().patch(this.apiBaseUrl+'/'+id, {
+      params: params
+    });
+  }
+
+  public static get$(params: HttpParams, pathPrefix='') {
+
+    return HttpService.api().get(pathPrefix+this.apiBaseUrl, {
+      params: params
+    });
+  }
+
+  public load$(params: HttpParams) {
+
+    return HttpService.api().get((this.constructor as typeof Model).apiBaseUrl+'/'+this.getAttrs().id, {
       params: params
     }).pipe(
-      map((model: Model<T,R>) => {
+      map((model: Model<any,any>) => {
 
         _.forEach(model.getAttrs(), (value, key) => {
           this.setAttr(key, value);
@@ -94,13 +130,17 @@ export class Model<T extends ModelAttribute, R extends ModelRelations> {
         _.forEach(model.getRelations(), (value, key) => {
           this.setRelation(key, value);
         });
+        return this;
       })
     );
   }
 
-  public load(params: HttpParams): void {
+  public update$(params) {
 
-    this.load$(params).subscribe();
+    return HttpService.api().patch((this.constructor as typeof Model).apiBaseUrl+'/'+this.getAttrs().id, params);
   }
 
+  public navigate() {
+    StorageService.get('router').navigate(['/'+(this.constructor as typeof Model).routePageUrl+'/'+this.getAttrs().id]);
+  }
 }

@@ -7,7 +7,6 @@ import { User } from 'src/app/model/user';
 import { MaterialModule } from 'src/app/material.module';
 import { HttpService } from 'src/app/service/http.service';
 import { PostShowComponent } from './show.component';
-import { SafePipe } from 'src/app/pipe/safe.pipe';
 import { LikeOrDislikeButtonGroupModule } from 'src/app/element/button/like-or-dislike-group.module';
 import { UserMenuButtonModule } from 'src/app/element/button/user-menu.module';
 import { CommentThreadContainerModule } from 'src/app/element/comment/thread-container.module'
@@ -23,7 +22,6 @@ const routes: Routes = [{
 @NgModule({
   declarations: [
     PostShowComponent,
-    SafePipe
   ],
   exports: [
     PostShowComponent

@@ -11,6 +11,4 @@ export type LolMetaRelations = {
 @Injectable()
 export class LolMeta extends Model<LolMetaAttributes, LolMetaRelations> {
 
-  protected readonly urlPath = 'lol-metas';
-
 }

@@ -16,6 +16,4 @@ export type AftvBjRelations = {
 @Injectable()
 export class AftvBj extends Model<AftvBjAttributes, AftvBjRelations> {
 
-  protected readonly urlPath = 'aftv-bjs';
-
 }

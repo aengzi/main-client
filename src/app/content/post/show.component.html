@@ -6,16 +6,22 @@
     </span>
   </user-menu-button>
   <div>
-    <button class="ml-3" mat-raised-button *ngIf="authService.getUser() && authService.getUser().getAttrs().id == post.getRelations().user.getAttrs().id" [routerLink]="['/posts/', post.getAttrs().id, 'edit']" queryParamsHandling="merge">
-      수정
-    </button>
+    <ng-container *ngIf="authService.getUser() && authService.getUser().getAttrs().id == post.getRelations().user.getAttrs().id">
+      <button class="ml-3" mat-raised-button [routerLink]="['/posts/', post.getAttrs().id, 'edit']">
+        수정
+      </button>
+      <button class="ml-3" mat-raised-button (click)="delete(post)">
+        삭제
+      </button>
+    </ng-container>
   </div>
 </div>
 <div fxLayout="row wrap" fxLayoutAlign="start center">
   <h2>{{ post.getAttrs().title }}</h2>
 </div>
 <div class="mt-3 ck-content">
-  <div [innerHTML]="post.getAttrs().content | safe: 'html'"></div>
+  <div [innerHTML]="contentHtml">
+  </div>
 </div>
 <div class="mt-3" fxLayout="row" fxLayoutAlign="end center">
   <like-or-dislike-button-group [related]="post">

@@ -18,6 +18,5 @@ export type DislikeRelations = {
 @Injectable()
 export class Dislike extends Model<DislikeAttributes, DislikeRelations> {
 
-  protected readonly urlPath = 'dislikes';
-
+  public static apiBaseUrl = 'dislikes';
 }

@@ -7,7 +7,6 @@ import { from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Model } from 'src/app/model';
 import { Clip } from 'src/app/model/clip';
-import { Vod } from 'src/app/model/vod';
 import { HttpService } from 'src/app/service/http.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { VodPlayerService } from 'src/app/service/vod-player.service';
@@ -19,16 +18,17 @@ import { VodPlayerService } from 'src/app/service/vod-player.service';
 })
 export class VodClipDialogComponent {
 
-  public model         : Model<any,any>;
-  public form          : FormGroup;
-  public startTimeCtrl : FormControl;
-  public endTimeCtrl   : FormControl;
-  public titleCtrl   : FormControl;
-  public startedAt     : string;
-  public endedAt       : string;
-  public duration      : string;
-  public viewRef       : MatDialogRef<VodClipDialogComponent>;
-
+  public model             : Model<any,any>;
+  public form              : FormGroup;
+  public startTimeCtrl     : FormControl;
+  public endTimeCtrl       : FormControl;
+  public titleCtrl         : FormControl;
+  public startedAt         : string;
+  public endedAt           : string;
+  public duration          : string;
+  public viewRef           : MatDialogRef<VodClipDialogComponent>;
+  public isCreating        : boolean = false;
+  public isPreviewCreating : boolean = false;
   public constructor(
     viewRef: MatDialogRef<VodClipDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data: any
@@ -53,7 +53,7 @@ export class VodClipDialogComponent {
         Validators.required,
         Validators.pattern(/^\d+:\d{1,2}$/),
         (control) => {
-          if ( this.startTimeCtrl.errors && this.endTimeCtrl.errors ) {
+          if ( this.startTimeCtrl.errors && this.endTimeCtrl.errors ) {;
             return null;
           }
           const startSec = parseInt(this.startTimeCtrl.value.split(':')[0]) * 60 + parseInt(this.startTimeCtrl.value.split(':')[1]);
@@ -80,7 +80,9 @@ export class VodClipDialogComponent {
         }
       ]
     });
+
     this.form = new FormGroup({
+      titleCtrl: this.titleCtrl,
       startTimeCtrl: this.startTimeCtrl,
       endTimeCtrl: this.endTimeCtrl
     });
@@ -90,29 +92,37 @@ export class VodClipDialogComponent {
     this.endTimeCtrl.setValue('0:00');
 
     this.startTimeCtrl.valueChanges.subscribe((time) => {
-      this.startedAt = this.convertToTimeValue('startTimeCtrl', time);
+
+      if (!this.startTimeCtrl.errors) {
+        this.startedAt = this.convertToTimeValue('startTimeCtrl', time);
+      }
     });
 
     this.endTimeCtrl.valueChanges.subscribe((time) => {
-      this.endedAt = this.convertToTimeValue('endTimeCtrl', time);
+
+      if (!this.endTimeCtrl.errors) {
+        this.endedAt = this.convertToTimeValue('endTimeCtrl', time);
+      }
     });
   }
 
   public confirm() {
 
-    HttpService.api().post<Vod>('user/clips', {
+    this.isCreating = true;
+    HttpService.api().post<Clip>('user/clips', {
       vod_id: this.model.getAttrs().id,
       started_at: this.startedAt,
       ended_at: this.endedAt,
       title: this.titleCtrl.value
     }).subscribe(() => {
 
+      this.isCreating = false;
       this.viewRef.close();
       StorageService.get('snack-bar').open(
         '클립 동영상이 생성 되었습니다.',
         'close', {
         duration: 5000,
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       });
     });
   }
@@ -122,17 +132,17 @@ export class VodClipDialogComponent {
     let m = moment(this.model.getAttrs().started_at);
     let s = time.split(':');
 
-    if ( s.length == 1 ) {
-      s[1] = s[0];
-      s[0] = '0';
-    }
+  //   if ( s.length == 1 ) {
+  //     s[1] = s[0];
+  //     s[0] = '0';
+  //   }
 
-    s[0] = parseInt(s[0]) + Math.floor(s[1] / 60);
-    s[1] = (s[1] % 60);
+  //   s[0] = parseInt(s[0]) + Math.floor(s[1] / 60);
+  //   s[1] = (s[1] % 60);
 
-    if ( this[field].value != s.join(':') ) {
-      this[field].setValue(s.join(':'));
-    }
+  //   if ( this[field].value != s.join(':') ) {
+  //     this[field].setValue(s.join(':'));
+  //   }
 
     m.add(s[0], 'minutes');
     m.add(s[1], 'seconds');
@@ -142,20 +152,22 @@ export class VodClipDialogComponent {
 
   public preview() {
 
+    this.isPreviewCreating = true;
+
     HttpService.api().post<Clip>('temp/clips', {
       vod_id: this.model.getAttrs().id,
       started_at: this.startedAt,
       ended_at: this.endedAt
     }).subscribe((clip: Clip) => {
 
-      const vod = clip.getRelations().vod;
+      this.isPreviewCreating = false;
 
       VodPlayerService.init('preview', {
         controls: true,
         autoplay: true,
         preload: 'auto',
         sources: [{
-          src: vod.getAttrs().m3u8_url,
+          src: clip.getRelations().vod.getAttrs().m3u8_url,
           type: 'application/x-mpegURL'
         }]
       });

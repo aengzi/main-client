@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
 import { UserSignInComponent } from 'src/app/content/user/sign-in.component';
 
@@ -22,6 +22,7 @@ const routes: Routes = [{
     CommonModule,
     FlexLayoutModule,
     MaterialModule,
+    FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]

@@ -12,6 +12,4 @@ export type LolTimelineRelations = {
 @Injectable()
 export class LolTimeline extends Model<LolTimelineAttributes, LolTimelineRelations> {
 
-  protected readonly urlPath = 'lol-timelines';
-
 }

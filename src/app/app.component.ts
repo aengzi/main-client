@@ -15,6 +15,7 @@ export class AppComponent {
 
     StorageService.set('snack-bar', bar);
     StorageService.set('classic-editor', ClassicEditor);
+    StorageService.set('router', router);
     // router.events.subscribe(event => {
     //   console.log(event);
     // });

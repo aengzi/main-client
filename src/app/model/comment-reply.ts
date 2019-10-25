@@ -20,6 +20,5 @@ export type CommentReplyRelations = {
 @Injectable()
 export class CommentReply extends Model<CommentReplyAttributes, CommentReplyRelations> {
 
-  protected readonly urlPath = 'comment-replies';
-
+  public static apiBaseUrl = 'comment-replies';
 }

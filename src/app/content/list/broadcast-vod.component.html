@@ -11,7 +11,7 @@
         <img mat-card-image src="{{item.getRelations().reviews[0].getRelations().vod.getAttrs().thumbnail}}" />
         <mat-card-content>
           <p>
-            {{item.getAttrs().started_at.substr(0, 16)}}
+            {{item.getAttrs().started_at.substr(0, 10)}}
           </p>
         </mat-card-content>
       </mat-card>

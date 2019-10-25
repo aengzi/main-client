@@ -20,6 +20,4 @@ export type AftvBcastRelations = {
 @Injectable()
 export class AftvBcast extends Model<AftvBcastAttributes, AftvBcastRelations> {
 
-  protected readonly urlPath = 'aftv-bcasts';
-
 }

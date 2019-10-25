@@ -15,9 +15,17 @@
 }">
   <ng-template #itemListEl>
     <div class="ytb-vod-item" fxFlex="0 0 calc(25% - 20px)" *ngFor="let item of pageList.items">
+      <mat-menu #moreMenu xPosition="after">
+        <button mat-menu-item [routerLink]="['/users/', item.getRelations().user.getAttrs().id]">
+          프로필 보기
+        </button>
+      </mat-menu>
       <mat-card [routerLink]="['/user/clips/', item.getAttrs().id]">
         <img mat-card-image src="{{item.getRelations().vod.getAttrs().thumbnail}}" />
         <mat-card-content>
+          <a [matMenuTriggerFor]="moreMenu" class="text-left small font-weight-bold mb-1 d-block" (click)="$event.stopPropagation()">
+            {{item.getRelations().user.getAttrs().nick}}
+          </a>
           <p class="text-ellipsis">
             {{item.getRelations().vod.getAttrs().title}}
           </p>

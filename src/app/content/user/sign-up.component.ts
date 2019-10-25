@@ -25,7 +25,7 @@ export class UserSignUpComponent {
       ],
       asyncValidators: [
         (control: FormControl) => {
-          console.log(control);
+
           return HttpService.api().get('users', {
             params: {
               email: control.value

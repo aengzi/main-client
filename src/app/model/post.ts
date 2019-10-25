@@ -20,6 +20,6 @@ export type PostRelations = {
 @Injectable()
 export class Post extends Model<PostAttributes, PostRelations> {
 
-  protected readonly urlPath = 'posts';
-
+  public static apiBaseUrl = 'posts';
+  public static routePageUrl = 'posts';
 }

@@ -22,7 +22,6 @@ export type YtbCommentReplyRelations = {
 @Injectable()
 export class YtbCommentReply extends Model<YtbCommentReplyAttributes, YtbCommentReplyRelations> {
 
-  protected readonly urlPath = 'youtube/comment/replies';
-
+  public static apiBaseUrl = 'youtube/comment/replies';
 }
 

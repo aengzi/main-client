@@ -26,6 +26,5 @@ export type CommentThreadRelations = {
 @Injectable()
 export class CommentThread extends Model<CommentThreadAttributes, CommentThreadRelations> {
 
-  protected readonly urlPath = 'comment-threads';
-
+  public static apiBaseUrl = 'comment-threads';
 }

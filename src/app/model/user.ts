@@ -16,6 +16,6 @@ export type UserRelations = {
 @Injectable()
 export class User extends Model<UserAttributes, UserRelations> {
 
-  protected readonly urlPath = 'users';
+  public static apiBaseUrl = 'users';
 
 }

@@ -22,21 +22,22 @@ export class PostEditComponent implements AfterViewInit {
 
   constructor(location: Location, route: ActivatedRoute, viewRef: ViewContainerRef) {
 
-    this.post        = route.snapshot.data.post;
-    console.log(this.post);
+    const post       = route.snapshot.data.post;
+
+    this.post        = post;
     this.location    = location;
     this.viewRef     = viewRef;
-    this.contentCtrl = new FormControl(this.post.getAttrs().content, {
+    this.contentCtrl = new FormControl(post.getAttrs().content, {
       validators: [
         Validators.required
       ]
     });
-    this.titleCtrl = new FormControl(this.post.getAttrs().title, {
+    this.titleCtrl = new FormControl(post.getAttrs().title, {
       validators: [
         Validators.required
       ]
     });
-    this.typeCtrl    = new FormControl(this.post.getAttrs().type, {
+    this.typeCtrl    = new FormControl(post.getAttrs().type, {
       validators: [
         Validators.required,
         (control: FormControl) => {

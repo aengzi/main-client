@@ -1,10 +1,8 @@
 const actualCode = '(' + function () {
-  let aftvVodAdDone = false;
   const interval = setInterval(() => {
-    if ( window.vodPlayer || window.vodPlayer.vodManager || !window.vodPlayer.vodManager.adManager ) {
-      console.log('aftvVodAdDone', aftvVodAdDone);
-      clearInterval(interval);
+    if ( window.vodPlayer && window.vodPlayer.vodManager && !window.vodPlayer.vodManager.isAdPlaying ) {
       window.parent.postMessage({aftvVodAdDone: true}, '*');
+      clearInterval(interval);
     }
   }, 100);
 } + ')();';

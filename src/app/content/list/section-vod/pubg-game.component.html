@@ -68,7 +68,7 @@
   <ng-template #itemListEl>
     <div class="ytb-vod-item" fxFlex="0 0 calc(25% - 20px)" *ngFor="let item of pageList.items">
       <mat-card routerLink="/section/pubg-games/{{item.getAttrs().id}}">
-        <img mat-card-image src="{{item.getAttrs().thumbnail}}" />
+        <img mat-card-image src="{{item.getRelations().vod.getAttrs().thumbnail}}" />
         <mat-card-content>
           <p class="text-ellipsis">
             {{item.getRelations().vod.getAttrs().title}}

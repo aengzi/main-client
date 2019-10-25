@@ -51,7 +51,7 @@ export class CropImageDialogComponent {
     HttpService.api().patch<User>('users/'+AuthService.getUser().getAttrs().id, {
       thumbnail: base64
     }).subscribe((user: User) => {
-      AuthService.getUser().getAttrs().thumbnail = user.getAttrs().thumbnail;
+      AuthService.getUser().getAttrs().thumbnail = user.getAttrs().thumbnail+'?'+Math.random().toString(36).substring(3);
       this.viewRef.close();
     });
   }

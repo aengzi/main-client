@@ -13,9 +13,10 @@ import { CommentReply } from 'src/app/model/comment-reply';
 export class CommentReplyComponent {
 
   public authService   : AuthService;
+  public isEditing     : boolean = false;
+  public editReplyCtrl : FormControl = new FormControl('', Validators.required);
   @Input('reply')
   public reply         : CommentReply;
-  public editReplyCtrl : FormControl = new FormControl('', Validators.required);
 
   public constructor(authService: AuthService) {
     this.authService = authService;
@@ -34,7 +35,7 @@ export class CommentReplyComponent {
     HttpService.api().patch('comment-replies/'+this.reply.getAttrs().id, {
       message: this.editReplyCtrl.value
     }).subscribe((reply: CommentReply) => {
-      delete this.editReplyCtrl;
+      this.isEditing = false;
       this.reply.setAttrs(reply.getAttrs());
     });
   }

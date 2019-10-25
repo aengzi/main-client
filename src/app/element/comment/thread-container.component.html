@@ -9,7 +9,7 @@
     </mat-form-field>
   </div>
   <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px" *ngIf="isAdding">
-    <button mat-button (click)="(isAdding = false) || newThreadCtrl.setValue('')">
+    <button mat-button (click)="(isAdding = false) || newThreadCtrl.setValue('') || newThreadCtrl.markAsUntouched()">
       취소
     </button>
     <button mat-button mat-raised-button color="primary" [disabled]="newThreadCtrl.invalid" (click)="addThread()">
@@ -17,8 +17,10 @@
     </button>
   </div>
 </ng-container>
-<comment-thread [thread]="newThread" *ngFor="let newThread of newThreads" fxLayout="row" fxLayoutAlign="start start">
-</comment-thread>
+<ng-container *ngFor="let item of newThreads">
+  <comment-thread *ngIf="item.isExist" [thread]="item" fxLayout="row" fxLayoutAlign="start start">
+  </comment-thread>
+</ng-container>
 <page-list #threadList [apiUrl]="'comment-threads'" [apiParams]="{
   related_id: related.getAttrs().id,
   related_type: related.getModelType(),

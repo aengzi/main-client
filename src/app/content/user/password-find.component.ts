@@ -25,6 +25,8 @@ export class UserPasswordFindComponent {
 
     return HttpService.api().post('pwd-resets', {
       email: this.email.value
-    }).subscribe();
+    }).subscribe(() => {
+      this.isSubmit = true;
+    });
   }
 }

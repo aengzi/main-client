@@ -41,7 +41,7 @@ const routes: Routes = [{
       return HttpService.api().get('lol-games/'+snapshot.params.id, {
         params: {
           expands: 'vod.like, vod.review.bj, timelines',
-          fields: 'id, vod_id, participant_id, matches'
+          fields: 'id, participant_id, matches'
         }
       });
     }

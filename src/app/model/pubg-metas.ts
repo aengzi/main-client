@@ -11,6 +11,4 @@ export type PubgMetaRelations = {
 @Injectable()
 export class PubgMeta extends Model<PubgMetaAttributes, PubgMetaRelations> {
 
-  protected readonly urlPath = 'pubg-metas';
-
 }

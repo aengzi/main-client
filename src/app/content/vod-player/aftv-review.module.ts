@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MaterialModule } from 'src/app/material.module';
 import { ActivatedRouteSnapshot } from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from 'src/app/material.module';
 import { AftvReviewVodPlayerComponent } from './aftv-review.component';
 import { HttpService } from 'src/app/service/http.service';
 import { VodPlayerModule } from 'src/app/element/vod-player.module';
 import { LikeOrDislikeButtonGroupModule } from 'src/app/element/button/like-or-dislike-group.module';
 import { CommentThreadContainerModule } from 'src/app/element/comment/thread-container.module'
-import { SafePipe } from 'src/app/pipe/safe.pipe';
 
 const routes: Routes = [{
   path: '',
@@ -20,8 +20,7 @@ const routes: Routes = [{
 
 @NgModule({
   declarations: [
-    AftvReviewVodPlayerComponent,
-    SafePipe
+    AftvReviewVodPlayerComponent
   ],
   exports: [
     AftvReviewVodPlayerComponent
@@ -29,6 +28,7 @@ const routes: Routes = [{
   imports: [
     CommonModule,
     MaterialModule,
+    FlexLayoutModule,
     VodPlayerModule,
     LikeOrDislikeButtonGroupModule,
     CommentThreadContainerModule,

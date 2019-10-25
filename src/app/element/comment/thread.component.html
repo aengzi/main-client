@@ -21,7 +21,7 @@
         <button class="thumb" [ngClass]="{'mat-accent': thread.getRelations().dislike}" [disabled]="isThumbBtnLock || thread.getRelations().like" mat-button (click)="thread.getRelations().dislike ? authService.requireSignIn() || this.removeDislike() : authService.requireSignIn() || this.addDislike()">
           <mat-icon>thumb_down</mat-icon>
         </button>
-        <button mat-button (click)="(isReplyAdding = true) && newReplyCtrl.setValue('')">답글</button>
+        <button mat-button (click)="(isReplyAdding = true) && !newReplyCtrl.setValue('') && !newReplyCtrl.markAsUntouched()">답글</button>
       </div>
     </div>
     <div fxFlex="40px" *ngIf="authService.getUser() && thread.getAttrs().user_id == authService.getUser().getAttrs().id">
@@ -73,8 +73,8 @@
   <div fxFlex="100" class="small" *ngIf="!isReplyShown && thread.getAttrs().reply_count > 0">
     <button mat-button (click)="(isReplyShown = true) && (replyList.length == 0 ? loadMoreReply() : false)">답글 보기</button>
   </div>
-  <ng-container *ngFor="let reply of replyList">
-    <comment-reply class="mt-2" fxFlex="100" fxLayout="row" fxLayoutAlign="start start" [reply]="reply" *ngIf="isReplyShown || reply.isNew">
+  <ng-container *ngFor="let item of replyList">
+    <comment-reply class="mt-2" fxFlex="100" fxLayout="row" fxLayoutAlign="start start" [reply]="item" *ngIf="(isReplyShown || item.isNew) && item.isExist">
     </comment-reply>
   </ng-container>
   <div fxFlex="100" class="small" *ngIf="isReplyShown && !isReplyLoadAll">

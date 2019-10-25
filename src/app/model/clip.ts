@@ -6,7 +6,6 @@ import { Vod } from 'src/app/model/vod';
 export type ClipAttributes = {
   id: string,
   user_id: string,
-  vod_id: string,
   created_at: string
 }
 
@@ -18,6 +17,6 @@ export type ClipRelations = {
 @Injectable()
 export class Clip extends Model<ClipAttributes, ClipRelations> {
 
-  protected readonly urlPath = 'clips';
-
+  public static apiBaseUrl   = 'clips';
+  public static routePageUrl = 'user/clips';
 }

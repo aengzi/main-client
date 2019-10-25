@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { SignInDialogComponent } from 'src/app/element/dialog/sign-in.component';
 import { User } from 'src/app/model/user';
@@ -14,11 +14,13 @@ export class BasicPageHeaderComponent {
 
   public dialog      : MatDialog;
   public authService : AuthService;
+  public router      : Router;
 
-  public constructor(route: ActivatedRoute, dialog: MatDialog, authService: AuthService) {
+  public constructor(router: Router, dialog: MatDialog, authService: AuthService) {
 
-    this.dialog      = dialog;
     this.authService = authService;
+    this.dialog      = dialog;
+    this.router      = router;
   }
 
   public signInDialogOpen() {

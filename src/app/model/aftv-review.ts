@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Model } from 'src/app/model';
 import { AftvBj } from 'src/app/model/aftv-bj';
 import { AftvBcast } from 'src/app/model/aftv-bcast';
+import { Vod } from 'src/app/model/vod';
 
 export type AftvReviewAttributes = {
   id: string,
@@ -16,12 +17,13 @@ export type AftvReviewAttributes = {
 
 export type AftvReviewRelations = {
   bcast: AftvBcast,
-  bj: AftvBj
+  bj: AftvBj,
+  vod: Vod
 }
 
 @Injectable()
 export class AftvReview extends Model<AftvReviewAttributes, AftvReviewRelations> {
 
-  protected readonly urlPath = 'aftv-reviews';
-
+  public static apiBaseUrl   = 'aftv-reviews';
+  public static routePageUrl = 'aftv-reviews';
 }

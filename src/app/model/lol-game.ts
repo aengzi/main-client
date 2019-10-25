@@ -6,7 +6,6 @@ import { LolTimeline } from 'src/app/model/lol-timeline';
 
 export type LolGameAttributes = {
   id: string,
-  vod_id: string,
   started_at: string,
   matches: string,
   participant_id: string,
@@ -22,6 +21,6 @@ export type LolGameRelations = {
 @Injectable()
 export class LolGame extends Model<LolGameAttributes, LolGameRelations> {
 
-  protected readonly urlPath = 'lol-games';
-
+  public static apiBaseUrl = 'lol-games';
+  public static routePageUrl = 'section/lol-games';
 }

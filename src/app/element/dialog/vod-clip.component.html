@@ -49,14 +49,16 @@
       미리보기
     </button>
   </div>
-  <div id="preview-outer">
+  <div id="preview-outer" fxLayoutAlign="center center">
+    <mat-spinner *ngIf="isPreviewCreating" [diameter]="36"></mat-spinner>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
-  <button mat-button (click)="viewRef.close()">
+  <mat-spinner [diameter]="36" *ngIf="isCreating"></mat-spinner>
+  <button class="ml-3" mat-button (click)="viewRef.close()">
     취소
   </button>
-  <button mat-raised-button color="primary" (click)="confirm()" [disabled]="form.invalid">
+  <button class="ml-3" mat-raised-button color="primary" (click)="confirm()" [disabled]="form.invalid">
     클립 하기
   </button>
 </mat-dialog-actions>

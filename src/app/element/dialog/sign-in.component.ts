@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 import { HttpService } from 'src/app/service/http.service';
 import { AuthService } from 'src/app/service/auth.service';
@@ -17,10 +18,13 @@ export class SignInDialogComponent {
   public email: FormControl;
   public password: FormControl;
   public viewRef: MatDialogRef<SignInDialogComponent>;
+  public router: Router;
 
   public constructor(
+    router: Router,
     viewRef: MatDialogRef<SignInDialogComponent>,
   ) {
+    this.router = router;
     this.viewRef = viewRef;
     this.email = new FormControl('', {
       validators: [
@@ -56,7 +60,7 @@ export class SignInDialogComponent {
     })).subscribe((user: User) => {
 
       AuthService.setUser(user);
-      this.viewRef.close();
+      // this.viewRef.close();
       window.location.reload();
     });
   }

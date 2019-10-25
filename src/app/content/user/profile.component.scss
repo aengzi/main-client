@@ -1,0 +1,9 @@
+.ytb-vod-item {
+  position: relative;
+}
+.ytb-vod-item > button {
+  position: absolute;
+  right: 0px;
+  color: white;
+  z-index: 1;
+}

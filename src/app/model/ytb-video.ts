@@ -17,6 +17,6 @@ export type YtbVideoRelations = {
 @Injectable()
 export class YtbVideo extends Model<YtbVideoAttributes, YtbVideoRelations> {
 
-  protected readonly urlPath = 'youtube/videos';
-
+  public static apiBaseUrl = 'youtube/videos';
+  public static routePageUrl = 'youtube/videos';
 }

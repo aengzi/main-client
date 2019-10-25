@@ -41,7 +41,7 @@ export class UserSignInComponent {
     });
 
     if ( AuthService.getUser() ) {
-      this.router.navigate(['/']);
+      this.goPreviousPage();
     }
   }
 
@@ -59,18 +59,22 @@ export class UserSignInComponent {
     })).subscribe((user: User) => {
 
       AuthService.setUser(user);
+      this.goPreviousPage();
+    });
+  }
 
-      const params   = {};
-      const referrer = this.route.snapshot.queryParams.referrer ? this.route.snapshot.queryParams.referrer : '/';
-      const path     = referrer.match('.*(?=(\\?))') ? referrer.match('.*(?=(\\?))')[0] : referrer;
+  public goPreviousPage() {
 
-      (referrer.match('(?<=(\\?)).*') ? referrer.match('(?<=(\\?)).*')[0].split('&') : []).forEach((str) => {
-          params[str.split('=')[0]] = str.split('=')[1];
-      });
+    const params   = {};
+    const referrer = this.route.snapshot.queryParams.referrer ? this.route.snapshot.queryParams.referrer : '/';
+    const path     = referrer.match('.*(?=(\\?))') ? referrer.match('.*(?=(\\?))')[0] : referrer;
 
-      this.router.navigate([path], {
-        queryParams: params
-      });
+    (referrer.match('(?<=(\\?)).*') ? referrer.match('(?<=(\\?)).*')[0].split('&') : []).forEach((str) => {
+        params[str.split('=')[0]] = str.split('=')[1];
+    });
+
+    this.router.navigate([path], {
+      queryParams: params
     });
   }
 }

@@ -5,7 +5,7 @@
   <div fxFlex="300px">
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <label>이메일(아이디)</label>
-      <button mat-raised-button *ngIf="!isEditEmail" (click)="isEditEmail = true">수정</button>
+      <button mat-raised-button *ngIf="!isEditEmail" (click)="(isEditEmail = true) && !emailCtrl.setValue(authService.getUser().getAttrs().email) && !emailCtrl.markAsUntouched()">수정</button>
       <button mat-raised-button *ngIf="isEditEmail" (click)="isEditEmail = false">취소</button>
     </div>
     <div fxLayout="row wrap" fxLayoutAlign="start center">
@@ -35,7 +35,7 @@
   <div fxFlex="300px">
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <label>비밀번호</label>
-      <button mat-raised-button *ngIf="!isEditPassword" (click)="isEditPassword = true">수정</button>
+      <button mat-raised-button *ngIf="!isEditPassword" (click)="isEditPassword = true && !passwordCtrl.setValue('') && !passwordCtrl.markAsUntouched()">수정</button>
       <button mat-raised-button *ngIf="isEditPassword" (click)="isEditPassword = false">취소</button>
     </div>
     <div fxLayout="row wrap" fxLayoutAlign="start center">

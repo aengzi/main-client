@@ -1,14 +1,13 @@
 import * as _ from 'lodash';
 import { Injectable } from '@angular/core';
-import { forkJoin } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
 import { HttpService } from 'src/app/service/http.service';
-import { StorageService } from 'src/app/service/storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VodPlayerService {
+
+  public static players = {};
 
   public static init(id, options) {
 
@@ -24,24 +23,25 @@ export class VodPlayerService {
 
     const player   = window['videojs']($('#'+id)[0], config);
     const initTime = config.offset ? config.offset: 0;
-    console.log('initTime', initTime);
 
     player.currentTime(initTime);
     player.on('seeking', (...args) => {
+
       const currentTime = player.currentTime();
-      console.log('currentTime', currentTime);
+
       if ( initTime != currentTime ) {
         player.dispose();
-        console.log(currentTime);
         this.init(id, {
           offset: currentTime
         });
       }
     });
+
+    this.players[id] = player;
   }
 
   public static get(id) {
 
-    return window['videojs']($('#'+id)[0]);
+    return this.players[id];
   }
 }

@@ -1,6 +1,6 @@
 import * as xmlJs from 'xml-js';
 import * as _ from 'lodash';
-import { AfterContentInit, Component, ContentChild, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ContentChild, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { of, from } from 'rxjs';
 import { map, switchMap, finalize } from 'rxjs/operators';
 import { Model } from 'src/app/model';
@@ -14,7 +14,7 @@ import { VodPlayerComponent } from 'src/app/element/vod-player.component';
   templateUrl: './videojs.component.html',
   styleUrls: ['./videojs.component.scss']
 })
-export class VideojsVodPlayerComponent implements AfterContentInit {
+export class VideojsVodPlayerComponent {
 
   @ViewChild(VodPlayerComponent, {static: false})
   public vodPlayer           : VodPlayerComponent
@@ -28,10 +28,10 @@ export class VideojsVodPlayerComponent implements AfterContentInit {
     this.vc = vc;
   }
 
-  public ngAfterContentInit() {
-    console.log('this.videojsVodInfoTabEl', this.videojsVodInfoTabEl);
-    console.log('vodInfoTabEl', this.vodInfoTabEl);
-  }
+  // public ngAfterContentInit() {
+  //   console.log('this.videojsVodInfoTabEl', this.videojsVodInfoTabEl);
+  //   console.log('vodInfoTabEl', this.vodInfoTabEl);
+  // }
 
   public init(related: Model<any,any>) {
 
@@ -42,21 +42,24 @@ export class VideojsVodPlayerComponent implements AfterContentInit {
       const vod    = related.getRelations().vod;
       const review = vod.getRelations().review;
       const bj     = review.getRelations().bj;
+      const event  = (message: MessageEvent) => {
+
+        if ( message.data.aftvVodAdDone ) {
+          window.removeEventListener('message', event);
+          $('#player-outer .iframe-wrap').remove();
+          resolve(vod);
+        }
+      };
 
       if ( parseInt(vod.getAttrs().duration) < 1200 ) {
         return resolve(vod);
       }
 
-      window.addEventListener('message', (message: MessageEvent) => {
-        if ( message.data.aftvVodAdDone ) {
-          $('#player-outer iframe').remove();
-          resolve(vod);
-        }
-      }, {
+      window.addEventListener('message', event, {
         capture: false
       });
 
-      $('#player-outer').append('<iframe src="http://vod.afreecatv.com/embed.php?type=station&isAfreeca=false&autoPlay=true&showChat=false&szBjId='+bj.getAttrs().id+'&nStationNo='+bj.getAttrs().station_id+'&nBbsNo='+bj.getAttrs().bbs_id+'&nTitleNo='+review.getAttrs().id+'"></iframe>');
+      $('#player-outer').append('<div class="iframe-wrap"><iframe src="http://vod.afreecatv.com/embed.php?type=station&isAfreeca=false&autoPlay=true&showChat=false&szBjId='+bj.getAttrs().id+'&nStationNo='+bj.getAttrs().station_id+'&nBbsNo='+bj.getAttrs().bbs_id+'&nTitleNo='+review.getAttrs().id+'"></iframe></div>');
 
     })).subscribe((vod: Vod) => {
       VodPlayerService.init('player', {

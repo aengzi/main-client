@@ -3,10 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { AftvReview } from 'src/app/model/aftv-review';
-import { Clip } from 'src/app/model/clip';
-import { LolGame } from 'src/app/model/lol-game';
-import { PubgGame } from 'src/app/model/pubg-game';
+import { Vod } from 'src/app/model/vod';
 import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/service/auth.service';
 import { HttpService } from 'src/app/service/http.service';
@@ -27,7 +24,7 @@ export class UserProfileComponent {
   public router   : Router;
 
   public constructor(route: ActivatedRoute, router: Router, dialog: MatDialog) {
-    console.log(route.snapshot.data);
+
     this.router   = router;
     this.user     = route.snapshot.data.user;
     this.dialog   = dialog;
@@ -68,53 +65,14 @@ export class UserProfileComponent {
 
   public navigate(item) {
 
-    const progressBarClsListEl = document.querySelector('#progress-bar').classList;
+    HttpService.api().get('vods/'+item.getAttrs().id, {
+      params: {
+        expands: 'related'
+      }
+    }).subscribe((vod: Vod) => {
 
-    progressBarClsListEl.add('visible');
-
-    if ( item.getAttrs().type == 'lol' ) {
-      HttpService.api().get('/lol-games', {
-        params: {
-          vod_id: item.getAttrs().id
-        }
-      }).subscribe((lolGames: LolGame[]) => {
-        this.router.navigate(['/lol-games/'+lolGames[0].getAttrs().id]);
-        progressBarClsListEl.remove('visible');
-      });
-
-    } else if ( item.getAttrs().type == 'pubg' ) {
-
-      HttpService.api().get('/pubg-games', {
-        params: {
-          vod_id: item.getAttrs().id
-        }
-      }).subscribe((pubgGames: PubgGame[]) => {
-        this.router.navigate(['/pubg-games/'+pubgGames[0].getAttrs().id]);
-        progressBarClsListEl.remove('visible');
-      });
-
-    } else if ( item.getAttrs().type == 'clip' ) {
-
-      HttpService.api().get('/clips', {
-        params: {
-          vod_id: item.getAttrs().id
-        }
-      }).subscribe((clips: Clip[]) => {
-        this.router.navigate(['/user/clips/'+clips[0].getAttrs().id]);
-        progressBarClsListEl.remove('visible');
-      });
-
-    } else if ( item.getAttrs().type == 'review' ) {
-
-      HttpService.api().get('/aftv-reviews/', {
-        params: {
-          vod_id: item.getAttrs().id
-        }
-      }).subscribe((aftvReviews: AftvReview[]) => {
-        this.router.navigate(['/aftv-reviews/'+aftvReviews[0].getAttrs().id]);
-        progressBarClsListEl.remove('visible');
-      });
-    }
+      vod.getRelations().related.navigate();
+    });
   }
 
   public changeNick() {
@@ -122,12 +80,20 @@ export class UserProfileComponent {
       nick: this.nickCtrl.value
     }).subscribe((user: User) => {
       this.user.getAttrs().nick = user.getAttrs().nick;
+      this.nickCtrl.markAsUntouched();
       StorageService.get('snack-bar').open(
         '닉네임이 변경되었습니다.',
         'close', {
         duration: 5000,
         verticalPosition: 'bottom'
       });
+    });
+  }
+
+  public deleteItem(item) {
+
+    HttpService.api().delete(item.constructor.apiBaseUrl+'/'+item.getAttrs().id).subscribe(() => {
+      item.isExist = false;
     });
   }
 }

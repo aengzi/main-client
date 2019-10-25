@@ -15,6 +15,4 @@ export type PwdResetRelations = {
 @Injectable()
 export class PwdReset extends Model<PwdResetAttributes, PwdResetRelations> {
 
-  protected readonly urlPath = 'pwd-resets';
-
 }
