@@ -12,12 +12,12 @@ import { HttpService } from 'src/app/service/http.service';
 })
 export class LolGameSectionVodListComponent implements OnDestroy {
 
-  public champions: LolChampion[];
-  public is_search_open: boolean = false;
-  public route: ActivatedRoute;
-  public search: Params;
-  public selfUrl: string;
-  public setSearchSub: Subscription;
+  public champions      : LolChampion[];
+  public is_search_open : boolean = false;
+  public route          : ActivatedRoute;
+  public search         : Params;
+  public selfUrl        : string;
+  public setSearchSub   : Subscription;
 
   public constructor(route: ActivatedRoute, router: Router) {
 

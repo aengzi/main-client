@@ -8,6 +8,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { LolGameVodPlayerComponent } from './lol-game.component';
 import { HttpService } from 'src/app/service/http.service';
 import { LolGame } from 'src/app/model/lol-game';
+import { LolTimeline } from 'src/app/model/lol-timeline';
 import { VideojsVodPlayerModule } from 'src/app/element/vod-player/videojs.module';
 import { VodPlayerGameInfoModule } from 'src/app/element/vod-player/game-info.module';
 
@@ -43,7 +44,16 @@ const routes: Routes = [{
           expands: 'vod.like, vod.review.bj, timelines',
           fields: 'id, participant_id, matches'
         }
-      });
+      }).pipe(
+        map((game: LolGame) => {
+
+          const timelines = _.chain(game.getRelations().timelines).orderBy([(timeline: LolTimeline) => timeline.getAttrs().elapsed_timestamp], ['asc']).value();
+
+          game.setRelation('timelines', timelines);
+
+          return game;
+        })
+      );
     }
   }, {
     provide: 'gameInfo$$',

@@ -8,6 +8,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { PubgGameVodPlayerComponent } from './pubg-game.component';
 import { HttpService } from 'src/app/service/http.service';
 import { PubgGame } from 'src/app/model/pubg-game';
+import { PubgTimeline } from 'src/app/model/pubg-timeline';
 import { VideojsVodPlayerModule } from 'src/app/element/vod-player/videojs.module';
 import { VodPlayerGameInfoModule } from 'src/app/element/vod-player/game-info.module';
 
@@ -43,7 +44,16 @@ const routes: Routes = [{
           expands: 'vod.like, vod.review.bj, timelines',
           fields: 'id, summary'
         }
-      });
+      }).pipe(
+        map((game: PubgGame) => {
+
+          const timelines = _.chain(game.getRelations().timelines).orderBy([(timeline: PubgTimeline) => timeline.getAttrs().elapsed_sec], ['asc']).value();
+
+          game.setRelation('timelines', timelines);
+
+          return game;
+        })
+      );
     }
   }, {
     provide: 'gameInfo$$',

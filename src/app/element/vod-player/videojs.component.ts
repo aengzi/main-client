@@ -22,52 +22,16 @@ export class VideojsVodPlayerComponent {
   public vodInfoTabEl        : TemplateRef<any>;
   @ContentChild('videojsVodInfoTabEl', {static: false})
   public videojsVodInfoTabEl : TemplateRef<any>;
-  public vc                  : ViewContainerRef;
-
-  public constructor(vc: ViewContainerRef) {
-    this.vc = vc;
-  }
-
-  // public ngAfterContentInit() {
-  //   console.log('this.videojsVodInfoTabEl', this.videojsVodInfoTabEl);
-  //   console.log('vodInfoTabEl', this.vodInfoTabEl);
-  // }
 
   public init(related: Model<any,any>) {
 
+    const vod = related.getRelations().vod;
     this.vodPlayer.init(related.getRelations().vod);
-
-    from(new Promise((resolve, reject) => {
-
-      const vod    = related.getRelations().vod;
-      const review = vod.getRelations().review;
-      const bj     = review.getRelations().bj;
-      const event  = (message: MessageEvent) => {
-
-        if ( message.data.aftvVodAdDone ) {
-          window.removeEventListener('message', event);
-          $('#player-outer .iframe-wrap').remove();
-          resolve(vod);
-        }
-      };
-
-      if ( parseInt(vod.getAttrs().duration) < 1200 ) {
-        return resolve(vod);
-      }
-
-      window.addEventListener('message', event, {
-        capture: false
-      });
-
-      $('#player-outer').append('<div class="iframe-wrap"><iframe src="http://vod.afreecatv.com/embed.php?type=station&isAfreeca=false&autoPlay=true&showChat=false&szBjId='+bj.getAttrs().id+'&nStationNo='+bj.getAttrs().station_id+'&nBbsNo='+bj.getAttrs().bbs_id+'&nTitleNo='+review.getAttrs().id+'"></iframe></div>');
-
-    })).subscribe((vod: Vod) => {
-      VodPlayerService.init('player', {
-        sources: [{
-          src: vod.getAttrs().m3u8_url,
-          type: 'application/x-mpegURL'
-        }]
-      });
+    VodPlayerService.init('player', {
+      sources: [{
+        src: vod.getAttrs().m3u8_url,
+        type: 'application/x-mpegURL'
+      }]
     });
   }
 

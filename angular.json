@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "aengzi-chrome-main": {
+    "aengzi-chrome-extension-main": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,12 +17,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/aengzi-chrome-main",
+            "outputPath": "dist/aengzi-chrome-extension-main",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -43,9 +43,8 @@
               ],
               "optimization": false, // true
               "outputHashing": "all",
-              "outputPath": "../aengzi-chrome/main",
               "sourceMap": true,
-              "watch": true, // false
+              "watch": false,
               "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
@@ -65,18 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "aengzi-chrome-main:build"
+            "browserTarget": "aengzi-chrome-extension-main:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "aengzi-chrome-main:build:production"
+              "browserTarget": "aengzi-chrome-extension-main:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "aengzi-chrome-main:build"
+            "browserTarget": "aengzi-chrome-extension-main:build"
           }
         },
         "test": {
@@ -114,16 +113,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "aengzi-chrome-main:serve"
+            "devServerTarget": "aengzi-chrome-extension-main:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "aengzi-chrome-main:serve:production"
+              "devServerTarget": "aengzi-chrome-extension-main:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "aengzi-chrome-main"
+  "defaultProject": "aengzi-chrome-extension-main"
 }
