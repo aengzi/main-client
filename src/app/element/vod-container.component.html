@@ -1,0 +1,29 @@
+<div class="vod-player" fxLayout="row" fxLayoutAlign="center stretch">
+  <ng-container *ngIf="vodInfoTabEl">
+    <div fxFlex="80%" class="player-wrap">
+      <ng-container *ngTemplateOutlet="vodPlayerEl"></ng-container>
+    </div>
+    <div fxFlex="20%" class="info-wrap">
+      <ng-container *ngTemplateOutlet="vodInfoTabEl"></ng-container>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!vodInfoTabEl">
+    <div fxFlex="100%">
+      <ng-container *ngTemplateOutlet="vodPlayerEl"></ng-container>
+    </div>
+  </ng-container>
+</div>
+<div fxLayout="row" fxLayoutAlign="end center">
+  <h4 fxFlex class="mt-3">
+    {{vod.getAttrs().title}}
+  </h4>
+  <like-button class="mt-3" [related]="vod">
+  </like-button>
+  <div class="mt-3 ml-3" *ngIf="vod.getAttrs().related_type.indexOf('clip') == -1">
+    <button mat-raised-button color="primary" (click)="authService.requireSignIn() || openClipDialog()">
+      <mat-icon>screen_share</mat-icon>클립 만들기
+    </button>
+  </div>
+</div>
+<comment-thread-container class="d-block mt-3" [related]="vod">
+</comment-thread-container>

@@ -9,7 +9,7 @@ import { Model } from 'src/app/model';
 import { Clip } from 'src/app/model/clip';
 import { HttpService } from 'src/app/service/http.service';
 import { StorageService } from 'src/app/service/storage.service';
-import { VodPlayerService } from 'src/app/service/vod-player.service';
+import { VodPlayerComponent } from 'src/app/element/vod/player.component';
 
 @Component({
   selector: 'vod-clip-dialog',
@@ -29,6 +29,9 @@ export class VodClipDialogComponent {
   public viewRef           : MatDialogRef<VodClipDialogComponent>;
   public isCreating        : boolean = false;
   public isPreviewCreating : boolean = false;
+  public vodPlayer         : VodPlayerComponent;
+  public clip              : Clip;
+
   public constructor(
     viewRef: MatDialogRef<VodClipDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data: any
@@ -87,10 +90,6 @@ export class VodClipDialogComponent {
       endTimeCtrl: this.endTimeCtrl
     });
 
-    // trigger value change event
-    this.startTimeCtrl.setValue('0:00');
-    this.endTimeCtrl.setValue('0:00');
-
     this.startTimeCtrl.valueChanges.subscribe((time) => {
 
       if (!this.startTimeCtrl.errors) {
@@ -104,6 +103,10 @@ export class VodClipDialogComponent {
         this.endedAt = this.convertToTimeValue('endTimeCtrl', time);
       }
     });
+
+    // observer should be exist before set value
+    this.startTimeCtrl.setValue('0:00');
+    this.endTimeCtrl.setValue('0:00');
   }
 
   public confirm() {
@@ -161,16 +164,7 @@ export class VodClipDialogComponent {
     }).subscribe((clip: Clip) => {
 
       this.isPreviewCreating = false;
-
-      VodPlayerService.init('preview', {
-        controls: true,
-        autoplay: true,
-        preload: 'auto',
-        sources: [{
-          src: clip.getRelations().vod.getAttrs().m3u8_url,
-          type: 'application/x-mpegURL'
-        }]
-      });
+      this.clip = clip;
     });
   }
 }

@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { HttpService } from 'src/app/service/http.service';
 import { Model } from 'src/app/model';
 
-@Injectable()
 export class Collection<T extends Model<any,any>> {
 
   protected items: T[];

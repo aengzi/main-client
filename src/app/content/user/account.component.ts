@@ -82,4 +82,16 @@ export class UserAccountComponent {
       this.isEditPassword = false;
     });
   }
+
+  public showEditEmailCtrl() {
+    this.isEditEmail = true;
+    this.emailCtrl.setValue(this.authService.getUser().getAttrs().email);
+    this.emailCtrl.markAsUntouched();
+  }
+
+  public showEditPasswordCtrl() {
+    this.isEditPassword = true;
+    this.passwordCtrl.setValue('');
+    this.passwordCtrl.markAsUntouched();
+  }
 }

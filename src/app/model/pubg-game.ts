@@ -21,7 +21,6 @@ export type PubgGameRelations = {
   timelines: LolTimeline[]
 }
 
-@Injectable()
 export class PubgGame extends Model<PubgGameAttributes, PubgGameRelations> {
 
   public static apiBaseUrl = 'pubg-games';

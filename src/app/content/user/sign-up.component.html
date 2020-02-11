@@ -8,19 +8,19 @@
       <mat-form-field appearance="outline">
         <mat-label>닉네임</mat-label>
         <input matInput type="text" placeholder="Nickname" [formControl]="nick" />
-        <mat-hint *ngIf="nick.touched && nick.invalid && nick.errors.constructor.keys(nick.errors)[0] == 'required'">
+        <mat-hint *ngIf="nick.touched && nick.invalid && nick.errors.__proto__.constructor.keys(nick.errors)[0] == 'required'">
           닉네임를 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="nick.touched && nick.invalid && nick.errors.constructor.keys(nick.errors)[0] == 'minlength'">
+        <mat-hint *ngIf="nick.touched && nick.invalid && nick.errors.__proto__.constructor.keys(nick.errors)[0] == 'minlength'">
           최소 2글자를 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="nick.touched && nick.invalid && nick.errors.constructor.keys(nick.errors)[0] == 'maxlength'">
+        <mat-hint *ngIf="nick.touched && nick.invalid && nick.errors.__proto__.constructor.keys(nick.errors)[0] == 'maxlength'">
           최대 12글자를 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="nick.touched && nick.invalid && nick.errors.constructor.keys(nick.errors)[0] == 'nospace'">
+        <mat-hint *ngIf="nick.touched && nick.invalid && nick.errors.__proto__.constructor.keys(nick.errors)[0] == 'nospace'">
           공백(whitespace)없이 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="nick.touched && nick.invalid && nick.errors.constructor.keys(nick.errors)[0] == 'exist'">
+        <mat-hint *ngIf="nick.touched && nick.invalid && nick.errors.__proto__.constructor.keys(nick.errors)[0] == 'exist'">
           이미 존재하는 닉네임 입니다.
         </mat-hint>
       </mat-form-field>
@@ -29,13 +29,13 @@
       <mat-form-field appearance="outline">
         <mat-label>이메일</mat-label>
         <input matInput type="email" placeholder="Email" [formControl]="email" />
-        <mat-hint *ngIf="email.touched && email.invalid && email.errors.constructor.keys(email.errors)[0] == 'required'">
+        <mat-hint *ngIf="email.touched && email.invalid && email.errors.__proto__.constructor.keys(email.errors)[0] == 'required'">
           이메일을 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="email.touched && email.invalid && email.errors.constructor.keys(email.errors)[0] == 'email'">
+        <mat-hint *ngIf="email.touched && email.invalid && email.errors.__proto__.constructor.keys(email.errors)[0] == 'email'">
           이메일 형식이 아닙니다.
         </mat-hint>
-        <mat-hint *ngIf="email.touched && email.invalid && email.errors.constructor.keys(email.errors)[0] == 'exist'">
+        <mat-hint *ngIf="email.touched && email.invalid && email.errors.__proto__.constructor.keys(email.errors)[0] == 'exist'">
           이미 존재하는 이메일 입니다.
         </mat-hint>
       </mat-form-field>
@@ -44,19 +44,19 @@
       <mat-form-field appearance="outline">
         <mat-label>비밀번호</mat-label>
         <input matInput type="password" placeholder="Password" [formControl]="password" />
-        <mat-hint *ngIf="password.touched && password.invalid && password.errors.constructor.keys(password.errors)[0] == 'required'">
+        <mat-hint *ngIf="password.touched && password.invalid && password.errors.__proto__.constructor.keys(password.errors)[0] == 'required'">
           비밀번호를 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="password.touched && password.invalid && password.errors.constructor.keys(password.errors)[0] == 'minlength'">
+        <mat-hint *ngIf="password.touched && password.invalid && password.errors.__proto__.constructor.keys(password.errors)[0] == 'minlength'">
           최소 8글자를 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="password.touched && password.invalid && password.errors.constructor.keys(password.errors)[0] == 'maxlength'">
+        <mat-hint *ngIf="password.touched && password.invalid && password.errors.__proto__.constructor.keys(password.errors)[0] == 'maxlength'">
           최대 32글자를 입력하세요.
         </mat-hint>
       </mat-form-field>
     </div>
     <div>
-      <button mat-button mat-raised-button color="primary" [disabled]="form.invalid" (click)="stepper.next() || signUp()">다음</button>
+      <button mat-button mat-raised-button color="primary" [disabled]="form.invalid" (click)="signUp()">다음</button>
     </div>
   </mat-step>
   <mat-step [editable]="false">

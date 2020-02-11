@@ -8,7 +8,6 @@ export type PubgMetaAttributes = {
 export type PubgMetaRelations = {
 }
 
-@Injectable()
 export class PubgMeta extends Model<PubgMetaAttributes, PubgMetaRelations> {
 
 }

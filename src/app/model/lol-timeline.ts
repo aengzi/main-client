@@ -9,7 +9,6 @@ export type LolTimelineAttributes = {
 export type LolTimelineRelations = {
 }
 
-@Injectable()
 export class LolTimeline extends Model<LolTimelineAttributes, LolTimelineRelations> {
 
 }

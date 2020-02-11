@@ -17,15 +17,14 @@ export type ModelRelations = {
     undefined
 }
 
-@Injectable()
 export class Model<T extends ModelAttribute, R extends ModelRelations> {
 
   public static apiBaseUrl   : string;
   public static routePageUrl : string;
-  protected attrs        : T = <T>{};
-  protected relations    : R = <R>{};
-  public isExist         : boolean = true;
-  public isNew           : boolean = false;
+  protected attrs            : T = <T>{};
+  protected relations        : R = <R>{};
+  public isExist             : boolean = true;
+  public isNew               : boolean = false;
 
   constructor(attrs: ModelAttribute = {}) {
 

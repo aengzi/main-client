@@ -19,10 +19,8 @@ export type YtbCommentThreadRelations = {
   video: YtbVideo
 }
 
-@Injectable()
 export class YtbCommentThread extends Model<YtbCommentThreadAttributes, YtbCommentThreadRelations> {
 
   public static apiBaseUrl = 'youtube/comment/threads';
 
 }
-

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ContentChild, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatHorizontalStepper } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/model/user';
@@ -15,6 +16,8 @@ export class UserSignUpComponent {
   public email: FormControl;
   public password: FormControl;
   public nick: FormControl;
+  @ContentChild('stepper', {static: false})
+  public stepper: MatHorizontalStepper;
 
   public constructor(route: ActivatedRoute) {
 
@@ -75,8 +78,9 @@ export class UserSignUpComponent {
     });
   }
 
-  public signUp() {
+  public signUp(): void {
 
+    this.stepper.next();
     HttpService.api().post('email/sign-up', {
       email: this.email.value,
       password: this.password.value,

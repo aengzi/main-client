@@ -17,7 +17,6 @@ export type CommentReplyRelations = {
   thread: CommentThread
 }
 
-@Injectable()
 export class CommentReply extends Model<CommentReplyAttributes, CommentReplyRelations> {
 
   public static apiBaseUrl = 'comment-replies';

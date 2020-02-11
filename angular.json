@@ -17,12 +17,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/aengzi-chrome-extension-main",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "outputPath": "../aengzi-chrome-extension/main",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -35,30 +34,49 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": false, // true
-              "outputHashing": "all",
-              "sourceMap": true,
-              "watch": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "aot": false, // true
-              "buildOptimizer": false, // true
+              "aot": true,
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "buildOptimizer": true,
+              "extractCss": true,
+              "extractLicenses": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "namedChunks": false,
+              "optimization": false, // chrome-extension policy not allow
+              "outputHashing": "all",
+              "sourceMap": false,
+              "vendorChunk": false,
+              "watch": false
             },
+            "test": {
+              "aot": true,
+              "budgets": [],
+              "buildOptimizer": false,
+              "extractCss": false,
+              "extractLicenses": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test.ts"
+                }
+              ],
+              "namedChunks": true,
+              "optimization": false,
+              "outputHashing": "none",
+              "sourceMap": true,
+              "vendorChunk": true,
+              "watch": true
+            }
           }
         },
         "serve": {
@@ -69,6 +87,9 @@
           "configurations": {
             "production": {
               "browserTarget": "aengzi-chrome-extension-main:build:production"
+            },
+            "test": {
+              "browserTarget": "aengzi-chrome-extension-main:build:test"
             }
           }
         },

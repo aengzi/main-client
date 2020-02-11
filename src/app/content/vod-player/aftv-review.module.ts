@@ -6,7 +6,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from 'src/app/material.module';
 import { AftvReviewVodPlayerComponent } from './aftv-review.component';
 import { HttpService } from 'src/app/service/http.service';
-import { VodPlayerModule } from 'src/app/element/vod-player.module';
+import { VodContainerModule } from 'src/app/element/vod-container.module';
+import { VodPlayerModule } from 'src/app/element/vod/player.module';
 import { LikeOrDislikeButtonGroupModule } from 'src/app/element/button/like-or-dislike-group.module';
 import { CommentThreadContainerModule } from 'src/app/element/comment/thread-container.module'
 
@@ -29,6 +30,7 @@ const routes: Routes = [{
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
+    VodContainerModule,
     VodPlayerModule,
     LikeOrDislikeButtonGroupModule,
     CommentThreadContainerModule,

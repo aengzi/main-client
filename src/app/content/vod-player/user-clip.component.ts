@@ -1,25 +1,32 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { VideojsVodPlayerComponent } from 'src/app/element/vod-player/videojs.component';
+import { VodContainerComponent } from 'src/app/element/vod-container.component';
+import { VodPlayerComponent } from 'src/app/element/vod/player.component';
 
 @Component({
   templateUrl: './user-clip.component.html',
   styleUrls: ['./user-clip.component.scss']
 })
-export class UserClipVodPlayerComponent implements AfterViewInit {
+export class UserClipVodPlayerComponent {
 
-  @ViewChild(VideojsVodPlayerComponent, {static: false})
-  public videojsVodPlayer: VideojsVodPlayerComponent
   public clip;
+  @ViewChild(VodContainerComponent, {static: false})
+  public vodContainer: VodContainerComponent;
+  @ViewChild(VodPlayerComponent, {static: false})
+  public vodPlayer   : VodPlayerComponent;
 
   public constructor(route: ActivatedRoute) {
 
     this.clip = route.snapshot.data.clip;
   }
 
-  public ngAfterViewInit()
-  {
-    this.videojsVodPlayer.init(this.clip);
+  public getElapsedTimeBySec(sec: number) {
+
+    return parseInt(String(sec/60)) + ':' + parseInt(String(sec%60));
   }
 
+  public seek(second: number) {
+
+    this.vodPlayer.seek(second);
+  }
 }

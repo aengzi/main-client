@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from 'src/app/material.module';
-import { VodPlayerGameInfoComponent } from 'src/app/element/vod-player/game-info.component';
+import { VodGameInfoComponent } from 'src/app/element/vod/game-info.component';
 
 @NgModule({
   declarations: [
-    VodPlayerGameInfoComponent
+    VodGameInfoComponent
   ],
   exports: [
-    VodPlayerGameInfoComponent
+    VodGameInfoComponent
   ],
   imports: [
     CommonModule,
@@ -17,4 +17,4 @@ import { VodPlayerGameInfoComponent } from 'src/app/element/vod-player/game-info
     MaterialModule
   ]
 })
-export class VodPlayerGameInfoModule { }
+export class VodGameInfoModule { }

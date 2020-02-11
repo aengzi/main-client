@@ -9,7 +9,6 @@ export type LolChampionAttributes = {
 export type LolChampionRelations = {
 }
 
-@Injectable()
 export class LolChampion extends Model<LolChampionAttributes, LolChampionRelations> {
 
   public static apiBaseUrl = 'lol-champions';

@@ -9,8 +9,9 @@ import { LolGameVodPlayerComponent } from './lol-game.component';
 import { HttpService } from 'src/app/service/http.service';
 import { LolGame } from 'src/app/model/lol-game';
 import { LolTimeline } from 'src/app/model/lol-timeline';
-import { VideojsVodPlayerModule } from 'src/app/element/vod-player/videojs.module';
-import { VodPlayerGameInfoModule } from 'src/app/element/vod-player/game-info.module';
+import { VodContainerModule } from 'src/app/element/vod-container.module';
+import { VodGameInfoModule } from 'src/app/element/vod/game-info.module';
+import { VodPlayerModule } from 'src/app/element/vod/player.module';
 
 const routes: Routes = [{
   path: '',
@@ -31,8 +32,9 @@ const routes: Routes = [{
   imports: [
     CommonModule,
     MaterialModule,
-    VideojsVodPlayerModule,
-    VodPlayerGameInfoModule,
+    VodContainerModule,
+    VodGameInfoModule,
+    VodPlayerModule,
     RouterModule.forChild(routes)
   ],
   providers: [{

@@ -14,26 +14,38 @@
   limit: 20
 }">
   <ng-template #itemListEl>
-    <div class="ytb-vod-item" fxFlex="0 0 calc(25% - 20px)" *ngFor="let item of pageList.items">
-      <mat-menu #moreMenu xPosition="after">
-        <button mat-menu-item [routerLink]="['/users/', item.getRelations().user.getAttrs().id]">
-          프로필 보기
+    <ng-container *ngFor="let item of pageList.items">
+      <div *ngIf="item.isExist" class="ytb-vod-item" fxFlex="0 0 calc(25% - 20px)">
+        <mat-menu #moreMenu xPosition="before">
+          <button mat-menu-item (click)="item.delete$().subscribe()">
+            삭제
+          </button>
+        </mat-menu>
+        <button mat-icon-button [matMenuTriggerFor]="moreMenu" *ngIf="authService.getUser() && authService.getUser().getAttrs().id == item.getRelations().user.getAttrs().id">
+          <mat-icon>
+            more_horiz
+          </mat-icon>
         </button>
-      </mat-menu>
-      <mat-card [routerLink]="['/user/clips/', item.getAttrs().id]">
-        <img mat-card-image src="{{item.getRelations().vod.getAttrs().thumbnail}}" />
-        <mat-card-content>
-          <a [matMenuTriggerFor]="moreMenu" class="text-left small font-weight-bold mb-1 d-block" (click)="$event.stopPropagation()">
-            {{item.getRelations().user.getAttrs().nick}}
-          </a>
-          <p class="text-ellipsis">
-            {{item.getRelations().vod.getAttrs().title}}
-          </p>
-          <p>
-            {{item.getAttrs().created_at.substr(0, 16)}}
-          </p>
-        </mat-card-content>
-      </mat-card>
-    </div>
+        <mat-menu #userMenu xPosition="after">
+          <button mat-menu-item [routerLink]="['/users/', item.getRelations().user.getAttrs().id]">
+            프로필 보기
+          </button>
+        </mat-menu>
+        <mat-card [routerLink]="['/user/clips/', item.getAttrs().id]">
+          <img mat-card-image src="{{item.getRelations().vod.getAttrs().thumbnail}}" />
+          <mat-card-content>
+            <a [matMenuTriggerFor]="userMenu" class="text-left small font-weight-bold mb-1 d-block" (click)="$event.stopPropagation()">
+              {{item.getRelations().user.getAttrs().nick}}
+            </a>
+            <p class="text-ellipsis">
+              {{item.getRelations().vod.getAttrs().title}}
+            </p>
+            <p>
+              {{item.getAttrs().created_at.substr(0, 16)}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </ng-container>
   </ng-template>
 </route-page-list>

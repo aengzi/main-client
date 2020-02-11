@@ -8,7 +8,6 @@ export type LolMetaAttributes = {
 export type LolMetaRelations = {
 }
 
-@Injectable()
 export class LolMeta extends Model<LolMetaAttributes, LolMetaRelations> {
 
 }

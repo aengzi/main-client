@@ -13,9 +13,7 @@ export type UserAttributes = {
 export type UserRelations = {
 }
 
-@Injectable()
 export class User extends Model<UserAttributes, UserRelations> {
 
   public static apiBaseUrl = 'users';
-
 }

@@ -1,2 +1,6 @@
-<videojs-vod-player #videojsVodPlayer>
-</videojs-vod-player>
+<vod-container [vod]="clip.getRelations().vod">
+  <ng-template #vodPlayerEl>
+    <vod-player [vod]="clip.getRelations().vod">
+    </vod-player>
+  </ng-template>
+</vod-container>

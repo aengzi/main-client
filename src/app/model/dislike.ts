@@ -15,7 +15,6 @@ export type DislikeRelations = {
   related: Model<any,any>
 }
 
-@Injectable()
 export class Dislike extends Model<DislikeAttributes, DislikeRelations> {
 
   public static apiBaseUrl = 'dislikes';

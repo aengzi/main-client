@@ -14,7 +14,6 @@ export type ClipRelations = {
   vod: Vod
 }
 
-@Injectable()
 export class Clip extends Model<ClipAttributes, ClipRelations> {
 
   public static apiBaseUrl   = 'clips';

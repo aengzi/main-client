@@ -9,7 +9,6 @@ export type PubgTimelineAttributes = {
 export type PubgTimelineRelations = {
 }
 
-@Injectable()
 export class PubgTimeline extends Model<PubgTimelineAttributes, PubgTimelineRelations> {
 
 }

@@ -1,19 +1,22 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LolGame } from 'src/app/model/lol-game';
 import { LolTimeline } from 'src/app/model/lol-timeline';
-import { VideojsVodPlayerComponent } from 'src/app/element/vod-player/videojs.component';
+import { VodContainerComponent } from 'src/app/element/vod-container.component';
+import { VodPlayerComponent } from 'src/app/element/vod/player.component';
 
 @Component({
   templateUrl: './lol-game.component.html',
   styleUrls: ['./lol-game.component.scss']
 })
-export class LolGameVodPlayerComponent implements AfterViewInit {
+export class LolGameVodPlayerComponent {
 
-  public game : LolGame;
-  public gameInfo : any;
-  @ViewChild(VideojsVodPlayerComponent, {static: false})
-  public videojsVodPlayer: VideojsVodPlayerComponent
+  public game        : LolGame;
+  public gameInfo    : any;
+  @ViewChild(VodContainerComponent, {static: false})
+  public vodContainer: VodContainerComponent;
+  @ViewChild(VodPlayerComponent, {static: false})
+  public vodPlayer   : VodPlayerComponent;
 
   public constructor(route: ActivatedRoute) {
 
@@ -21,15 +24,20 @@ export class LolGameVodPlayerComponent implements AfterViewInit {
     this.gameInfo = route.snapshot.data.gameInfo;
   }
 
-  public ngAfterViewInit() {
-
-    this.videojsVodPlayer.init(this.game);
-  }
-
   public getTimelineSec(timeline: LolTimeline) {
 
     const mSec = String(timeline.getAttrs().elapsed_timestamp);
 
     return parseInt(mSec.substr(0, mSec.length-3));
+  }
+
+  public getElapsedTimeBySec(sec: number) {
+
+    return parseInt(String(sec/60)) + ':' + parseInt(String(sec%60));
+  }
+
+  public seek(second: number) {
+
+    this.vodPlayer.seek(second);
   }
 }

@@ -2,11 +2,11 @@ import { Component, ContentChild, TemplateRef, ViewChild, ElementRef, AfterConte
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'vod-player-game-info',
+  selector: 'vod-game-info',
   templateUrl: './game-info.component.html',
   styleUrls: ['./game-info.component.scss']
 })
-export class VodPlayerGameInfoComponent implements AfterContentInit {
+export class VodGameInfoComponent implements AfterContentInit {
 
   @ContentChild('gameTimelineTabEl', {static: false})
   public gameTimelineTabEl: TemplateRef<any>;

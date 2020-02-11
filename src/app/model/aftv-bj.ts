@@ -13,7 +13,6 @@ export type AftvBjRelations = {
   bcasts: AftvBcast[]
 }
 
-@Injectable()
 export class AftvBj extends Model<AftvBjAttributes, AftvBjRelations> {
 
 }

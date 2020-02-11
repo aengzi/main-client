@@ -1,9 +1,7 @@
-<vod-player>
+<vod-container [vod]="review.getRelations().vod">
   <ng-template #vodPlayerEl>
-    <div class="iframe-wrap">
-      <iframe [src]="iframeUrl" allowfullscreen="true">
-      </iframe>
-    </div>
+    <vod-player [vod]="review.getRelations().vod">
+    </vod-player>
   </ng-template>
   <ng-template #vodInfoTabEl>
     <h3 matSubheader>
@@ -17,4 +15,4 @@
       </mat-list-item>
     </mat-nav-list>
   </ng-template>
-</vod-player>
+</vod-container>

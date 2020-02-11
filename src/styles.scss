@@ -1,18 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-/*
-.grid.effect-5 li.animate {
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-transform-origin: 50% 50% -300px;
-  transform-origin: 50% 50% -300px;
-  -webkit-transform: rotateX(-180deg);
-  transform: rotateX(-180deg);
-  -webkit-animation: fly .8s ease-in-out forwards;
-  animation: fly .8s ease-in-out forwards;
-}
-*/
-
 @import '~@angular/material/theming';
+
 $primary: mat-palette($mat-indigo);
 $accent: mat-palette($mat-pink); // A200, A100, A400
 $grey: mat-palette($mat-grey);
@@ -20,6 +8,10 @@ $grey: mat-palette($mat-grey);
 $theme: mat-light-theme($primary, $accent);
 
 * {
+  margin: 0px;
+  padding: 0px;
+}
+h1, h2, h3, h4, h5, h6 {
   margin: 0px;
   padding: 0px;
 }
@@ -34,12 +26,14 @@ body {
   margin: 0px;
   background-color: map-get(map-get($theme, background), background);
 }
-.stretch {
+.ytb-vod-item {
+  position: relative;
+}
+.ytb-vod-item > button {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  right: 0px;
+  color: white;
+  z-index: 1;
 }
 .video-js {
   width: inherit;
@@ -48,13 +42,6 @@ body {
 }
 .video-js .vjs-tech {
   position: inherit;
-}
-.video-js .vjs-time-divider {
-  display: block;
-}
-.player-dimensions {
-  width: inherit;
-  height: inherit;
 }
 a, a:visited, a:hover, a:active {
   color: inherit;
@@ -80,9 +67,6 @@ mat-form-field mat-hint {
   background-color: rgba(0, 0, 0, 0);
   cursor: inherit;
 }
-.jw-reset.jw-text-duration, .jw-reset.jw-icon-playback {
-  display: inherit !important;
-}
 div.iframe-wrap {
   position: relative;
   width: 100%;
@@ -95,11 +79,6 @@ div.iframe-wrap {
     height: 100%;
   }
 }
-h1, h2, h3, h4, h5, h6 {
-  margin: 0px;
-  padding: 0px;
-}
-
 ng-component > div:first-child[fxlayoutalign="space-between center"] {
   margin-bottom: 10px;
 }
@@ -120,11 +99,10 @@ ng-component > div:first-child[fxlayoutalign="start center"] {
     position: absolute;
     width: 100%;
     overflow-y: scroll;
-    margin: 4px 0px !important;
-    padding: 0px;
+    padding: 4px 0px !important;
   }
   mat-nav-list, mat-list {
-    height: calc(100% - 61px - 4px - 4px);
+    height: calc(100% - 41px - 4px - 4px);
   }
   mat-list-item {
     height: auto !important;

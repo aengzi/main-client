@@ -1,9 +1,13 @@
-<videojs-vod-player #vodPlayer>
-  <ng-template #videojsVodInfoTabEl>
-    <vod-player-game-info>
+<vod-container [vod]="game.getRelations().vod">
+  <ng-template #vodPlayerEl>
+    <vod-player [vod]="game.getRelations().vod">
+    </vod-player>
+  </ng-template>
+  <ng-template #vodInfoTabEl>
+    <vod-game-info>
       <ng-template #gameTimelineTabEl>
-        <mat-list-item *ngFor="let timeline of game.getRelations().timelines" (click)="vodPlayer.seek(timeline.getAttrs().elapsed_sec-7)">
-          {{vodPlayer.getElapsedTimeBySec(timeline.getAttrs().elapsed_sec)}} - {{timeline.getAttrs().type}}
+        <mat-list-item *ngFor="let timeline of game.getRelations().timelines" (click)="seek(timeline.getAttrs().elapsed_sec-7)">
+          {{getElapsedTimeBySec(timeline.getAttrs().elapsed_sec)}} - {{timeline.getAttrs().type}}
         </mat-list-item>
       </ng-template>
       <ng-template #gameResultTabEl>
@@ -21,6 +25,6 @@
           <p>헤드샷 수: {{gameInfo.participant.stats.combat.kda.headshot_kills}} 회</p>
         </div>
       </ng-template>
-    </vod-player-game-info>
+    </vod-game-info>
   </ng-template>
-</videojs-vod-player>
+</vod-container>

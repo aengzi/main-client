@@ -6,42 +6,42 @@
     <mat-form-field fxFlex="100%" [hideRequiredMarker]="false" [floatLabel]="'always'">
       <mat-label>제목</mat-label>
       <input matInput type="text" [formControl]="titleCtrl" placeholder="클립 제목" />
-      <mat-hint *ngIf="titleCtrl.touched && titleCtrl.invalid && titleCtrl.errors.constructor.keys(titleCtrl.errors)[0] == 'required'">
+      <mat-hint *ngIf="titleCtrl.touched && titleCtrl.invalid && titleCtrl.errors.__proto__.constructor.keys(titleCtrl.errors)[0] == 'required'">
         입력 필요.
       </mat-hint>
-      <mat-hint *ngIf="titleCtrl.touched && titleCtrl.invalid && titleCtrl.errors.constructor.keys(titleCtrl.errors)[0] == 'maxlength'">
+      <mat-hint *ngIf="titleCtrl.touched && titleCtrl.invalid && titleCtrl.errors.__proto__.constructor.keys(titleCtrl.errors)[0] == 'maxlength'">
         최대 32글자를 입력하세요.
       </mat-hint>
     </mat-form-field>
     <mat-form-field fxFlex="33.3%" [hideRequiredMarker]="false" [floatLabel]="'always'">
       <mat-label>시작 시점</mat-label>
       <input matInput type="text" [formControl]="startTimeCtrl" placeholder="0:00" />
-      <mat-hint *ngIf="startTimeCtrl.touched && startTimeCtrl.invalid && startTimeCtrl.errors.constructor.keys(startTimeCtrl.errors)[0] == 'required'">
+      <mat-hint *ngIf="startTimeCtrl.touched && startTimeCtrl.invalid && titleCtrl.errors.__proto__.constructor.keys(startTimeCtrl.errors)[0] == 'required'">
         입력 필요.
       </mat-hint>
-      <mat-hint *ngIf="startTimeCtrl.touched && startTimeCtrl.invalid && startTimeCtrl.errors.constructor.keys(startTimeCtrl.errors)[0] == 'pattern'">
+      <mat-hint *ngIf="startTimeCtrl.touched && startTimeCtrl.invalid && titleCtrl.errors.__proto__.constructor.keys(startTimeCtrl.errors)[0] == 'pattern'">
         부적절한 입력.
       </mat-hint>
     </mat-form-field>
     <mat-form-field fxFlex="33.3%" [hideRequiredMarker]="false" [floatLabel]="'always'">
       <mat-label>끝 시점</mat-label>
       <input matInput type="text" [formControl]="endTimeCtrl" placeholder="0:00" />
-      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.constructor.keys(endTimeCtrl.errors)[0] == 'required'">
+      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.__proto__.constructor.keys(endTimeCtrl.errors)[0] == 'required'">
         입력 필요.
       </mat-hint>
-      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.constructor.keys(endTimeCtrl.errors)[0] == 'pattern'">
+      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.__proto__.constructor.keys(endTimeCtrl.errors)[0] == 'pattern'">
         부적절한 입력.
       </mat-hint>
-      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.constructor.keys(endTimeCtrl.errors)[0] == 'lt_start'">
+      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.__proto__.constructor.keys(endTimeCtrl.errors)[0] == 'lt_start'">
         시작보다 큼.
       </mat-hint>
-      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.constructor.keys(endTimeCtrl.errors)[0] == 'gt_end'">
+      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.__proto__.constructor.keys(endTimeCtrl.errors)[0] == 'gt_end'">
         마지막보다 큼.
       </mat-hint>
-      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.constructor.keys(endTimeCtrl.errors)[0] == 'lt_min_duration'">
+      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.__proto__.constructor.keys(endTimeCtrl.errors)[0] == 'lt_min_duration'">
         최소범위 15초.
       </mat-hint>
-      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.constructor.keys(endTimeCtrl.errors)[0] == 'gt_max_duration'">
+      <mat-hint *ngIf="endTimeCtrl.touched && endTimeCtrl.invalid && endTimeCtrl.errors.__proto__.constructor.keys(endTimeCtrl.errors)[0] == 'gt_max_duration'">
         최대범위 5분.
       </mat-hint>
     </mat-form-field>
@@ -49,8 +49,11 @@
       미리보기
     </button>
   </div>
-  <div id="preview-outer" fxLayoutAlign="center center">
-    <mat-spinner *ngIf="isPreviewCreating" [diameter]="36"></mat-spinner>
+  <div fxLayoutAlign="center center">
+    <mat-spinner *ngIf="isPreviewCreating" [diameter]="36">
+    </mat-spinner>
+    <vod-player *ngIf="clip" [vod]="clip.getRelations().vod" [config]="{}">
+    </vod-player>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">

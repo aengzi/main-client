@@ -23,7 +23,6 @@ export type CommentThreadRelations = {
   user: User
 }
 
-@Injectable()
 export class CommentThread extends Model<CommentThreadAttributes, CommentThreadRelations> {
 
   public static apiBaseUrl = 'comment-threads';

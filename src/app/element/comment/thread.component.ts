@@ -72,6 +72,17 @@ export class CommentThreadComponent {
     });
   }
 
+  public showEditThreadCtrl() {
+    this.isEditing = true;
+    this.editThreadCtrl.setValue(this.thread.getAttrs().message);
+  }
+
+  public showNewReplyCtrl() {
+    this.isReplyAdding = true;
+    this.newReplyCtrl.setValue('');
+    this.newReplyCtrl.markAsUntouched();
+  }
+
   public removeDislike() {
     this.isThumbBtnLock = true;
     HttpService.api().delete('dislikes/'+this.thread.getRelations().dislike.getAttrs().id, {

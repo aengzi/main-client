@@ -1,18 +1,21 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PubgGame } from 'src/app/model/pubg-game';
-import { VideojsVodPlayerComponent } from 'src/app/element/vod-player/videojs.component';
+import { VodContainerComponent } from 'src/app/element/vod-container.component';
+import { VodPlayerComponent } from 'src/app/element/vod/player.component';
 
 @Component({
   templateUrl: './pubg-game.component.html',
   styleUrls: ['./pubg-game.component.scss']
 })
-export class PubgGameVodPlayerComponent implements AfterViewInit {
+export class PubgGameVodPlayerComponent {
 
-  public game : PubgGame;
-  public gameInfo : any;
-  @ViewChild(VideojsVodPlayerComponent, {static: false})
-  public videojsVodPlayer: VideojsVodPlayerComponent
+  public game      : PubgGame;
+  public gameInfo  : any;
+  @ViewChild(VodContainerComponent, {static: false})
+  public vodContainer: VodContainerComponent;
+  @ViewChild(VodPlayerComponent, {static: false})
+  public vodPlayer : VodPlayerComponent;
 
   public constructor(route: ActivatedRoute) {
 
@@ -20,9 +23,13 @@ export class PubgGameVodPlayerComponent implements AfterViewInit {
     this.gameInfo = route.snapshot.data.gameInfo;
   }
 
-  public ngAfterViewInit()
-  {
-    this.videojsVodPlayer.init(this.game);
+  public getElapsedTimeBySec(sec: number) {
+
+    return parseInt(String(sec/60)) + ':' + parseInt(String(sec%60));
   }
 
+  public seek(second: number) {
+
+    this.vodPlayer.seek(second);
+  }
 }

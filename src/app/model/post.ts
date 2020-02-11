@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Model } from 'src/app/model';
+import { User } from 'src/app/model/user';
 
 export type PostAttributes = {
   id: string,
@@ -15,9 +16,9 @@ export type PostAttributes = {
 }
 
 export type PostRelations = {
+  user: User
 }
 
-@Injectable()
 export class Post extends Model<PostAttributes, PostRelations> {
 
   public static apiBaseUrl = 'posts';

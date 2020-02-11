@@ -3,6 +3,7 @@ import { Component, ContentChild, Input, OnInit, SimpleChanges, TemplateRef } fr
 import { Params } from '@angular/router';
 import { Model } from 'src/app/model';
 import { HttpService } from 'src/app/service/http.service';
+import { Subscription } from 'rxjs/index';
 
 @Component({
   selector: 'page-list',
@@ -25,6 +26,7 @@ export class PageListComponent implements OnInit {
   public nextPages = [];
   public totalCount: number;
   public isLoading: boolean = false;
+  public subscribed: Subscription;
 
   public ngOnInit() {
     this.getListWith();
@@ -47,7 +49,12 @@ export class PageListComponent implements OnInit {
 
   public getListWith(baseParams = {}) {
     this.isLoading = true;
-    HttpService.api().get(this.apiUrl, {
+
+    if ( this.subscribed ) {
+      this.subscribed.unsubscribe();
+    }
+
+    this.subscribed = HttpService.api().get(this.apiUrl, {
       params: _.merge({}, baseParams, this.apiParams)
     }).subscribe((res: any) => {
       this.isLoading   = false;

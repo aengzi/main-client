@@ -18,7 +18,6 @@ export type LolGameRelations = {
   timelines: LolTimeline[]
 }
 
-@Injectable()
 export class LolGame extends Model<LolGameAttributes, LolGameRelations> {
 
   public static apiBaseUrl = 'lol-games';

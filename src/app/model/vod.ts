@@ -8,6 +8,7 @@ export type VodAttributes = {
   related_id: string,
   related_type: string,
   m3u8_url: string,
+  title: string,
   like_count: string,
   duration: string,
   started_at: string,
@@ -20,7 +21,6 @@ export type VodRelations = {
   related: Model<any,any>
 }
 
-@Injectable()
 export class Vod extends Model<VodAttributes, VodRelations> {
 
 }

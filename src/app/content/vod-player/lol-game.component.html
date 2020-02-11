@@ -1,9 +1,13 @@
-<videojs-vod-player #vodPlayer>
-  <ng-template #videojsVodInfoTabEl>
-    <vod-player-game-info>
+<vod-container [vod]="game.getRelations().vod">
+  <ng-template #vodPlayerEl>
+    <vod-player [vod]="game.getRelations().vod">
+    </vod-player>
+  </ng-template>
+  <ng-template #vodInfoTabEl>
+    <vod-game-info>
       <ng-template #gameTimelineTabEl>
-        <mat-list-item *ngFor="let timeline of game.getRelations().timelines" (click)="vodPlayer.seek(getTimelineSec(timeline)-7)">
-          {{vodPlayer.getElapsedTimeBySec(getTimelineSec(timeline))}} - {{timeline.getAttrs().type}}
+        <mat-list-item *ngFor="let timeline of game.getRelations().timelines" (click)="seek(getTimelineSec(timeline)-7)">
+          {{getElapsedTimeBySec(getTimelineSec(timeline))}} - {{timeline.getAttrs().type}}
         </mat-list-item>
       </ng-template>
       <ng-template #gameResultTabEl>
@@ -59,6 +63,6 @@
           </p>
         </div>
       </ng-template>
-    </vod-player-game-info>
+    </vod-game-info>
   </ng-template>
-</videojs-vod-player>
+</vod-container>

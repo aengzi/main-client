@@ -5,8 +5,8 @@ import { MaterialModule } from 'src/app/material.module';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { UserClipVodPlayerComponent } from './user-clip.component';
 import { HttpService } from 'src/app/service/http.service';
-import { VodPlayerModule } from 'src/app/element/vod-player.module';
-import { VideojsVodPlayerModule } from 'src/app/element/vod-player/videojs.module';
+import { VodContainerModule } from 'src/app/element/vod-container.module';
+import { VodPlayerModule } from 'src/app/element/vod/player.module';
 
 const routes: Routes = [{
   path: '',
@@ -26,7 +26,7 @@ const routes: Routes = [{
   imports: [
     CommonModule,
     MaterialModule,
-    VideojsVodPlayerModule,
+    VodContainerModule,
     VodPlayerModule,
     RouterModule.forChild(routes)
   ],

@@ -12,7 +12,6 @@ export type PwdResetAttributes = {
 export type PwdResetRelations = {
 }
 
-@Injectable()
 export class PwdReset extends Model<PwdResetAttributes, PwdResetRelations> {
 
 }

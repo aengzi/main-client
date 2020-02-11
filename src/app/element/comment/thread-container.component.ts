@@ -31,6 +31,13 @@ export class CommentThreadContainerComponent {
     this.authService = authService;
   }
 
+  public hideNewThreadCtrl() {
+
+    this.isAdding = false;
+    this.newThreadCtrl.setValue('');
+    this.newThreadCtrl.markAsUntouched();
+  }
+
   public addThread() {
 
     HttpService.api().post<CommentThread>('comment-threads', {

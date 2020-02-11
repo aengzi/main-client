@@ -3,6 +3,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs/index';
 import { filter } from 'rxjs/operators';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   templateUrl: './clip.component.html',
@@ -13,8 +14,9 @@ export class UserClipListComponent implements OnDestroy {
   public route: ActivatedRoute;
   public search: Params;
   public setSearchSub: Subscription;
+  public authService: AuthService;
 
-  public constructor(route: ActivatedRoute, router: Router) {
+  public constructor(route: ActivatedRoute, router: Router, authService: AuthService) {
 
     this.route        = route;
     this.setSearchSub = router.events.pipe(
@@ -22,6 +24,7 @@ export class UserClipListComponent implements OnDestroy {
     ).subscribe(event => {
       this.search = _.merge({}, route.snapshot.queryParams);
     });
+    this.authService  = authService;
   }
 
   public ngOnDestroy() {

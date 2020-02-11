@@ -17,7 +17,6 @@ export type AftvBcastRelations = {
   reviews: AftvReview[]
 }
 
-@Injectable()
 export class AftvBcast extends Model<AftvBcastAttributes, AftvBcastRelations> {
 
 }

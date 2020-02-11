@@ -14,7 +14,6 @@ export type YtbVideoRelations = {
   like: Like
 }
 
-@Injectable()
 export class YtbVideo extends Model<YtbVideoAttributes, YtbVideoRelations> {
 
   public static apiBaseUrl = 'youtube/videos';

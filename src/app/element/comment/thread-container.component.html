@@ -9,7 +9,7 @@
     </mat-form-field>
   </div>
   <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px" *ngIf="isAdding">
-    <button mat-button (click)="(isAdding = false) || newThreadCtrl.setValue('') || newThreadCtrl.markAsUntouched()">
+    <button mat-button (click)="hideNewThreadCtrl()">
       취소
     </button>
     <button mat-button mat-raised-button color="primary" [disabled]="newThreadCtrl.invalid" (click)="addThread()">

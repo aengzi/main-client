@@ -21,7 +21,6 @@ export type AftvReviewRelations = {
   vod: Vod
 }
 
-@Injectable()
 export class AftvReview extends Model<AftvReviewAttributes, AftvReviewRelations> {
 
   public static apiBaseUrl   = 'aftv-reviews';
