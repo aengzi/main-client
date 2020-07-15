@@ -15,16 +15,4 @@ export class BroadcastVodListComponent {
     this.router = router;
   }
 
-  public navigate(item) {
-
-    HttpService.api().get('aftv-bcasts/'+item.getAttrs().id, {
-      params: {
-        expands: 'reviews',
-        fields: 'id'
-      }
-    }).subscribe((bcast: AftvBcast) => {
-      this.router.navigate(['/aftv-reviews/', bcast.getRelations().reviews[0].getAttrs().id]);
-    });
-  }
-
 }

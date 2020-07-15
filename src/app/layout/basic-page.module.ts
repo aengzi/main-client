@@ -13,11 +13,11 @@ const routes: Routes = [{
     path: '',
     loadChildren: () => import('src/app/content/index.module').then(mod => mod.IndexModule)
   }, {
-    path: 'aftv-reviews/:id',
-    loadChildren: () => import('src/app/content/vod-player/aftv-review.module').then(mod => mod.AftvReviewVodPlayerModule)
-  }, {
     path: 'broadcasts',
     loadChildren: () => import('src/app/content/list/broadcast-vod.module').then(mod => mod.BroadcastVodListModule)
+  }, {
+    path: 'broadcasts/:id',
+    loadChildren: () => import('src/app/content/vod-player/aftv-bcast.module').then(mod => mod.AftvBcastVodPlayerModule)
   }, {
     path: 'email-change-complete',
     loadChildren: () => import('src/app/content/user/email-change-complete.module').then(mod => mod.UserEmailChangeCompleteModule)

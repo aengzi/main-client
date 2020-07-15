@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Model } from 'src/app/model';
 import { AftvBj } from 'src/app/model/aftv-bj';
-import { AftvReview } from 'src/app/model/aftv-review';
+import { Vod } from 'src/app/model/vod';
 
 export type AftvBcastAttributes = {
   id: string,
@@ -14,7 +14,7 @@ export type AftvBcastAttributes = {
 
 export type AftvBcastRelations = {
   bj: AftvBj,
-  reviews: AftvReview[]
+  vod: Vod
 }
 
 export class AftvBcast extends Model<AftvBcastAttributes, AftvBcastRelations> {
