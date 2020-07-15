@@ -22,6 +22,9 @@ const routes: Routes = [{
     path: 'email-change-complete',
     loadChildren: () => import('src/app/content/user/email-change-complete.module').then(mod => mod.UserEmailChangeCompleteModule)
   }, {
+    path: 'free-posts',
+    loadChildren: () => import('src/app/content/list/post/free.module').then(mod => mod.FreePostListModule)
+  }, {
     path: 'password-find',
     loadChildren: () => import('src/app/content/user/password-find.module').then(mod => mod.UserPasswordFindModule)
   }, {
@@ -36,9 +39,6 @@ const routes: Routes = [{
   }, {
     path: 'posts/:id/edit',
     loadChildren: () => import('src/app/content/post/edit.module').then(mod => mod.PostEditModule)
-  }, {
-    path: 'free-posts',
-    loadChildren: () => import('src/app/content/list/post/free.module').then(mod => mod.FreePostListModule)
   }, {
     path: 'post/votes',
     loadChildren: () => import('src/app/content/list/post/vote.module').then(mod => mod.VotePostListModule)
