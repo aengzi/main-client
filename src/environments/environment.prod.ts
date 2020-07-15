@@ -1,4 +1,4 @@
 export const environment = {
-  apiUrl: 'http://api.aengzi.com/1.0',
+  apiUrl: 'http://1-0-7.api.aengzi.com',
   production: true
 };
