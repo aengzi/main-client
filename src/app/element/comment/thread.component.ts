@@ -125,7 +125,7 @@ export class CommentThreadComponent {
 
     const params = {
       thread_id: this.thread.getAttrs().id,
-      order_by: 'created_at asc, id asc',
+      order_by: 'created_at asc',
       expands: 'user',
       limit: '10'
     };
