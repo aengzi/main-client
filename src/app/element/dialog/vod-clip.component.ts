@@ -23,8 +23,8 @@ export class VodClipDialogComponent {
   public startTimeCtrl     : FormControl;
   public endTimeCtrl       : FormControl;
   public titleCtrl         : FormControl;
-  public startedAt         : string;
-  public endedAt           : string;
+  public startSec          : string;
+  public endSec            : string;
   public duration          : string;
   public viewRef           : MatDialogRef<VodClipDialogComponent>;
   public isCreating        : boolean = false;
@@ -93,14 +93,14 @@ export class VodClipDialogComponent {
     this.startTimeCtrl.valueChanges.subscribe((time) => {
 
       if (!this.startTimeCtrl.errors) {
-        this.startedAt = this.convertToTimeValue('startTimeCtrl', time);
+        this.startSec = this.convertTimeToSec(time);
       }
     });
 
     this.endTimeCtrl.valueChanges.subscribe((time) => {
 
       if (!this.endTimeCtrl.errors) {
-        this.endedAt = this.convertToTimeValue('endTimeCtrl', time);
+        this.endSec = this.convertTimeToSec(time);
       }
     });
 
@@ -114,8 +114,8 @@ export class VodClipDialogComponent {
     this.isCreating = true;
     HttpService.api().post<Clip>('user/clips', {
       vod_id: this.model.getAttrs().id,
-      started_at: this.startedAt,
-      ended_at: this.endedAt,
+      start_sec: this.startSec,
+      end_sec: this.endSec,
       title: this.titleCtrl.value
     }).subscribe(() => {
 
@@ -130,27 +130,11 @@ export class VodClipDialogComponent {
     });
   }
 
-  private convertToTimeValue(field, time) {
+  private convertTimeToSec(time) {
 
-    let m = moment(this.model.getAttrs().started_at);
     let s = time.split(':');
 
-  //   if ( s.length == 1 ) {
-  //     s[1] = s[0];
-  //     s[0] = '0';
-  //   }
-
-  //   s[0] = parseInt(s[0]) + Math.floor(s[1] / 60);
-  //   s[1] = (s[1] % 60);
-
-  //   if ( this[field].value != s.join(':') ) {
-  //     this[field].setValue(s.join(':'));
-  //   }
-
-    m.add(s[0], 'minutes');
-    m.add(s[1], 'seconds');
-
-    return m.format('YYYY-MM-DD HH:mm:ss');
+    return String(parseInt(s[0])*60+parseInt(s[1]));
   }
 
   public preview() {
@@ -159,8 +143,8 @@ export class VodClipDialogComponent {
 
     HttpService.api().post<Clip>('temp/clips', {
       vod_id: this.model.getAttrs().id,
-      started_at: this.startedAt,
-      ended_at: this.endedAt
+      start_sec: this.startSec,
+      end_sec: this.endSec
     }).subscribe((clip: Clip) => {
 
       this.isPreviewCreating = false;
