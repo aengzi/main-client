@@ -36,7 +36,7 @@ const routes: Routes = [{
 
       return HttpService.api().get('clips/'+snapshot.params.id, {
         params: {
-          expands: 'vod.like, vod.review.bj, vod.like, user'
+          expands: 'vod.like, vod.bcast.bj, vod.like, user'
         }
       });
     }

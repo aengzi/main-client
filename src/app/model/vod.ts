@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Model } from 'src/app/model';
-import { AftvReview } from 'src/app/model/aftv-review';
+import { AftvBcast } from 'src/app/model/aftv-bcast';
 import { Like } from 'src/app/model/like';
 
 export type VodAttributes = {
   id: string,
   related_id: string,
   related_type: string,
+  bcast_id: string,
   m3u8_url: string,
   title: string,
   like_count: string,
@@ -16,7 +17,7 @@ export type VodAttributes = {
 }
 
 export type VodRelations = {
-  review: AftvReview,
+  bcast: AftvBcast,
   like: Like,
   related: Model<any,any>
 }
