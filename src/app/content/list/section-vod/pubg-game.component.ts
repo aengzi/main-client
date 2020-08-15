@@ -79,7 +79,9 @@ export class PubgGameSectionVodListComponent implements OnDestroy {
 
   public getQueryParams() {
 
-    const params = _.merge({}, this.search)
+    const params = _.merge({}, this.search);
+
+    params.page = 1;
 
     if ( params.order_by.length != 0 ) {
       params.order_by = params.order_by.join(',');
