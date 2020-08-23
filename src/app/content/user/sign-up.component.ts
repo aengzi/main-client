@@ -1,4 +1,4 @@
-import { Component, ContentChild, TemplateRef } from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatHorizontalStepper } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
@@ -16,7 +16,7 @@ export class UserSignUpComponent {
   public email: FormControl;
   public password: FormControl;
   public nick: FormControl;
-  @ContentChild('stepper', {static: false})
+  @ViewChild('stepper', {static: false})
   public stepper: MatHorizontalStepper;
 
   public constructor(route: ActivatedRoute) {
