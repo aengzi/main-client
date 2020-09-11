@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { Model } from 'src/app/model';
 import { Vod } from 'src/app/model/vod';
 import { LolMeta } from 'src/app/model/lol-meta';

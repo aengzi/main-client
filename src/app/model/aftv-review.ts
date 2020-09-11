@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { Model } from 'src/app/model';
 import { AftvBj } from 'src/app/model/aftv-bj';
 import { AftvBcast } from 'src/app/model/aftv-bcast';

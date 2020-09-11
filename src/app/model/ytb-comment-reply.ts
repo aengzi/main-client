@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { Model } from 'src/app/model';
 import { YtbCommentThread } from 'src/app/model/ytb-comment-thread';
 

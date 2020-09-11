@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { Model } from 'src/app/model';
 import { CommentThread } from 'src/app/model/comment-thread';
 import { User } from 'src/app/model/user';

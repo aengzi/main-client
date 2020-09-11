@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { Model } from 'src/app/model';
 import { User } from 'src/app/model/user';
 import { Vod } from 'src/app/model/vod';

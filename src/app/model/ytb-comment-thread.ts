@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { Model } from 'src/app/model';
 import { YtbVideo } from 'src/app/model/ytb-video';
 

@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { Model } from 'src/app/model';
 import { Dislike } from 'src/app/model/dislike';
 import { Like } from 'src/app/model/like';
