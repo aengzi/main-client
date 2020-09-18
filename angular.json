@@ -34,7 +34,7 @@
           },
           "configurations": {
             "production": {
-              "aot": true,
+              "aot": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -42,7 +42,7 @@
                   "maximumError": "5mb"
                 }
               ],
-              "buildOptimizer": true,
+              "buildOptimizer": false,
               "extractCss": true,
               "extractLicenses": true,
               "fileReplacements": [
@@ -59,7 +59,7 @@
               "watch": false
             },
             "test": {
-              "aot": true,
+              "aot": false,
               "budgets": [],
               "buildOptimizer": false,
               "extractCss": false,
