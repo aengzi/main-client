@@ -19,9 +19,6 @@ const routes: Routes = [{
     path: 'broadcasts/:id',
     loadChildren: () => import('src/app/content/vod-player/aftv-bcast.module').then(mod => mod.AftvBcastVodPlayerModule)
   }, {
-    path: 'email-change-complete',
-    loadChildren: () => import('src/app/content/user/email-change-complete.module').then(mod => mod.UserEmailChangeCompleteModule)
-  }, {
     path: 'clips',
     loadChildren: () => import('src/app/content/list/clip.module').then(mod => mod.ClipListModule)
   }, {
@@ -30,9 +27,6 @@ const routes: Routes = [{
   }, {
     path: 'free-posts',
     loadChildren: () => import('src/app/content/list/post/free.module').then(mod => mod.FreePostListModule)
-  }, {
-    path: 'password-find',
-    loadChildren: () => import('src/app/content/user/password-find.module').then(mod => mod.UserPasswordFindModule)
   }, {
     path: 'password-reset',
     loadChildren: () => import('src/app/content/user/password-reset.module').then(mod => mod.UserPasswordResetModule)
@@ -63,9 +57,6 @@ const routes: Routes = [{
   }, {
     path: 'sign-up',
     loadChildren: () => import('src/app/content/user/sign-up.module').then(mod => mod.UserSignUpModule)
-  }, {
-    path: 'sign-up-complete',
-    loadChildren: () => import('src/app/content/user/sign-up-complete.module').then(mod => mod.UserSignUpCompleteModule)
   }, {
     path: 'user/account',
     loadChildren: () => import('src/app/content/user/account.module').then(mod => mod.UserAccountModule)
