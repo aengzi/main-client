@@ -34,7 +34,7 @@ const routes: Routes = [{
     provide: 'video$$',
     useValue: (snapshot: ActivatedRouteSnapshot) => {
 
-      return HttpService.api().get('youtube/videos/'+snapshot.params.id, {
+      return HttpService.api().get('youtube-videos/'+snapshot.params.id, {
         params: {
           expands: 'like'
         }

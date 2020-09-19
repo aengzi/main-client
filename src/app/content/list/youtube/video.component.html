@@ -1,4 +1,4 @@
-<route-page-list #pageList [apiUrl]="'youtube/videos'" [apiParams]="apiParams">
+<route-page-list #pageList [apiUrl]="'youtube-videos'" [apiParams]="apiParams">
   <ng-template #itemListEl>
     <div class="ytb-vod-item" fxFlex="0 0 calc(25% - 20px)" *ngFor="let item of pageList.items">
       <mat-card routerLink="/youtube/videos/{{item.getAttrs().id}}">

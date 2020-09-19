@@ -112,7 +112,7 @@ export class VodClipDialogComponent {
   public confirm() {
 
     this.isCreating = true;
-    HttpService.api().post<Clip>('user/clips', {
+    HttpService.api().post<Clip>('user-clips', {
       vod_id: this.model.getAttrs().id,
       start_sec: this.startSec,
       end_sec: this.endSec,
@@ -141,7 +141,7 @@ export class VodClipDialogComponent {
 
     this.isPreviewCreating = true;
 
-    HttpService.api().post<Clip>('temp/clips', {
+    HttpService.api().post<Clip>('temp-clips', {
       vod_id: this.model.getAttrs().id,
       start_sec: this.startSec,
       end_sec: this.endSec

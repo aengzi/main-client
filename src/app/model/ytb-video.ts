@@ -15,6 +15,6 @@ export type YtbVideoRelations = {
 
 export class YtbVideo extends Model<YtbVideoAttributes, YtbVideoRelations> {
 
-  public static apiBaseUrl = 'youtube/videos';
+  public static apiBaseUrl = 'youtube-videos';
   public static routePageUrl = 'youtube/videos';
 }

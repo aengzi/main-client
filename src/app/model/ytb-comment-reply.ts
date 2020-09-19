@@ -20,5 +20,5 @@ export type YtbCommentReplyRelations = {
 
 export class YtbCommentReply extends Model<YtbCommentReplyAttributes, YtbCommentReplyRelations> {
 
-  public static apiBaseUrl = 'youtube/comment/replies';
+  public static apiBaseUrl = 'youtube-comment-replies';
 }

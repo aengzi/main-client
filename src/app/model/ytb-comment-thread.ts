@@ -20,6 +20,6 @@ export type YtbCommentThreadRelations = {
 
 export class YtbCommentThread extends Model<YtbCommentThreadAttributes, YtbCommentThreadRelations> {
 
-  public static apiBaseUrl = 'youtube/comment/threads';
+  public static apiBaseUrl = 'youtube-comment-threads';
 
 }

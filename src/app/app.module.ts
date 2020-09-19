@@ -40,7 +40,7 @@ const routes: Routes = [{
 
       } else if (localStorage.getItem('aengzi-auth-token')) {
 
-        const obs = HttpService.api().get<User>('auth/user');
+        const obs = HttpService.api().get<User>('auth-user');
 
         obs.subscribe((user: User) => {
           AuthService.setUser(user);

@@ -29,7 +29,7 @@ export class LolGameSectionVodListComponent implements OnDestroy {
       this.setSearchObj(_.merge({}, route.snapshot.queryParams));
     });
 
-    HttpService.api().get('watchable/lol-champions').subscribe((champions: any) => {
+    HttpService.api().get('watchable-lol-champions').subscribe((champions: any) => {
       this.champions = champions;
     });
   }

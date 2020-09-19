@@ -55,7 +55,7 @@ export class SignInDialogComponent {
     }).pipe(switchMap((token: string) => {
 
       localStorage.setItem('aengzi-auth-token', token);
-      return HttpService.api().get<User>('auth/user');
+      return HttpService.api().get<User>('auth-user');
 
     })).subscribe((user: User) => {
 
