@@ -12,9 +12,9 @@ export class PubgGameVodPlayerComponent {
 
   public game      : PubgGame;
   public gameInfo  : any;
-  @ViewChild(VodContainerComponent, {static: false})
+  @ViewChild(VodContainerComponent)
   public vodContainer: VodContainerComponent;
-  @ViewChild(VodPlayerComponent, {static: false})
+  @ViewChild(VodPlayerComponent)
   public vodPlayer : VodPlayerComponent;
 
   public constructor(route: ActivatedRoute) {

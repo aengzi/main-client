@@ -22,6 +22,9 @@
             "outputPath": "../aengzi-chrome-extension/main",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -40,6 +43,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ],
               "buildOptimizer": false,
@@ -60,7 +67,12 @@
             },
             "test": {
               "aot": false,
-              "budgets": [],
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "buildOptimizer": false,
               "extractCss": false,
               "extractLicenses": false,

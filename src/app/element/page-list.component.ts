@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/index';
 })
 export class PageListComponent implements OnInit {
 
-  @ContentChild('itemListEl', {static: false})
+  @ContentChild('itemListEl')
   public itemListEl: TemplateRef<any>;
   public currentPage: number;
   public items: Model<any,any>[];

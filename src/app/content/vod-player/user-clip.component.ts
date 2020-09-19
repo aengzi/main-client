@@ -10,9 +10,9 @@ import { VodPlayerComponent } from 'src/app/element/vod/player.component';
 export class UserClipVodPlayerComponent {
 
   public clip;
-  @ViewChild(VodContainerComponent, {static: false})
+  @ViewChild(VodContainerComponent)
   public vodContainer: VodContainerComponent;
-  @ViewChild(VodPlayerComponent, {static: false})
+  @ViewChild(VodPlayerComponent)
   public vodPlayer   : VodPlayerComponent;
 
   public constructor(route: ActivatedRoute) {

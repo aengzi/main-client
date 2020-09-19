@@ -16,7 +16,7 @@ export class UserSignUpComponent {
   public email: FormControl;
   public password: FormControl;
   public nick: FormControl;
-  @ViewChild('stepper', {static: false})
+  @ViewChild('stepper')
   public stepper: MatHorizontalStepper;
 
   public constructor(route: ActivatedRoute) {

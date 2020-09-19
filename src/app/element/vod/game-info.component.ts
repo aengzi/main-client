@@ -8,9 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class VodGameInfoComponent implements AfterContentInit {
 
-  @ContentChild('gameTimelineTabEl', {static: false})
+  @ContentChild('gameTimelineTabEl')
   public gameTimelineTabEl: TemplateRef<any>;
-  @ContentChild('gameResultTabEl', {static: false})
+  @ContentChild('gameResultTabEl')
   public gameResultTabEl: TemplateRef<any>;
   public tabIndex : number = 0;
 

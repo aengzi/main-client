@@ -13,7 +13,7 @@ export class AftvBcastVodPlayerComponent {
 
   public bcast     : AftvBcast;
   public routerSub : Subscription;
-  @ViewChild(VodContainerComponent, {static: false})
+  @ViewChild(VodContainerComponent)
   public vodContainer : VodContainerComponent
 
   public constructor(route: ActivatedRoute, router: Router) {

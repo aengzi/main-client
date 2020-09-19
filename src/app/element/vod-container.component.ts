@@ -15,9 +15,9 @@ export class VodContainerComponent {
   public authService     : AuthService;
   @Input('vod')
   public vod             : Vod;
-  @ContentChild('vodPlayerEl', {static: false})
+  @ContentChild('vodPlayerEl')
   public vodPlayerEl     : TemplateRef<any>;
-  @ContentChild('vodInfoTabEl', {static: false})
+  @ContentChild('vodInfoTabEl')
   public vodInfoTabEl    : TemplateRef<any>;
   public dialog          : MatDialog;
   // public changeDetectRef : ChangeDetectorRef;

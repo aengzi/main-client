@@ -19,7 +19,7 @@ export class CommentThreadContainerComponent {
 
   public authService   : AuthService;
   public newThreads    : CommentThread[] = [];
-  @ViewChild('threadList', {static: false})
+  @ViewChild('threadList')
   public threadList    : PageListComponent;
   @Input('related')
   public related       : Model<any, any>;

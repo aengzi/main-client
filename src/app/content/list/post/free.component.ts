@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class FreePostListComponent {
 
-  @ViewChild('pageList', {static: false})
+  @ViewChild('pageList')
   public pageList     : RoutePageListComponent;
   public search       : Params;
   public setSearchSub : Subscription;
