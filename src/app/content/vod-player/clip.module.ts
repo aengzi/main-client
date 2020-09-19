@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { UserClipVodPlayerComponent } from './user-clip.component';
+import { ClipVodPlayerComponent } from './clip.component';
 import { HttpService } from 'src/app/service/http.service';
 import { VodContainerModule } from 'src/app/element/vod-container.module';
 import { VodPlayerModule } from 'src/app/element/vod/player.module';
 
 const routes: Routes = [{
   path: '',
-  component: UserClipVodPlayerComponent,
+  component: ClipVodPlayerComponent,
   resolve: {
     clip: 'clip$$'
   }
@@ -18,10 +18,10 @@ const routes: Routes = [{
 
 @NgModule({
   declarations: [
-    UserClipVodPlayerComponent
+    ClipVodPlayerComponent
   ],
   exports: [
-    UserClipVodPlayerComponent
+    ClipVodPlayerComponent
   ],
   imports: [
     CommonModule,
@@ -42,4 +42,4 @@ const routes: Routes = [{
     }
   }]
 })
-export class UserClipVodPlayerModule { }
+export class ClipVodPlayerModule { }

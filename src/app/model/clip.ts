@@ -16,5 +16,5 @@ export type ClipRelations = {
 export class Clip extends Model<ClipAttributes, ClipRelations> {
 
   public static apiBaseUrl   = 'clips';
-  public static routePageUrl = 'user/clips';
+  public static routePageUrl = 'clips';
 }

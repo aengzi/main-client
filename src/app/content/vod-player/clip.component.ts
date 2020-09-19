@@ -4,10 +4,10 @@ import { VodContainerComponent } from 'src/app/element/vod-container.component';
 import { VodPlayerComponent } from 'src/app/element/vod/player.component';
 
 @Component({
-  templateUrl: './user-clip.component.html',
-  styleUrls: ['./user-clip.component.scss']
+  templateUrl: './clip.component.html',
+  styleUrls: ['./clip.component.scss']
 })
-export class UserClipVodPlayerComponent {
+export class ClipVodPlayerComponent {
 
   public clip;
   @ViewChild(VodContainerComponent)

@@ -4,19 +4,19 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { RoutePageListModule } from 'src/app/element/route-page-list.module';
-import { UserClipListComponent } from './clip.component';
+import { ClipListComponent } from './clip.component';
 
 const routes: Routes = [{
   path: '',
-  component: UserClipListComponent
+  component: ClipListComponent
 }];
 
 @NgModule({
   declarations: [
-    UserClipListComponent
+    ClipListComponent
   ],
   exports: [
-    UserClipListComponent
+    ClipListComponent
   ],
   imports: [
     CommonModule,
@@ -26,4 +26,4 @@ const routes: Routes = [{
     RouterModule.forChild(routes)
   ]
 })
-export class UserClipListModule { }
+export class ClipListModule { }

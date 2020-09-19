@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/service/auth.service';
   templateUrl: './clip.component.html',
   styleUrls: ['./clip.component.scss']
 })
-export class UserClipListComponent implements OnDestroy {
+export class ClipListComponent implements OnDestroy {
 
   public route: ActivatedRoute;
   public search: Params;

@@ -22,6 +22,12 @@ const routes: Routes = [{
     path: 'email-change-complete',
     loadChildren: () => import('src/app/content/user/email-change-complete.module').then(mod => mod.UserEmailChangeCompleteModule)
   }, {
+    path: 'clips',
+    loadChildren: () => import('src/app/content/list/clip.module').then(mod => mod.ClipListModule)
+  }, {
+    path: 'clips/:id',
+    loadChildren: () => import('src/app/content/vod-player/clip.module').then(mod => mod.ClipVodPlayerModule)
+  }, {
     path: 'free-posts',
     loadChildren: () => import('src/app/content/list/post/free.module').then(mod => mod.FreePostListModule)
   }, {
@@ -63,12 +69,6 @@ const routes: Routes = [{
   }, {
     path: 'user/account',
     loadChildren: () => import('src/app/content/user/account.module').then(mod => mod.UserAccountModule)
-  }, {
-    path: 'user/clips',
-    loadChildren: () => import('src/app/content/list/user/clip.module').then(mod => mod.UserClipListModule)
-  }, {
-    path: 'user/clips/:id',
-    loadChildren: () => import('src/app/content/vod-player/user-clip.module').then(mod => mod.UserClipVodPlayerModule)
   }, {
     path: 'user/profile',
     loadChildren: () => import('src/app/content/user/profile.module').then(mod => mod.UserProfileModule)
