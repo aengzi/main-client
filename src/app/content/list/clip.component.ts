@@ -14,9 +14,9 @@ export class ClipListComponent implements OnDestroy {
   public route: ActivatedRoute;
   public search: Params;
   public setSearchSub: Subscription;
-  public authService: AuthService;
+  public authService: typeof AuthService;
 
-  public constructor(route: ActivatedRoute, router: Router, authService: AuthService) {
+  public constructor(route: ActivatedRoute, router: Router) {
 
     this.route        = route;
     this.setSearchSub = router.events.pipe(
@@ -24,7 +24,7 @@ export class ClipListComponent implements OnDestroy {
     ).subscribe(event => {
       this.search = _.merge({}, route.snapshot.queryParams);
     });
-    this.authService  = authService;
+    this.authService  = AuthService;
   }
 
   public ngOnDestroy() {

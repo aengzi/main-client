@@ -12,7 +12,7 @@ import { StorageService } from 'src/app/service/storage.service';
 })
 export class UserAccountComponent {
 
-  public authService    : AuthService;
+  public authService    : typeof AuthService;
   public emailCtrl      : FormControl;
   public passwordCtrl   : FormControl;
   public isEditEmail    : boolean = false;

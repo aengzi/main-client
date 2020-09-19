@@ -13,12 +13,11 @@ import { AuthService } from 'src/app/service/auth.service'
 export class BasicPageHeaderComponent {
 
   public dialog      : MatDialog;
-  public authService : AuthService;
+  public authService : typeof AuthService;
   public router      : Router;
 
-  public constructor(router: Router, dialog: MatDialog, authService: AuthService) {
-
-    this.authService = authService;
+  public constructor(router: Router, dialog: MatDialog) {
+    this.authService = AuthService;
     this.dialog      = dialog;
     this.router      = router;
   }

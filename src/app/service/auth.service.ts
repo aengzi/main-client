@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/model/user';
-import { Router } from '@angular/router';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +8,6 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private static user: User;
-  private router: Router;
-
-  public constructor(router: Router) {
-    this.router = router;
-  }
 
   public static getUser() {
     return AuthService.user;
@@ -26,27 +21,16 @@ export class AuthService {
     AuthService.user = user;
   }
 
-  public requireSignIn() {
-    if (!this.getUser()) {
-      this.router.navigate(['/sign-in'], {
+  public static requireSignIn() {
+    if (!AuthService.getUser()) {
+      StorageService.get('router').navigate(['/sign-in'], {
         queryParams: {
-          referrer: this.router.url
+          referrer: StorageService.get('router').url
         }
       });
     }
 
-    return !this.isSignIn();
+    return !AuthService.isSignIn();
   }
 
-  public getUser() {
-    return AuthService.getUser();
-  }
-
-  public isSignIn() {
-    return AuthService.isSignIn();
-  }
-
-  public setUser(user: User) {
-    return AuthService.setUser(user);
-  }
 }

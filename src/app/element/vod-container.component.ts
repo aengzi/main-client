@@ -12,7 +12,7 @@ import { VodClipDialogComponent } from 'src/app/element/dialog/vod-clip.componen
 })
 export class VodContainerComponent {
 
-  public authService     : AuthService;
+  public authService     : typeof AuthService;
   @Input('vod')
   public vod             : Vod;
   @ContentChild('vodPlayerEl')
@@ -22,9 +22,9 @@ export class VodContainerComponent {
   public dialog          : MatDialog;
   // public changeDetectRef : ChangeDetectorRef;
 
-  public constructor(authService: AuthService, dialog: MatDialog, changeDetectRef: ChangeDetectorRef) {
+  public constructor(dialog: MatDialog, changeDetectRef: ChangeDetectorRef) {
     this.dialog          = dialog;
-    this.authService     = authService;
+    this.authService     = AuthService;
     // this.changeDetectRef = changeDetectRef;
   }
 

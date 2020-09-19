@@ -13,10 +13,10 @@ export class LikeButtonComponent {
 
   @Input('related')
   public related     : Model<any,any>;
-  public authService : AuthService;
+  public authService : typeof AuthService;
 
-  public constructor(authService: AuthService) {
-    this.authService = authService;
+  public constructor() {
+    this.authService = AuthService;
   }
 
   public addLike() {

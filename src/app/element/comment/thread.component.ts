@@ -16,7 +16,7 @@ import { HttpService } from 'src/app/service/http.service';
 })
 export class CommentThreadComponent {
 
-  public authService    : AuthService;
+  public authService    : typeof AuthService;
   @Input('thread')
   public thread         : CommentThread;
   public editThreadCtrl : FormControl = new FormControl('', Validators.required);
@@ -29,8 +29,8 @@ export class CommentThreadComponent {
   public isReplyLoadAll : boolean = false;
   public isThumbBtnLock : boolean = false;
 
-  public constructor(authService: AuthService) {
-    this.authService = authService;
+  public constructor() {
+    this.authService = AuthService;
   }
 
   public addDislike() {

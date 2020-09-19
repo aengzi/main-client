@@ -13,14 +13,14 @@ export class PostShowComponent {
 
   public post: Post;
   public referrer: string;
-  public authService: AuthService;
+  public authService: typeof AuthService;
   public contentHtml: SafeHtml;
 
-  constructor(route: ActivatedRoute, sanitizer: DomSanitizer, authService: AuthService) {
+  constructor(route: ActivatedRoute, sanitizer: DomSanitizer) {
 
     const post       = route.snapshot.data.post;
 
-    this.authService = authService;
+    this.authService = AuthService;
     this.post        = post;
     this.contentHtml = sanitizer.bypassSecurityTrustHtml(post.getAttrs().content);
   }

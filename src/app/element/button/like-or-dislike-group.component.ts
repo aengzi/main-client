@@ -17,11 +17,11 @@ export class LikeOrDislikeButtonGroupComponent implements AfterViewInit {
   public vc           : ViewContainerRef;
   public likeBtnEl    : HTMLElement
   public dislikeBtnEl : HTMLElement
-  public authService  : AuthService;
+  public authService  : typeof AuthService;
 
-  public constructor(vc: ViewContainerRef, authService: AuthService) {
+  public constructor(vc: ViewContainerRef) {
     this.vc          = vc;
-    this.authService = authService;
+    this.authService = AuthService;
   }
 
   public setLikeBtnClass() {

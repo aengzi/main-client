@@ -12,14 +12,14 @@ import { CommentReply } from 'src/app/model/comment-reply';
 })
 export class CommentReplyComponent {
 
-  public authService   : AuthService;
+  public authService   : typeof AuthService;
   public isEditing     : boolean = false;
   public editReplyCtrl : FormControl = new FormControl('', Validators.required);
   @Input('reply')
   public reply         : CommentReply;
 
-  public constructor(authService: AuthService) {
-    this.authService = authService;
+  public constructor() {
+    this.authService = AuthService;
   }
 
   public removeReply() {

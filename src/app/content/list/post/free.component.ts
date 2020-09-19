@@ -17,11 +17,11 @@ export class FreePostListComponent {
   public pageList     : RoutePageListComponent;
   public search       : Params;
   public setSearchSub : Subscription;
-  public authService  : AuthService;
+  public authService  : typeof AuthService;
 
-  public constructor(route: ActivatedRoute, router: Router, authService: AuthService) {
+  public constructor(route: ActivatedRoute, router: Router) {
 
-    this.authService  = authService;
+    this.authService  = AuthService;
     this.setSearchSub = router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(event => {

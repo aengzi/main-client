@@ -17,7 +17,7 @@ import { PageListComponent } from 'src/app/element/page-list.component';
 })
 export class CommentThreadContainerComponent {
 
-  public authService   : AuthService;
+  public authService   : typeof AuthService;
   public newThreads    : CommentThread[] = [];
   @ViewChild('threadList')
   public threadList    : PageListComponent;
@@ -26,9 +26,8 @@ export class CommentThreadContainerComponent {
   public isAdding      : boolean = false;
   public newThreadCtrl : FormControl = new FormControl('', Validators.required);
 
-  public constructor(authService: AuthService) {
-
-    this.authService = authService;
+  public constructor() {
+    this.authService = AuthService;
   }
 
   public hideNewThreadCtrl() {
