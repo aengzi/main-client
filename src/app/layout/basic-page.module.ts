@@ -13,6 +13,12 @@ const routes: Routes = [{
     path: '',
     loadChildren: () => import('src/app/content/index.module').then(mod => mod.IndexModule)
   }, {
+    path: 'auth-user/account',
+    loadChildren: () => import('src/app/content/user/account.module').then(mod => mod.UserAccountModule)
+  }, {
+    path: 'auth-user/profile',
+    loadChildren: () => import('src/app/content/user/profile.module').then(mod => mod.UserProfileModule)
+  }, {
     path: 'broadcasts',
     loadChildren: () => import('src/app/content/list/broadcast-vod.module').then(mod => mod.BroadcastVodListModule)
   }, {
@@ -57,12 +63,6 @@ const routes: Routes = [{
   }, {
     path: 'sign-up',
     loadChildren: () => import('src/app/content/user/sign-up.module').then(mod => mod.UserSignUpModule)
-  }, {
-    path: 'user/account',
-    loadChildren: () => import('src/app/content/user/account.module').then(mod => mod.UserAccountModule)
-  }, {
-    path: 'user/profile',
-    loadChildren: () => import('src/app/content/user/profile.module').then(mod => mod.UserProfileModule)
   }, {
     path: 'users/:id',
     loadChildren: () => import('src/app/content/user/profile.module').then(mod => mod.UserProfileModule)

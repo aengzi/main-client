@@ -95,7 +95,7 @@
       </div>
       <div fxHide fxShow.gt-sm *ngIf="authService.isSignIn()" fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
         <img width="50px" class="rounded-circle" *ngIf="authService.getUser().getAttrs().thumbnail" [src]="authService.getUser().getAttrs().thumbnail" />
-        <button *ngIf="!authService.getUser().getAttrs().thumbnail" mat-icon-button [routerLink]="['/user/profile']">
+        <button *ngIf="!authService.getUser().getAttrs().thumbnail" mat-icon-button [routerLink]="['/auth-user/profile']">
           <mat-icon class="auth-user-img round">
             add_a_photo
           </mat-icon>
@@ -132,8 +132,8 @@
         </button>
       </mat-menu>
       <mat-menu #accountMenu xPosition="before">
-        <button mat-menu-item routerLink="/user/profile">프로필</button>
-        <button mat-menu-item routerLink="/user/account">계정 설정</button>
+        <button mat-menu-item routerLink="/auth-user/profile">프로필</button>
+        <button mat-menu-item routerLink="/auth-user/account">계정 설정</button>
         <button mat-menu-item (click)="signOut()">로그아웃</button>
       </mat-menu>
     </mat-toolbar>
