@@ -1,60 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="start center">
   <h2>계정 정보</h2>
 </div>
-<div fxLayoutAlign="center start" fxLayoutGap="20px">
-  <div fxFlex="300px">
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <label>이메일(아이디)</label>
-      <button mat-raised-button *ngIf="!isEditEmail" (click)="showEditEmailCtrl()">수정</button>
-      <button mat-raised-button *ngIf="isEditEmail" (click)="isEditEmail = false">취소</button>
-    </div>
-    <div fxLayout="row wrap" fxLayoutAlign="start center">
-      <mat-form-field *ngIf="isEditEmail" fxFlex="100" [floatLabel]="'never'">
-        <input matInput type="email" placeholder="Email" [formControl]="emailCtrl" />
-        <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] == 'required'">
-          이메일을 입력하세요.
-        </mat-hint>
-        <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] == 'email'">
-          이메일 형식이 아닙니다.
-        </mat-hint>
-        <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] == 'exist'">
-          이미 존재하는 이메일 입니다.
-        </mat-hint>
-        <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] == 'same'">
-          현재 사용중인 이메일 입니다.
-        </mat-hint>
-      </mat-form-field>
-      <button *ngIf="isEditEmail" mat-raised-button color="primary" fxFlex="100" (click)="changeEmail()" [disabled]="emailCtrl.pristine || emailCtrl.invalid">
-        변경
-      </button>
-      <p *ngIf="!isEditEmail">
-        {{authService.getUser().getAttrs().email}}
-      </p>
-    </div>
-  </div>
-  <div fxFlex="300px">
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <label>비밀번호</label>
-      <button mat-raised-button *ngIf="!isEditPassword" (click)="showEditPasswordCtrl()">수정</button>
-      <button mat-raised-button *ngIf="isEditPassword" (click)="isEditPassword = false">취소</button>
-    </div>
-    <div fxLayout="row wrap" fxLayoutAlign="start center">
-      <mat-form-field *ngIf="isEditPassword" fxFlex="100" [floatLabel]="'never'">
-        <mat-label>비밀번호</mat-label>
-        <input matInput type="password" placeholder="Password" [formControl]="passwordCtrl" />
-        <mat-hint *ngIf="passwordCtrl.touched && passwordCtrl.invalid && passwordCtrl.errors.__proto__.constructor.keys(passwordCtrl.errors)[0] == 'required'">
-          비밀번호를 입력하세요.
-        </mat-hint>
-        <mat-hint *ngIf="passwordCtrl.touched && passwordCtrl.invalid && passwordCtrl.errors.__proto__.constructor.keys(passwordCtrl.errors)[0] == 'minlength'">
-          최소 8글자를 입력하세요.
-        </mat-hint>
-        <mat-hint *ngIf="passwordCtrl.touched && passwordCtrl.invalid && passwordCtrl.errors.__proto__.constructor.keys(passwordCtrl.errors)[0] == 'maxlength'">
-          최대 32글자를 입력하세요.
-        </mat-hint>
-      </mat-form-field>
-      <button *ngIf="isEditPassword" mat-raised-button color="primary" fxFlex="100" [disabled]="passwordCtrl.pristine || passwordCtrl.invalid" (click)="changePassword()">
-        변경
-      </button>
-    </div>
-  </div>
+<div fxLayoutAlign="center center" fxLayoutGap="20px">
+  <user-data-container fxFlex="33" [label]="'email'">
+  </user-data-container>
+  <user-data-container fxFlex="33" [label]="'password'">
+  </user-data-container>
 </div>

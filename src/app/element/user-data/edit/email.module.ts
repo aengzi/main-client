@@ -1,23 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
-import { UserPasswordResetComponent } from './password-reset.component';
+import { EmailEditUserDataComponent } from './email.component';
 import { EmailVerifierModule } from 'src/app/element/email-verifier.module';
 
 const routes: Routes = [{
   path: '',
-  component: UserPasswordResetComponent
+  component: EmailEditUserDataComponent
 }];
 
 @NgModule({
   declarations: [
-    UserPasswordResetComponent
+    EmailEditUserDataComponent
   ],
   exports: [
-    UserPasswordResetComponent
+    EmailEditUserDataComponent
   ],
   imports: [
     CommonModule,
@@ -28,4 +28,4 @@ const routes: Routes = [{
     RouterModule.forChild(routes)
   ]
 })
-export class UserPasswordResetModule { }
+export class EmailEditUserDataModule { }

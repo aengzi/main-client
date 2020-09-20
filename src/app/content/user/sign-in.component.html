@@ -7,7 +7,7 @@
   <form fxFlex="320px" (ngSubmit)="signIn()">
     <div fxLayout="row" class="mb-3" fxLayoutAlign="end center">
       <a mat-button color="primary" [routerLink]="['/sign-up']">회원가입</a>
-      <a mat-button [routerLink]="['/password-find']">비밀번호 찾기</a>
+      <a mat-button [routerLink]="['/password-reset']">비밀번호 찾기</a>
     </div>
     <div fxLayout="row">
       <mat-form-field fxFlex="100%" appearance="outline">
@@ -37,7 +37,7 @@
       </mat-form-field>
     </div>
     <div fxLayout="row">
-      <button type="submit" fxFlex="100%" mat-raised-button color="primary" [disabled]="this.form.invalid" (click)="signIn()">
+      <button type="submit" fxFlex="100%" mat-raised-button color="primary" [disabled]="form.invalid" (click)="signIn()">
       로그인
       </button>
     </div>

@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>
+  {{label + ' 변경'}}
+</h2>
+<ng-container #editContent>
+</ng-container>
+<mat-dialog-actions *ngIf="editComponent && editComponent.isViewInit">
+  <button mat-button mat-dialog-close>취소</button>
+  <button mat-button *ngIf="editComponent.stepper" [disabled]="editComponent.stepper.selectedIndex >= editComponent.stepper.steps.length-1" (click)="editComponent.next$().subscribe()">다음</button>
+  <button mat-button [disabled]="editComponent.form.pristine || editComponent.form.invalid" (click)="editComponent.submit$().subscribe() && ref.close()">완료</button>
+</mat-dialog-actions>

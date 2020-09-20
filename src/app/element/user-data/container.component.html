@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-header fxLayout="row" fxLayoutAlign="space-between start">
+    <mat-card-title>
+      <p>{{label}}</p>
+    </mat-card-title>
+    <button mat-raised-button (click)="openEditDialog()">수정</button>
+  </mat-card-header>
+  <mat-card-content>
+    <div #showContent></div>
+  </mat-card-content>
+</mat-card>

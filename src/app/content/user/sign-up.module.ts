@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
 import { UserSignUpComponent } from './sign-up.component';
+import { EmailVerifierModule } from 'src/app/element/email-verifier.module';
 
 const routes: Routes = [{
   path: '',
@@ -23,6 +24,7 @@ const routes: Routes = [{
     FlexLayoutModule,
     MaterialModule,
     ReactiveFormsModule,
+    EmailVerifierModule,
     RouterModule.forChild(routes)
   ]
 })

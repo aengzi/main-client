@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
 import { UserAccountComponent } from './account.component';
+import { UserDataContainerModule } from 'src/app/element/user-data/container.module'
 
 const routes: Routes = [{
   path: '',
@@ -23,6 +24,7 @@ const routes: Routes = [{
     FlexLayoutModule,
     MaterialModule,
     ReactiveFormsModule,
+    UserDataContainerModule,
     RouterModule.forChild(routes)
   ]
 })

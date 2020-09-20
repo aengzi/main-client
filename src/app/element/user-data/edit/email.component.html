@@ -1,0 +1,24 @@
+<mat-horizontal-stepper [linear]="true" [disableRipple]="true" #stepper>
+  <mat-step [stepControl]="emailCtrl" [editable]="false">
+    <ng-template matStepLabel>이메일 입력</ng-template>
+    <mat-form-field fxFlex="100" [floatLabel]="'never'">
+      <input matInput type="email" placeholder="Email" [formControl]="emailCtrl" />
+      <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] == 'required'">
+        이메일을 입력하세요.
+      </mat-hint>
+      <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] == 'email'">
+        이메일 형식이 아닙니다.
+      </mat-hint>
+      <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] == 'exist'">
+        이미 존재하는 이메일 입니다.
+      </mat-hint>
+      <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] == 'same'">
+        현재 사용중인 이메일 입니다.
+      </mat-hint>
+    </mat-form-field>
+  </mat-step>
+  <mat-step [stepControl]="emailVerifier.codeCtrl" [editable]="false">
+    <ng-template matStepLabel>이메일 확인</ng-template>
+    <email-verifier #emailVerifier></email-verifier>
+  </mat-step>
+</mat-horizontal-stepper>
