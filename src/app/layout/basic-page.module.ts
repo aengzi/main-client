@@ -5,6 +5,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { BasicPageComponent } from './basic-page.component';
 import { BasicPageHeaderModule } from 'src/app/layout/basic-page/header.module';
 import { BasicPageFooterModule } from 'src/app/layout/basic-page/footer.module';
+import { AuthGuardService } from 'src/app/service/auth-guard.service';
 
 const routes: Routes = [{
   path: '',
@@ -14,9 +15,11 @@ const routes: Routes = [{
     loadChildren: () => import('src/app/content/index.module').then(mod => mod.IndexModule)
   }, {
     path: 'auth-user/account',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('src/app/content/user/account.module').then(mod => mod.UserAccountModule)
   }, {
     path: 'auth-user/profile',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('src/app/content/user/profile.module').then(mod => mod.UserProfileModule)
   }, {
     path: 'broadcasts',
