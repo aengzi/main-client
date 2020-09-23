@@ -4,5 +4,20 @@
   </p>
 </div>
 <div fxLayout="row" fxLayoutAlign="center center">
-  코드입력: <input type="text" [formControl]="codeCtrl" />
+  <mat-form-field appearance="outline">
+    <mat-label>코드입력</mat-label>
+    <input matInput type="text" placeholder="Code" [formControl]="codeCtrl" />
+    <mat-hint *ngIf="codeCtrl.touched && codeCtrl.invalid && codeCtrl.errors.__proto__.constructor.keys(codeCtrl.errors)[0] == 'required'">
+      닉네임를 입력하세요.
+    </mat-hint>
+    <mat-hint *ngIf="codeCtrl.touched && codeCtrl.invalid && codeCtrl.errors.__proto__.constructor.keys(codeCtrl.errors)[0] == 'length'">
+      코드 길이가 다릅니다.
+    </mat-hint>
+    <mat-hint *ngIf="codeCtrl.touched && codeCtrl.invalid && codeCtrl.errors.__proto__.constructor.keys(codeCtrl.errors)[0] == 'invalid'">
+      코드 문자가 다릅니다.
+    </mat-hint>
+  </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-spinner *ngIf="isSubmitting" [diameter]="50"></mat-spinner>
 </div>

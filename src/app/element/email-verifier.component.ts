@@ -12,6 +12,7 @@ import { FormControl, Validators } from '@angular/forms';
 export class EmailVerifierComponent {
 
   public codeCtrl : FormControl;
+  public isSubmitting: boolean = false;
   @Input('token')
   public token : string;
   @Output('success')
@@ -42,6 +43,9 @@ export class EmailVerifierComponent {
               if ( token ) {
                 this.verifiedToken = token;
                 this.success.emit(token);
+                if ( this.success.observers.length > 0 ) {
+                  this.isSubmitting = true;
+                }
                 return {};
               } else {
                 return {invalid: true};
