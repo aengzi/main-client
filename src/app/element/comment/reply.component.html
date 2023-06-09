@@ -1,4 +1,4 @@
-<img fxFlex="50px" class="mr-3 mt-1 rounded-circle border" [src]="reply.getRelations().user.getAttrs().thumbnail ? reply.getRelations().user.getAttrs().thumbnail : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='" />
+<img alt="" fxFlex="50px" class="mr-3 mt-1 rounded-circle border" [src]="reply.getRelations().user.getAttrs().thumbnail ? reply.getRelations().user.getAttrs().thumbnail : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='" />
 <div fxFlex fxLayout="row wrap" fxLayoutAlign="start center" >
   <ng-container *ngIf="!isEditing">
     <div fxFlex>
@@ -9,7 +9,7 @@
         {{reply.getAttrs().message}}
       </p>
     </div>
-    <div fxFlex="40px" *ngIf="authService.getUser() && authService.getUser().getAttrs().id == reply.getAttrs().user_id">
+    <div fxFlex="40px" *ngIf="authService.getUser() && authService.getUser().getAttrs().id === reply.getAttrs().user_id">
       <mat-menu #commentMenu>
         <button mat-menu-item (click)="(isEditing = true) && editReplyCtrl.setValue(reply.getAttrs().message)">
           수정
@@ -37,4 +37,3 @@
     </div>
   </ng-container>
 </div>
-

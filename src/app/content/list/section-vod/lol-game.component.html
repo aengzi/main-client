@@ -4,19 +4,19 @@
       정렬:
     </p>
     <nav mat-tab-nav-bar>
-      <a mat-tab-link [active]="search.order_by == undefined || search.order_by.length == 0" queryParamsHandling="merge" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
+      <a mat-tab-link [active]="search.order_by === undefined || search.order_by.length === 0" queryParamsHandling="merge" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
         최신날짜 순
       </a>
-      <a mat-tab-link [active]="search.order_by != undefined && search.order_by.length != 0 && search.order_by[0] == 'status_kills desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'status_kills desc'}" [routerLink]="['./']">
+      <a mat-tab-link [active]="search.order_by !== undefined && search.order_by.length !== 0 && search.order_by[0] === 'status_kills desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'status_kills desc'}" [routerLink]="['./']">
         킬수 많은 순
       </a>
-      <a mat-tab-link [active]="search.order_by != undefined && search.order_by.length != 0 && search.order_by[0] == 'status_assists desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'status_assists desc'}" [routerLink]="['./']">
+      <a mat-tab-link [active]="search.order_by !== undefined && search.order_by.length !== 0 && search.order_by[0] === 'status_assists desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'status_assists desc'}" [routerLink]="['./']">
         어시스트 많은 순
       </a>
-      <a mat-tab-link [active]="search.order_by != undefined && search.order_by.length != 0 && search.order_by[0] == 'status_gold_earned desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'status_gold_earned desc'}" [routerLink]="['./']">
+      <a mat-tab-link [active]="search.order_by !== undefined && search.order_by.length !== 0 && search.order_by[0] === 'status_gold_earned desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'status_gold_earned desc'}" [routerLink]="['./']">
         골드취득 많이한 순
       </a>
-      <a mat-tab-link [active]="search.order_by != undefined && search.order_by.length != 0 && search.order_by[0] == 'game_duration desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'game_duration desc'}" [routerLink]="['./']">
+      <a mat-tab-link [active]="search.order_by !== undefined && search.order_by.length !== 0 && search.order_by[0] === 'game_duration desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'game_duration desc'}" [routerLink]="['./']">
         러닝타임 긴 순
       </a>
     </nav>
@@ -50,13 +50,13 @@
     </div>
     <div fxFlex="85%" fxLayout="row" fxLayoutAlign="start center">
       <mat-radio-group (change)="search.is_win = $event.value">
-        <mat-radio-button [checked]="search.is_win == undefined" [value]="undefined">
+        <mat-radio-button [checked]="search.is_win === undefined" [value]="undefined">
           전체
         </mat-radio-button>
-        <mat-radio-button [checked]="search.is_win == 1" [value]="1">
+        <mat-radio-button [checked]="search.is_win === 1" [value]="1">
           승
         </mat-radio-button>
-        <mat-radio-button [checked]="search.is_win == 0" [value]="0">
+        <mat-radio-button [checked]="search.is_win === 0" [value]="0">
           패
         </mat-radio-button>
       </mat-radio-group>
@@ -67,10 +67,10 @@
       <span>멀티킬 종류</span>
     </div>
     <div fxFlex="85%" fxLayout="row" fxLayoutAlign="start center">
-      <mat-checkbox [checked]="search.multi_kill_types.indexOf('double') != -1" (change)="toggleStatusMultiKills('double')">더블 킬</mat-checkbox>
-      <mat-checkbox [checked]="search.multi_kill_types.indexOf('triple') != -1" (change)="toggleStatusMultiKills('triple')">트리필 킬</mat-checkbox>
-      <mat-checkbox [checked]="search.multi_kill_types.indexOf('quadra') != -1" (change)="toggleStatusMultiKills('quadra')">쿼드라 킬</mat-checkbox>
-      <mat-checkbox [checked]="search.multi_kill_types.indexOf('penta') != -1" (change)="toggleStatusMultiKills('penta')">펜타 킬</mat-checkbox>
+      <mat-checkbox [checked]="search.multi_kill_types.indexOf('double') !== -1" (change)="toggleStatusMultiKills('double')">더블 킬</mat-checkbox>
+      <mat-checkbox [checked]="search.multi_kill_types.indexOf('triple') !== -1" (change)="toggleStatusMultiKills('triple')">트리필 킬</mat-checkbox>
+      <mat-checkbox [checked]="search.multi_kill_types.indexOf('quadra') !== -1" (change)="toggleStatusMultiKills('quadra')">쿼드라 킬</mat-checkbox>
+      <mat-checkbox [checked]="search.multi_kill_types.indexOf('penta') !== -1" (change)="toggleStatusMultiKills('penta')">펜타 킬</mat-checkbox>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="center center">
@@ -89,7 +89,7 @@
   <ng-template #itemListEl>
     <div class="ytb-vod-item" fxFlex="0 0 calc(25% - 20px)" *ngFor="let item of pageList.items">
       <mat-card routerLink="/section/lol-games/{{item.getAttrs().id}}">
-        <img mat-card-image src="{{item.getRelations().vod.getAttrs().thumbnail}}" />
+        <img alt="" mat-card-image src="{{item.getRelations().vod.getAttrs().thumbnail}}" />
         <mat-card-content>
           <p class="text-ellipsis">
             {{item.getRelations().vod.getAttrs().title}}

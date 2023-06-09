@@ -7,12 +7,12 @@
 <ng-content></ng-content>
 <div fxLayout="row" fxLayoutAlign="center center" class="pagination-wrap">
   <ul class="pagination" fxLayout="row" fxLayoutAlign="center center">
-    <li fxFlex *ngIf="prevPages.length != 0 && prevPages.indexOf(1) == -1">
+    <li fxFlex *ngIf="prevPages.length !== 0 && prevPages.indexOf(1) === -1">
       <a mat-button (click)="getListWith({page: 1})">
         <mat-icon>first_page</mat-icon>
       </a>
     </li>
-    <li fxFlex *ngIf="prevPages.length != 0 && prevPages[0] > 1">
+    <li fxFlex *ngIf="prevPages.length !== 0 && prevPages[0] > 1">
       <a mat-button (click)="getListWith({page: prevPages[0]-1})">
         <mat-icon>chevron_left</mat-icon>
       </a>
@@ -32,12 +32,12 @@
         {{nextPage}}
       </a>
     </li>
-    <li fxFlex *ngIf="nextPages.length != 0 && nextPages[nextPages.length-1] < lastPage">
+    <li fxFlex *ngIf="nextPages.length !== 0 && nextPages[nextPages.length-1] < lastPage">
       <a mat-button (click)="getListWith({page: nextPages[nextPages.length-1]+1})">
         <mat-icon>chevron_right</mat-icon>
       </a>
     </li>
-    <li fxFlex *ngIf="nextPages.length != 0 && nextPages.indexOf(lastPage) == -1">
+    <li fxFlex *ngIf="nextPages.length !== 0 && nextPages.indexOf(lastPage) === -1">
       <a mat-button (click)="getListWith({page: lastPage})">
         <mat-icon>last_page</mat-icon>
       </a>

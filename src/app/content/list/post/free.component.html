@@ -1,10 +1,10 @@
 <div fxLayout="row" fxLayoutAlign="space-between center">
   <h2>자유 게시판</h2>
   <nav mat-tab-nav-bar>
-    <a mat-tab-link [active]="search.order_by == undefined" queryParamsHandling="merge" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
+    <a mat-tab-link [active]="search.order_by === undefined" queryParamsHandling="merge" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
       최신 순
     </a>
-    <a mat-tab-link [active]="search.order_by == 'like_count desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'like_count desc'}" [routerLink]="['./']">
+    <a mat-tab-link [active]="search.order_by === 'like_count desc'" queryParamsHandling="merge" [queryParams]="{order_by: 'like_count desc'}" [routerLink]="['./']">
       호감 순
     </a>
   </nav>
@@ -62,7 +62,7 @@
                 {{ element.getAttrs().created_at.substr(0, 16) }}
               </span>
             </div>
-            <button *ngIf="authService.getUser() && authService.getUser().getAttrs().id == element.getAttrs().user_id" mat-icon-button [matMenuTriggerFor]="moreMenu" (click)="$event.stopPropagation()">
+            <button *ngIf="authService.getUser() && authService.getUser().getAttrs().id === element.getAttrs().user_id" mat-icon-button [matMenuTriggerFor]="moreMenu" (click)="$event.stopPropagation()">
               <mat-icon>more_horiz</mat-icon>
             </button>
             <mat-menu #moreMenu>

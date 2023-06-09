@@ -8,19 +8,19 @@
       <mat-form-field appearance="outline">
         <mat-label>닉네임</mat-label>
         <input matInput type="text" placeholder="Nickname" [formControl]="nickCtrl" />
-        <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] == 'required'">
+        <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] === 'required'">
           닉네임를 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] == 'minlength'">
+        <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] === 'minlength'">
           최소 2글자를 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] == 'maxlength'">
+        <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] === 'maxlength'">
           최대 12글자를 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] == 'nospace'">
+        <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] === 'nospace'">
           공백(whitespace)없이 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] == 'exist'">
+        <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] === 'exist'">
           이미 존재하는 닉네임 입니다.
         </mat-hint>
       </mat-form-field>
@@ -29,13 +29,13 @@
       <mat-form-field appearance="outline">
         <mat-label>이메일</mat-label>
         <input matInput type="email" placeholder="Email" [formControl]="emailCtrl" />
-        <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] == 'required'">
+        <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] === 'required'">
           이메일을 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] == 'email'">
+        <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] === 'email'">
           이메일 형식이 아닙니다.
         </mat-hint>
-        <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] == 'exist'">
+        <mat-hint *ngIf="emailCtrl.touched && emailCtrl.invalid && emailCtrl.errors.__proto__.constructor.keys(emailCtrl.errors)[0] === 'exist'">
           이미 존재하는 이메일 입니다.
         </mat-hint>
       </mat-form-field>
@@ -44,13 +44,13 @@
       <mat-form-field appearance="outline">
         <mat-label>비밀번호</mat-label>
         <input matInput type="password" placeholder="Password" [formControl]="passwordCtrl" />
-        <mat-hint *ngIf="passwordCtrl.touched && passwordCtrl.invalid && passwordCtrl.errors.__proto__.constructor.keys(passwordCtrl.errors)[0] == 'required'">
+        <mat-hint *ngIf="passwordCtrl.touched && passwordCtrl.invalid && passwordCtrl.errors.__proto__.constructor.keys(passwordCtrl.errors)[0] === 'required'">
           비밀번호를 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="passwordCtrl.touched && passwordCtrl.invalid && passwordCtrl.errors.__proto__.constructor.keys(passwordCtrl.errors)[0] == 'minlength'">
+        <mat-hint *ngIf="passwordCtrl.touched && passwordCtrl.invalid && passwordCtrl.errors.__proto__.constructor.keys(passwordCtrl.errors)[0] === 'minlength'">
           최소 8글자를 입력하세요.
         </mat-hint>
-        <mat-hint *ngIf="passwordCtrl.touched && passwordCtrl.invalid && passwordCtrl.errors.__proto__.constructor.keys(passwordCtrl.errors)[0] == 'maxlength'">
+        <mat-hint *ngIf="passwordCtrl.touched && passwordCtrl.invalid && passwordCtrl.errors.__proto__.constructor.keys(passwordCtrl.errors)[0] === 'maxlength'">
           최대 32글자를 입력하세요.
         </mat-hint>
       </mat-form-field>
@@ -64,4 +64,3 @@
     <email-verifier (success)="signUp($event)" [token]="token"></email-verifier>
   </mat-step>
 </mat-horizontal-stepper>
-

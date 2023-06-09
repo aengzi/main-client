@@ -3,7 +3,7 @@
 <mat-sidenav-container class="sidenav-container" color="primary">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [mode]="'over'" [opened]   ="false"
   >
-    <img id="sidenav-top-img"src="assets/img/aengzi_icon_origin.jpg" />
+    <img alt="" id="sidenav-top-img"src="assets/img/aengzi_icon_origin.jpg" />
     <div fxLayout="row" fxLayoutAlign="center center">
       <div *ngIf="!authService.isSignIn()">
         <button color="accent" mat-raised-button (click)="signInDialogOpen()">
@@ -94,7 +94,7 @@
         </button>
       </div>
       <div fxHide fxShow.gt-sm *ngIf="authService.isSignIn()" fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
-        <img width="50px" class="rounded-circle" *ngIf="authService.getUser().getAttrs().thumbnail" [src]="authService.getUser().getAttrs().thumbnail" />
+        <img alt="" width="50px" class="rounded-circle" *ngIf="authService.getUser().getAttrs().thumbnail" [src]="authService.getUser().getAttrs().thumbnail" />
         <button *ngIf="!authService.getUser().getAttrs().thumbnail" mat-icon-button [routerLink]="['/auth-user/profile']">
           <mat-icon class="auth-user-img round">
             add_a_photo

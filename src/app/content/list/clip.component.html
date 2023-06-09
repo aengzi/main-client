@@ -1,10 +1,10 @@
 <div fxLayout="row" fxLayoutAlign="space-between center">
   <h2>유저 클립 영상</h2>
   <nav mat-tab-nav-bar>
-    <a mat-tab-link [active]="search.order_by == undefined" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
+    <a mat-tab-link [active]="search.order_by === undefined" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
       최근 순
     </a>
-    <a mat-tab-link [active]="search.order_by == 'like_count desc'" [queryParams]="{order_by: 'like_count desc'}" [routerLink]="['./']">
+    <a mat-tab-link [active]="search.order_by === 'like_count desc'" [queryParams]="{order_by: 'like_count desc'}" [routerLink]="['./']">
       좋아요 많은 순
     </a>
   </nav>
@@ -21,7 +21,7 @@
             삭제
           </button>
         </mat-menu>
-        <button mat-icon-button [matMenuTriggerFor]="moreMenu" *ngIf="authService.getUser() && authService.getUser().getAttrs().id == item.getRelations().user.getAttrs().id">
+        <button mat-icon-button [matMenuTriggerFor]="moreMenu" *ngIf="authService.getUser() && authService.getUser().getAttrs().id === item.getRelations().user.getAttrs().id">
           <mat-icon>
             more_horiz
           </mat-icon>
@@ -32,7 +32,7 @@
           </button>
         </mat-menu>
         <mat-card [routerLink]="['/clips/', item.getAttrs().id]">
-          <img mat-card-image src="{{item.getRelations().vod.getAttrs().thumbnail}}" />
+          <img alt="" mat-card-image src="{{item.getRelations().vod.getAttrs().thumbnail}}" />
           <mat-card-content>
             <a [matMenuTriggerFor]="userMenu" class="text-left small font-weight-bold mb-1 d-block" (click)="$event.stopPropagation()">
               {{item.getRelations().user.getAttrs().nick}}

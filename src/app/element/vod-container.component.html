@@ -19,7 +19,7 @@
   </h4>
   <like-button class="mt-3" [related]="vod">
   </like-button>
-  <div class="mt-3 ml-3" *ngIf="vod.getAttrs().related_type.indexOf('clip') == -1">
+  <div class="mt-3 ml-3" *ngIf="vod.getAttrs().related_type.indexOf('clip') === -1">
     <button mat-raised-button color="primary" (click)="authService.requireSignIn() || openClipDialog()">
       <mat-icon>screen_share</mat-icon>클립 만들기
     </button>

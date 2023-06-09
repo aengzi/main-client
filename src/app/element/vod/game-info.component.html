@@ -4,9 +4,9 @@
   <mat-tab label="게임정보">
   </mat-tab>
 </mat-tab-group>
-<mat-nav-list *ngIf="tabIndex == 0">
+<mat-nav-list *ngIf="tabIndex === 0">
   <ng-container *ngTemplateOutlet="gameTimelineTabEl"></ng-container>
 </mat-nav-list>
-<mat-list *ngIf="tabIndex == 1">
+<mat-list *ngIf="tabIndex === 1">
   <ng-container *ngTemplateOutlet="gameResultTabEl"></ng-container>
 </mat-list>

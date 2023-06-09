@@ -6,7 +6,7 @@
 </div>
 <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="25px" class="mt-3 mb-3">
   <div class="position-relative">
-    <img width="250px" class="rounded-circle" [src]="user.getAttrs().thumbnail ? user.getAttrs().thumbnail : 'http://gifpng.com/128x128/333333/ffffff?border-width=0&text=프로필 이미지 없음'" />
+    <img alt="" width="250px" class="rounded-circle" [src]="user.getAttrs().thumbnail ? user.getAttrs().thumbnail : 'http://gifpng.com/128x128/333333/ffffff?border-width=0&text=프로필 이미지 없음'" />
     <div *ngIf="isEdit" class="stretch" fxLayout="row" fxLayoutAlign="center center">
       <button mat-fab color="primary" (click)="cropImageDialogOpen()">
         <mat-icon>edit</mat-icon>
@@ -20,22 +20,22 @@
     <mat-form-field>
       <mat-label>닉네임</mat-label>
       <input matInput type="text" placeholder="Nickname" [formControl]="nickCtrl" />
-      <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] == 'required'">
+      <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] === 'required'">
         닉네임를 입력하세요.
       </mat-hint>
-      <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] == 'minlength'">
+      <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] === 'minlength'">
         최소 2글자를 입력하세요.
       </mat-hint>
-      <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] == 'maxlength'">
+      <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] === 'maxlength'">
         최대 12글자를 입력하세요.
       </mat-hint>
-      <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] == 'nospace'">
+      <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] === 'nospace'">
         공백(whitespace)없이 입력하세요.
       </mat-hint>
-      <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] == 'exist'">
+      <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] === 'exist'">
         이미 존재하는 닉네임 입니다.
       </mat-hint>
-      <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] == 'same'">
+      <mat-hint *ngIf="nickCtrl.touched && nickCtrl.invalid && nickCtrl.errors.__proto__.constructor.keys(nickCtrl.errors)[0] === 'same'">
         현재 사용중인 닉네임 입니다.
       </mat-hint>
     </mat-form-field>
@@ -63,7 +63,7 @@
                 </mat-icon>
               </button>
               <mat-card routerLink="/clips/{{item.getAttrs().id}}">
-                <img mat-card-image src="{{item.getRelations().vod.getAttrs().thumbnail}}" />
+                <img alt="" mat-card-image src="{{item.getRelations().vod.getAttrs().thumbnail}}" />
                 <mat-card-content>
                   <p class="text-ellipsis">
                     {{item.getRelations().vod.getAttrs().title}}
@@ -98,8 +98,8 @@
                   more_horiz
                 </mat-icon>
               </button>
-              <mat-card *ngIf="item.getRelations().related.constructor.name == 'Vod'" (click)="navigate(item.getRelations().related)">
-                <img mat-card-image src="{{item.getRelations().related.getAttrs().thumbnail}}" />
+              <mat-card *ngIf="item.getRelations().related.constructor.name === 'Vod'" (click)="navigate(item.getRelations().related)">
+                <img alt="" mat-card-image src="{{item.getRelations().related.getAttrs().thumbnail}}" />
                 <mat-card-content>
                   <p class="text-ellipsis">
                     {{item.getRelations().related.getAttrs().title}}
@@ -109,8 +109,8 @@
                   </p>
                 </mat-card-content>
               </mat-card>
-              <mat-card *ngIf="item.getRelations().related.constructor.name == 'YtbVideo'" [routerLink]="['/youtube/videos', item.getRelations().related.getAttrs().id]">
-                <img mat-card-image src="{{item.getRelations().related.getAttrs().thumbnail}}" />
+              <mat-card *ngIf="item.getRelations().related.constructor.name === 'YtbVideo'" [routerLink]="['/youtube/videos', item.getRelations().related.getAttrs().id]">
+                <img alt="" mat-card-image src="{{item.getRelations().related.getAttrs().thumbnail}}" />
                 <mat-card-content>
                   <p class="text-ellipsis">
                     {{item.getRelations().related.getAttrs().title}}

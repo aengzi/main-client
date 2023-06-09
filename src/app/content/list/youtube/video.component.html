@@ -2,7 +2,7 @@
   <ng-template #itemListEl>
     <div class="ytb-vod-item" fxFlex="0 0 calc(25% - 20px)" *ngFor="let item of pageList.items">
       <mat-card routerLink="/youtube/videos/{{item.getAttrs().id}}">
-        <img mat-card-image src="{{item.getAttrs().thumbnail}}" />
+        <img alt="" mat-card-image src="{{item.getAttrs().thumbnail}}" />
         <mat-card-content>
           <p class="text-ellipsis">
             {{item.getAttrs().title}}

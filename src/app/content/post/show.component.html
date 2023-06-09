@@ -1,12 +1,12 @@
 <div fxLayout="row" fxLayoutAlign="space-between center">
   <user-menu-button class="p-2" [user]="post.getRelations().user" fxLayout="row" fxLayoutAlign="center center">
-    <img width="50px" class="rounded-circle border" [src]="post.getRelations().user.getAttrs().thumbnail ? post.getRelations().user.getAttrs().thumbnail : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='" />
+    <img alt="" width="50px" class="rounded-circle border" [src]="post.getRelations().user.getAttrs().thumbnail ? post.getRelations().user.getAttrs().thumbnail : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='" />
     <span class="ml-3">
       {{ post.getRelations().user.getAttrs().nick }}
     </span>
   </user-menu-button>
   <div>
-    <ng-container *ngIf="authService.getUser() && authService.getUser().getAttrs().id == post.getRelations().user.getAttrs().id">
+    <ng-container *ngIf="authService.getUser() && authService.getUser().getAttrs().id === post.getRelations().user.getAttrs().id">
       <button class="ml-3" mat-raised-button [routerLink]="['/posts/', post.getAttrs().id, 'edit']">
         수정
       </button>

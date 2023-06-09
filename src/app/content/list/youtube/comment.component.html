@@ -3,7 +3,7 @@
 }">
   <ng-template #itemListEl>
     <div fxFlex="100" class="mt-3" fxLayout="row" fxLayoutAlign="start start" *ngFor="let item of pageList.items">
-        <img width="50px" class="mr-3 rounded-circle border" [src]="item.getAttrs().author_img_url" />
+        <img alt="" width="50px" class="mr-3 rounded-circle border" [src]="item.getAttrs().author_img_url" />
         <div fxFlex>
           <div class="small">
             <a class="d-inline-block font-weight-bold pb-1" href="{{'https://www.youtube.com/channel/'+item.getAttrs().author_channel_id}}" target="_blank">

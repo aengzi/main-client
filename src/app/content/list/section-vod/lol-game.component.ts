@@ -1,6 +1,6 @@
-import * as _ from 'lodash';
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import * as _ from 'lodash';
 import { Subscription } from 'rxjs/index';
 import { filter } from 'rxjs/operators';
 import { LolChampion } from 'src/app/model/lol-champion';

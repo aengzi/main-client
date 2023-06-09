@@ -8,7 +8,7 @@
   <ng-template #itemListEl>
     <div class="ytb-vod-item" fxFlex="0 0 calc(25% - 20px)" *ngFor="let item of pageList.items">
       <mat-card [routerLink]="['/broadcasts', item.getAttrs().id]">
-        <img mat-card-image src="{{item.getRelations().vod.getAttrs().thumbnail}}" />
+        <img alt="" mat-card-image src="{{item.getRelations().vod.getAttrs().thumbnail}}" />
         <mat-card-content>
           <p>
             {{item.getAttrs().started_at.substr(0, 10)}}
