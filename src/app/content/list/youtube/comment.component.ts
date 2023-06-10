@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.scss']
+  styleUrls: ['./comment.component.scss'],
 })
-export class YoutubeCommentListComponent {
-
-}
+export class YoutubeCommentListComponent {}

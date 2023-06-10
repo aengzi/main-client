@@ -1,12 +1,9 @@
 import { Model } from 'src/app/model';
 
 export type LolMetaAttributes = {
-  id: string
-}
+  id: string;
+};
 
-export type LolMetaRelations = {
-}
+export type LolMetaRelations = {};
 
-export class LolMeta extends Model<LolMetaAttributes, LolMetaRelations> {
-
-}
+export class LolMeta extends Model<LolMetaAttributes, LolMetaRelations> {}

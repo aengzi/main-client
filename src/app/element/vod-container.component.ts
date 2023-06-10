@@ -1,30 +1,34 @@
-import { AfterContentInit, ChangeDetectorRef, Component, ContentChild, ElementRef, Input, TemplateRef } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  Input,
+  TemplateRef,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Model } from 'src/app/model';
+import { VodClipDialogComponent } from 'src/app/element/dialog/vod-clip.component';
 import { Vod } from 'src/app/model/vod';
 import { AuthService } from 'src/app/service/auth.service';
-import { VodClipDialogComponent } from 'src/app/element/dialog/vod-clip.component';
 
 @Component({
   selector: 'vod-container',
   templateUrl: './vod-container.component.html',
-  styleUrls: ['./vod-container.component.scss']
+  styleUrls: ['./vod-container.component.scss'],
 })
 export class VodContainerComponent {
-
-  public authService     : typeof AuthService;
+  public authService: typeof AuthService;
   @Input()
-  public vod             : Vod;
+  public vod: Vod;
   @ContentChild('vodPlayerEl')
-  public vodPlayerEl     : TemplateRef<any>;
+  public vodPlayerEl: TemplateRef<any>;
   @ContentChild('vodInfoTabEl')
-  public vodInfoTabEl    : TemplateRef<any>;
-  public dialog          : MatDialog;
+  public vodInfoTabEl: TemplateRef<any>;
+  public dialog: MatDialog;
   // public changeDetectRef : ChangeDetectorRef;
 
   public constructor(dialog: MatDialog, changeDetectRef: ChangeDetectorRef) {
-    this.dialog          = dialog;
-    this.authService     = AuthService;
+    this.dialog = dialog;
+    this.authService = AuthService;
     // this.changeDetectRef = changeDetectRef;
   }
 
@@ -33,12 +37,11 @@ export class VodContainerComponent {
   }
 
   public openClipDialog() {
-
     this.dialog.open(VodClipDialogComponent, {
       data: {
-        model: this.vod
+        model: this.vod,
       },
-      width: '320px'
+      width: '320px',
     });
   }
 }

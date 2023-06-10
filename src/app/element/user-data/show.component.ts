@@ -1,4 +1,1 @@
-
-export class UserDataShowComponent {
-
-}
+export class UserDataShowComponent {}

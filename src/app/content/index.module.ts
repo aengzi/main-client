@@ -5,23 +5,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { IndexComponent } from './index.component';
 
-const routes: Routes = [{
-  path: '',
-  component: IndexComponent
-}];
+const routes: Routes = [
+  {
+    path: '',
+    component: IndexComponent,
+  },
+];
 
 @NgModule({
-  declarations: [
-    IndexComponent
-  ],
-  exports: [
-    IndexComponent
-  ],
+  declarations: [IndexComponent],
+  exports: [IndexComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
     MaterialModule,
-    RouterModule.forChild(routes)
-  ]
+    RouterModule.forChild(routes),
+  ],
 })
-export class IndexModule { }
+export class IndexModule {}

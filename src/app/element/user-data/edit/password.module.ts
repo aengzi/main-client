@@ -6,24 +6,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { PasswordEditUserDataComponent } from './password.component';
 
-const routes: Routes = [{
-  path: '',
-  component: PasswordEditUserDataComponent
-}];
+const routes: Routes = [
+  {
+    path: '',
+    component: PasswordEditUserDataComponent,
+  },
+];
 
 @NgModule({
-  declarations: [
-    PasswordEditUserDataComponent
-  ],
-  exports: [
-    PasswordEditUserDataComponent
-  ],
+  declarations: [PasswordEditUserDataComponent],
+  exports: [PasswordEditUserDataComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
     MaterialModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
-  ]
+    RouterModule.forChild(routes),
+  ],
 })
-export class PasswordEditUserDataModule { }
+export class PasswordEditUserDataModule {}

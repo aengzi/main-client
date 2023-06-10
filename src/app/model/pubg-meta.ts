@@ -1,12 +1,9 @@
 import { Model } from 'src/app/model';
 
 export type PubgMetaAttributes = {
-  id: string
-}
+  id: string;
+};
 
-export type PubgMetaRelations = {
-}
+export type PubgMetaRelations = {};
 
-export class PubgMeta extends Model<PubgMetaAttributes, PubgMetaRelations> {
-
-}
+export class PubgMeta extends Model<PubgMetaAttributes, PubgMetaRelations> {}

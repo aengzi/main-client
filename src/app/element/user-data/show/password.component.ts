@@ -3,8 +3,6 @@ import { UserDataShowComponent } from 'src/app/element/user-data/show.component'
 
 @Component({
   templateUrl: './password.component.html',
-  styleUrls: ['./password.component.scss']
+  styleUrls: ['./password.component.scss'],
 })
-export class PasswordShowUserDataComponent extends UserDataShowComponent {
-
-}
+export class PasswordShowUserDataComponent extends UserDataShowComponent {}

@@ -6,24 +6,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { EmailShowUserDataComponent } from './email.component';
 
-const routes: Routes = [{
-  path: '',
-  component: EmailShowUserDataComponent
-}];
+const routes: Routes = [
+  {
+    path: '',
+    component: EmailShowUserDataComponent,
+  },
+];
 
 @NgModule({
-  declarations: [
-    EmailShowUserDataComponent
-  ],
-  exports: [
-    EmailShowUserDataComponent
-  ],
+  declarations: [EmailShowUserDataComponent],
+  exports: [EmailShowUserDataComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
     MaterialModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
-  ]
+    RouterModule.forChild(routes),
+  ],
 })
-export class EmailShowUserDataModule { }
+export class EmailShowUserDataModule {}
