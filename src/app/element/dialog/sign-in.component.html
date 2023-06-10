@@ -6,23 +6,23 @@
     <mat-form-field appearance="outline">
       <mat-label>아이디</mat-label>
       <input matInput type="email" placeholder="Email" [formControl]="email" />
-      <mat-hint *ngIf="email.touched && email.invalid && email.errors.__proto__.constructor.keys(email.errors)[0] === 'required'">
+      <mat-hint *ngIf="email.touched && email.invalid && email.errors?.__proto__.constructor.keys(email.errors)[0] === 'required'">
         이메일을 입력하세요.
       </mat-hint>
-      <mat-hint *ngIf="email.touched && email.invalid && email.errors.__proto__.constructor.keys(email.errors)[0] === 'email'">
+      <mat-hint *ngIf="email.touched && email.invalid && email.errors?.__proto__.constructor.keys(email.errors)[0] === 'email'">
         이메일 형식이 아닙니다.
       </mat-hint>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>비밀번호</mat-label>
       <input matInput type="password" placeholder="Password" [formControl]="password" />
-      <mat-hint *ngIf="password.touched && password.invalid && password.errors.__proto__.constructor.keys(password.errors)[0] === 'required'">
+      <mat-hint *ngIf="password.touched && password.invalid && password.errors?.__proto__.constructor.keys(password.errors)[0] === 'required'">
         비밀번호를 입력하세요.
       </mat-hint>
-      <mat-hint *ngIf="password.touched && password.invalid && password.errors.__proto__.constructor.keys(password.errors)[0] === 'minlength'">
+      <mat-hint *ngIf="password.touched && password.invalid && password.errors?.__proto__.constructor.keys(password.errors)[0] === 'minlength'">
         최소 8글자를 입력하세요.
       </mat-hint>
-      <mat-hint *ngIf="password.touched && password.invalid && password.errors.__proto__.constructor.keys(password.errors)[0] === 'maxlength'">
+      <mat-hint *ngIf="password.touched && password.invalid && password.errors?.__proto__.constructor.keys(password.errors)[0] === 'maxlength'">
         최대 32글자를 입력하세요.
       </mat-hint>
     </mat-form-field>

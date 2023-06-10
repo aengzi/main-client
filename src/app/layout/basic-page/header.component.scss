@@ -1,11 +1,14 @@
-@import 'src/styles.scss';
+@use '@angular/material' as mat;
 
 #progress-bar {
   display: none;
 }
 
 mat-sidenav-container {
-  background: mat-color($primary);
+  background: mat.get-color-from-palette(
+    mat.define-palette(mat.$indigo-palette),
+    500
+  )
 }
 
 mat-sidenav-content {

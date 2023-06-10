@@ -1,17 +1,24 @@
-@import '~@angular/material/theming';
-
-$grey: mat-palette($mat-grey);
+@use '@angular/material' as mat;
 
 .ripple {
   background-position: center;
   transition: background 0.8s;
 }
 .ripple:hover {
-  background: map_get($mat-grey, 300) radial-gradient(circle, transparent 1%, map_get($mat-grey, 300) 1%) center/15000%;
+  background: mat.get-color-from-palette(
+    mat.define-palette(mat.$gray-palette),
+    300
+  ) radial-gradient(circle, transparent 1%, mat.get-color-from-palette(
+    mat.define-palette(mat.$gray-palette),
+    300
+  ) 1%) center/15000%;
 
 }
 .ripple:active {
-  background-color: map_get($mat-grey, 200);
+  background-color: mat.get-color-from-palette(
+    mat.define-palette(mat.$gray-palette),
+    200
+  );
   background-size: 100%;
   transition: background 0s;
 }
@@ -26,4 +33,3 @@ tr.mat-row {
     line-height: 48px;
   }
 }
-

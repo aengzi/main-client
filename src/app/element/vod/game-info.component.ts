@@ -12,7 +12,7 @@ export class VodGameInfoComponent implements AfterContentInit {
   public gameTimelineTabEl: TemplateRef<any>;
   @ContentChild('gameResultTabEl')
   public gameResultTabEl: TemplateRef<any>;
-  public tabIndex : number = 0;
+  public tabIndex  = 0;
 
   public ngAfterContentInit() {
 

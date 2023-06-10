@@ -4,7 +4,7 @@
 <ng-container>
   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
     <img alt="" fxFlex="50px" class="rounded-circle border" [src]="authService.getUser() && authService.getUser().getAttrs().thumbnail ? authService.getUser().getAttrs().thumbnail : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='" />
-    <mat-form-field fxFlex [floatLabel]="'never'">
+    <mat-form-field fxFlex [floatLabel]="'auto'">
       <input matInput placeholder="댓글 입력" (focus)="isAdding = true" [formControl]="newThreadCtrl" (click)="authService.requireSignIn()">
     </mat-form-field>
   </div>

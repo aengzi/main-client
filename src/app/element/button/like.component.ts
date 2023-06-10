@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class LikeButtonComponent {
 
-  @Input('related')
+  @Input()
   public related     : Model<any,any>;
   public authService : typeof AuthService;
 

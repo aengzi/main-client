@@ -1,11 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/theming';
+@use '@angular/material' as mat;
 
-$primary: mat-palette($mat-indigo);
-$accent: mat-palette($mat-pink); // A200, A100, A400
-$grey: mat-palette($mat-grey);
+$primary: mat.define-palette(mat.$indigo-palette, 500);
+$accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$warn: mat.define-palette(mat.$red-palette);
 
-$theme: mat-light-theme($primary, $accent);
+$theme: mat.define-light-theme((
+ color: (
+   primary: $primary,
+   accent: $accent,
+   warn: $warn,
+ ),
+));
 
 * {
   margin: 0px;
@@ -157,10 +162,16 @@ button.thumb {
   width: 36x;
   height: 36px;
   line-height: 36px;
-  color: map_get($mat-grey, 400);
+  color: mat.get-color-from-palette(
+    mat.define-palette(mat.$gray-palette),
+    400
+  )
 }
 .color-grey {
-  color: map_get($mat-grey, 400);
+  color: mat.get-color-from-palette(
+    mat.define-palette(mat.$gray-palette),
+    400
+  )
 }
 .text-ellipsis {
   text-overflow:ellipsis;

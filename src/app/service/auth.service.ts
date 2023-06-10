@@ -3,10 +3,9 @@ import { User } from 'src/app/model/user';
 import { StorageService } from 'src/app/service/storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   private static user: User;
 
   public static getUser() {
@@ -25,12 +24,11 @@ export class AuthService {
     if (!AuthService.getUser()) {
       StorageService.get('router').navigate(['/sign-in'], {
         queryParams: {
-          referrer: StorageService.get('router').url
-        }
+          referrer: StorageService.get('router').url,
+        },
       });
     }
 
     return !AuthService.isSignIn();
   }
-
 }

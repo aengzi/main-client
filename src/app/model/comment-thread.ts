@@ -4,25 +4,27 @@ import { Like } from 'src/app/model/like';
 import { User } from 'src/app/model/user';
 
 export type CommentThreadAttributes = {
-  id: string,
-  related_id: string,
-  related_type: string,
-  user_id: string,
-  message: string,
-  like_count: number,
-  dislike_count: number,
-  reply_count: number,
-  created_at: string,
-  updated_at: string
-}
+  id: string;
+  related_id: string;
+  related_type: string;
+  user_id: string;
+  message: string;
+  like_count: number;
+  dislike_count: number;
+  reply_count: number;
+  created_at: string;
+  updated_at: string;
+};
 
 export type CommentThreadRelations = {
-  dislike: Dislike,
-  like: Like,
-  user: User
-}
+  dislike: Dislike;
+  like: Like;
+  user: User;
+};
 
-export class CommentThread extends Model<CommentThreadAttributes, CommentThreadRelations> {
-
-  public static apiBaseUrl = 'comment-threads';
+export class CommentThread extends Model<
+  CommentThreadAttributes,
+  CommentThreadRelations
+> {
+  public static override apiBaseUrl = 'comment-threads';
 }

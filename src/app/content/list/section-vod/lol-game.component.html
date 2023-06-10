@@ -36,7 +36,7 @@
       <span>플레이한 챔피언</span>
     </div>
     <mat-button-toggle-group fxFlex="85%" fxLayout="row wrap" fxLayoutAlign="start stretch" multiple appearance="standard">
-      <mat-button-toggle (click)="$event.target.click() || search.champion_ids = []" fxFlex="none">
+      <mat-button-toggle (click)="clearChampion($event)" fxFlex="none">
         전체
       </mat-button-toggle>
       <mat-button-toggle *ngFor="let champion of champions" [checked]="hasChampion(champion)" (change)="toggleChampion(champion)" fxFlex="none">

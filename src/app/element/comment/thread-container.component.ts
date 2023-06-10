@@ -21,9 +21,9 @@ export class CommentThreadContainerComponent {
   public newThreads    : CommentThread[] = [];
   @ViewChild('threadList')
   public threadList    : PageListComponent;
-  @Input('related')
+  @Input()
   public related       : Model<any, any>;
-  public isAdding      : boolean = false;
+  public isAdding       = false;
   public newThreadCtrl : FormControl = new FormControl('', Validators.required);
 
   public constructor() {

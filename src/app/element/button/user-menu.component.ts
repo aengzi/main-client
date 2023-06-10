@@ -9,7 +9,7 @@ import { User } from 'src/app/model/user';
 })
 export class UserMenuButtonComponent {
 
-  @Input('user')
+  @Input()
   public user: User;
 
   constructor (el: ElementRef) {

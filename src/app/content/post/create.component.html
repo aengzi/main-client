@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="space-between center">
   <h2>게시판 글쓰기</h2>
-  <mat-form-field [floatLabel]="'never'">
+  <mat-form-field [floatLabel]="'auto'">
     <mat-label>게시판 종류</mat-label>
     <mat-select [formControl]="typeCtrl">
       <mat-option>---선택하세요---</mat-option>
@@ -9,10 +9,10 @@
   </mat-form-field>
 </div>
 <div fxLayout="row" fxLayoutAlign="start center">
-  <mat-form-field fxFlex="100" [floatLabel]="'never'">
+  <mat-form-field fxFlex="100" [floatLabel]="'auto'">
     <mat-label>제목</mat-label>
     <input matInput type="text" placeholder="Subject" [formControl]="titleCtrl" />
-    <mat-hint *ngIf="titleCtrl.touched && titleCtrl.invalid && titleCtrl.errors.__proto__.constructor.keys(titleCtrl.errors)[0] === 'required'">
+    <mat-hint *ngIf="titleCtrl.touched && titleCtrl.invalid && titleCtrl.errors?.__proto__.constructor.keys(titleCtrl.errors)[0] === 'required'">
       제목을 입력하세요.
     </mat-hint>
   </mat-form-field>

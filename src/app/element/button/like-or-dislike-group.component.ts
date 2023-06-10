@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class LikeOrDislikeButtonGroupComponent implements AfterViewInit {
 
-  @Input('related')
+  @Input()
   public related      : Model<any,any>;
   public vc           : ViewContainerRef;
   public likeBtnEl    : HTMLElement

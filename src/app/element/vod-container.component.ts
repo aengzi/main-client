@@ -13,7 +13,7 @@ import { VodClipDialogComponent } from 'src/app/element/dialog/vod-clip.componen
 export class VodContainerComponent {
 
   public authService     : typeof AuthService;
-  @Input('vod')
+  @Input()
   public vod             : Vod;
   @ContentChild('vodPlayerEl')
   public vodPlayerEl     : TemplateRef<any>;

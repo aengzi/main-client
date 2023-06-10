@@ -1,7 +1,17 @@
-@import '~@angular/material/theming';
-$primary: mat-palette($mat-indigo);
-$accent: mat-palette($mat-pink); // A200, A100, A400
-$theme: mat-light-theme($primary, $accent);
+@use '@angular/material' as mat;
+
+$primary: mat.define-palette(mat.$indigo-palette, 500);
+$accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$warn: mat.define-palette(mat.$red-palette);
+
+$theme: mat.define-light-theme((
+ color: (
+   primary: $primary,
+   accent: $accent,
+   warn: $warn,
+ ),
+));
+
 
 .tab-wrap {
   margin-bottom: 1em;

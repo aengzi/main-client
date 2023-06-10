@@ -1,29 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { BasicPageHeaderComponent } from './header.component';
-import { MaterialModule } from 'src/app/material.module';
-import { SignInDialogComponent } from 'src/app/element/dialog/sign-in.component';
+import { RouterModule } from '@angular/router';
 import { SignInDialogModule } from 'src/app/element/dialog/sign-in.module';
+import { MaterialModule } from 'src/app/material.module';
+import { BasicPageHeaderComponent } from './header.component';
 
 @NgModule({
-  entryComponents: [
-    SignInDialogComponent
-  ],
-  declarations: [
-    BasicPageHeaderComponent,
-  ],
-  exports: [
-    BasicPageHeaderComponent
-  ],
+  declarations: [BasicPageHeaderComponent],
+  exports: [BasicPageHeaderComponent],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule,
     FlexLayoutModule,
-    SignInDialogModule
-  ]
+    SignInDialogModule,
+  ],
 })
-export class BasicPageHeaderModule { }
+export class BasicPageHeaderModule {}
