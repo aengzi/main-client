@@ -100,7 +100,7 @@ export class LikeOrDislikeButtonGroupComponent implements AfterViewInit {
         related_id: this.related.getAttrs().id,
         related_type: this.related.getModelType(),
       })
-      .subscribe((dislike: Dislike) => {
+      .subscribe(({ result: dislike }) => {
         this.related.getRelations().dislike = dislike;
         this.related.getAttrs().dislike_count += 1;
         this.resetAttributes();
@@ -115,7 +115,7 @@ export class LikeOrDislikeButtonGroupComponent implements AfterViewInit {
         related_id: this.related.getAttrs().id,
         related_type: this.related.getModelType(),
       })
-      .subscribe((like: Like) => {
+      .subscribe(({ result: like }) => {
         this.related.getRelations().like = like;
         this.related.getAttrs().like_count += 1;
         this.resetAttributes();

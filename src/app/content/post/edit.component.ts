@@ -73,7 +73,7 @@ export class PostEditComponent implements AfterViewInit {
         title: this.titleCtrl.value,
         content: this.contentCtrl.value,
       })
-      .subscribe((post: Post) => {
+      .subscribe(() => {
         this.location.back();
       });
   }

@@ -38,7 +38,7 @@ export class CommentThreadContainerComponent {
         related_id: this.related.getAttrs().id,
         related_type: this.related.getModelType(),
       })
-      .subscribe((commentThread: CommentThread) => {
+      .subscribe(({ result: commentThread }) => {
         this.newThreads.unshift(commentThread);
         this.isAdding = false;
         this.newThreadCtrl.setValue('');

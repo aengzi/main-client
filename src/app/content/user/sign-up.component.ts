@@ -32,7 +32,7 @@ export class UserSignUpComponent {
               },
             })
             .pipe(
-              map((users: User[]) => {
+              map(({ result: users }) => {
                 return users.length != 0 ? { exist: true } : null;
               })
             );
@@ -64,7 +64,7 @@ export class UserSignUpComponent {
               },
             })
             .pipe(
-              map((users: User[]) => {
+              map(({ result: users }) => {
                 return users.length != 0 ? { exist: true } : null;
               })
             );
@@ -85,7 +85,7 @@ export class UserSignUpComponent {
         nick: this.nickCtrl.value,
         password: this.passwordCtrl.value,
       })
-      .subscribe((token: string) => {
+      .subscribe(({ result: token }) => {
         this.token = token;
         this.stepper.next();
       });

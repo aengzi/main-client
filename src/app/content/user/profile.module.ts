@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRouteSnapshot, RouterModule, Routes } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { UserProfileComponent } from 'src/app/content/user/profile.component';
 import { CommentThreadModule } from 'src/app/element/comment/thread.module';
 import { CropImageDialogModule } from 'src/app/element/dialog/crop-image.module';
@@ -48,11 +48,13 @@ const routes: Routes = [
         ) {
           return of(user);
         } else if (snapshot.params.id != undefined) {
-          return HttpService.api().get<User>('users/' + snapshot.params.id, {
-            params: {
-              fields: 'id,nick',
-            },
-          });
+          return HttpService.api()
+            .get<User>('users/' + snapshot.params.id, {
+              params: {
+                fields: 'id,nick',
+              },
+            })
+            .pipe(map(({ result: user }) => user));
         }
 
         return null;

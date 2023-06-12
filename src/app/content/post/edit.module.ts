@@ -36,11 +36,13 @@ const routes: Routes = [
     {
       provide: 'post$$',
       useValue: (snapshot: ActivatedRouteSnapshot) => {
-        return HttpService.api().get<Post>('posts/' + snapshot.params.id, {
-          params: {
-            expands: 'user',
-          },
-        });
+        return HttpService.api()
+          .get<Post>('posts/' + snapshot.params.id, {
+            params: {
+              expands: 'user',
+            },
+          })
+          .pipe(map(({ result: post }) => post));
       },
     },
     {
@@ -58,9 +60,7 @@ const routes: Routes = [
             map((arr) => {
               const post = arr['post'];
               const authUser = arr['authUser'];
-              return (
-                (post as Post).getAttrs().user_id == authUser.getAttrs().id
-              );
+              return post.getAttrs().user_id == authUser.getAttrs().id;
             })
           );
         };

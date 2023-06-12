@@ -41,7 +41,7 @@ export class EmailEditUserDataComponent extends UserDataEditComponent {
               },
             })
             .pipe(
-              map((users: User[]) => {
+              map(({ result: users }) => {
                 return users.length != 0 ? { exist: true } : null;
               })
             );
@@ -61,7 +61,7 @@ export class EmailEditUserDataComponent extends UserDataEditComponent {
           email: this.emailCtrl.value,
         })
         .pipe(
-          map((token: string) => {
+          map(({ result: token }) => {
             this.hasNext = false;
             this.stepper.next();
             this.emailVerifier.token = token;
@@ -85,7 +85,7 @@ export class EmailEditUserDataComponent extends UserDataEditComponent {
         token: this.emailVerifier.verifiedToken,
       })
       .pipe(
-        map((user: User) => {
+        map(({ result: user }) => {
           AuthService.setUser(user);
         })
       );

@@ -1,9 +1,9 @@
-<div class="tab-wrap" fxLayout="row" fxLayoutAlign="space-between center">
+<div class="tab-wrap" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="search">
   <div fxLayout="row" fxLayoutAlign="start center">
     <p>
       정렬:
     </p>
-    <nav mat-tab-nav-bar>
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel2">
       <a mat-tab-link [active]="search.order_by === undefined || search.order_by.length === 0" queryParamsHandling="merge" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
         최신날짜 순
       </a>
@@ -20,6 +20,7 @@
         러닝타임 긴 순
       </a>
     </nav>
+    <mat-tab-nav-panel #tabPanel2></mat-tab-nav-panel>
   </div>
   <div>
     <button *ngIf="!is_search_open" color="primary" mat-raised-button (click)="is_search_open = true">
@@ -30,7 +31,7 @@
     </button>
   </div>
 </div>
-<div class="search-wrap small" *ngIf="is_search_open">
+<div class="search-wrap small" *ngIf="is_search_open && search">
   <div fxLayout="row">
     <div fxFlex="15%" fxLayout="row" fxLayoutAlign="center center">
       <span>플레이 맵</span>

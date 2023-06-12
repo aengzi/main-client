@@ -2,11 +2,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ActivatedRouteSnapshot, RouterModule, Routes } from '@angular/router';
+import { map } from 'rxjs';
 import { LikeOrDislikeButtonGroupModule } from 'src/app/element/button/like-or-dislike-group.module';
 import { CommentThreadContainerModule } from 'src/app/element/comment/thread-container.module';
 import { VodContainerModule } from 'src/app/element/vod-container.module';
 import { VodPlayerModule } from 'src/app/element/vod/player.module';
 import { MaterialModule } from 'src/app/material.module';
+import { AftvBcast } from 'src/app/model/aftv-bcast';
 import { HttpService } from 'src/app/service/http.service';
 import { AftvBcastVodPlayerComponent } from './aftv-bcast.component';
 
@@ -37,11 +39,13 @@ const routes: Routes = [
     {
       provide: 'bcast$$',
       useValue: (snapshot: ActivatedRouteSnapshot) => {
-        return HttpService.api().get('aftv-bcasts/' + snapshot.params.id, {
-          params: {
-            expands: 'vod, vod.like, bj',
-          },
-        });
+        return HttpService.api()
+          .get<AftvBcast>('aftv-bcasts/' + snapshot.params.id, {
+            params: {
+              expands: 'vod, vod.like, bj',
+            },
+          })
+          .pipe(map(({ result: bcast }) => bcast));
       },
     },
   ],

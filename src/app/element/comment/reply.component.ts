@@ -33,7 +33,7 @@ export class CommentReplyComponent {
       .patch<CommentReply>('comment-replies/' + this.reply.getAttrs().id, {
         message: this.editReplyCtrl.value,
       })
-      .subscribe((reply: CommentReply) => {
+      .subscribe(({ result: reply }) => {
         this.isEditing = false;
         this.reply.setAttrs(reply.getAttrs());
       });

@@ -63,7 +63,7 @@ export class UserPasswordResetComponent {
       .post<string>('password-reset/emails', {
         email: this.emailCtrl.value,
       })
-      .subscribe((token: string) => {
+      .subscribe(({ result: token }) => {
         this.token = token;
         this.stepper.next();
       });

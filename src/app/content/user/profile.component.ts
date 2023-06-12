@@ -53,7 +53,7 @@ export class UserProfileComponent {
               },
             })
             .pipe(
-              map((users: User[]) => {
+              map(({ result: users }) => {
                 return users.length != 0 ? { exist: true } : null;
               })
             );
@@ -75,7 +75,7 @@ export class UserProfileComponent {
           expands: 'related',
         },
       })
-      .subscribe((vod: Vod) => {
+      .subscribe(({ result: vod }) => {
         vod.getRelations().related.navigate();
       });
   }
@@ -85,7 +85,7 @@ export class UserProfileComponent {
       .patch<User>('users/' + this.user.getAttrs().id, {
         nick: this.nickCtrl.value,
       })
-      .subscribe((user: User) => {
+      .subscribe(({ result: user }) => {
         this.user.getAttrs().nick = user.getAttrs().nick;
         this.nickCtrl.markAsUntouched();
         StorageService.get('snack-bar').open(

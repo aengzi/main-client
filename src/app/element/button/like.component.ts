@@ -24,7 +24,7 @@ export class LikeButtonComponent {
         related_id: this.related.getAttrs().id,
         related_type: this.related.getModelType(),
       })
-      .subscribe((like: Like) => {
+      .subscribe(({ result: like }) => {
         this.related.getRelations().like = like;
       });
   }

@@ -50,7 +50,7 @@ export class CropImageDialogComponent {
       .patch<User>('users/' + AuthService.getUser().getAttrs().id, {
         thumbnail: base64,
       })
-      .subscribe((user: User) => {
+      .subscribe(({ result: user }) => {
         AuthService.getUser().getAttrs().thumbnail =
           user.getAttrs().thumbnail +
           '?' +

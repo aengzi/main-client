@@ -91,7 +91,7 @@ export class Model<T extends ModelAttribute, R extends ModelRelations> {
     return HttpService.api()
       .post<Model<any, any>>(pathPrefix + this.apiBaseUrl, params)
       .pipe(
-        map((model: Model<any, any>) => {
+        map(({ result: model }) => {
           model.isNew = true;
           return model;
         })
@@ -133,7 +133,7 @@ export class Model<T extends ModelAttribute, R extends ModelRelations> {
         }
       )
       .pipe(
-        map((model: Model<any, any>) => {
+        map(({ result: model }) => {
           _.forEach(model.getAttrs(), (value, key) => {
             this.setAttr(key, value);
           });

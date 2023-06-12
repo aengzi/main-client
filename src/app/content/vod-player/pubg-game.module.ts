@@ -47,6 +47,7 @@ const routes: Routes = [
             },
           })
           .pipe(
+            map(({ result: game }) => game),
             map((game: PubgGame) => {
               const timelines = _.chain(game.getRelations().timelines)
                 .orderBy(

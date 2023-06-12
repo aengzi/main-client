@@ -43,7 +43,7 @@ export class CommentThreadComponent {
         related_id: this.thread.getAttrs().id,
         related_type: 'comment_thread',
       })
-      .subscribe((dislike: Dislike) => {
+      .subscribe(({ result: dislike }) => {
         this.isThumbBtnLock = false;
         this.thread.setRelation('dislike', dislike);
         this.thread.getAttrs().dislike_count += 1;
@@ -57,7 +57,7 @@ export class CommentThreadComponent {
         related_id: this.thread.getAttrs().id,
         related_type: 'comment_thread',
       })
-      .subscribe((like: Like) => {
+      .subscribe(({ result: like }) => {
         this.isThumbBtnLock = false;
         this.thread.setRelation('like', like);
         this.thread.getAttrs().like_count += 1;
@@ -70,7 +70,7 @@ export class CommentThreadComponent {
         message: this.newReplyCtrl.value,
         thread_id: this.thread.getAttrs().id,
       })
-      .subscribe((commentReply: CommentReply) => {
+      .subscribe(({ result: commentReply }) => {
         commentReply.isNew = true;
         this.replyList.push(commentReply);
         this.thread.getAttrs().reply_count += 1;
@@ -131,7 +131,7 @@ export class CommentThreadComponent {
       .patch<CommentThread>('comment-threads/' + this.thread.getAttrs().id, {
         message: this.editThreadCtrl.value,
       })
-      .subscribe((thread: CommentThread) => {
+      .subscribe(({ result: thread }) => {
         this.thread.setAttrs(thread.getAttrs());
         this.isEditing = false;
       });
@@ -154,7 +154,7 @@ export class CommentThreadComponent {
       .get<CommentReply[]>('comment-replies/', {
         params: params,
       })
-      .subscribe((loadList: CommentReply[]) => {
+      .subscribe(({ result: loadList }) => {
         this.replyList = _.chain(this.replyList)
           .concat(loadList)
           .keyBy((reply) => reply.getAttrs().id)

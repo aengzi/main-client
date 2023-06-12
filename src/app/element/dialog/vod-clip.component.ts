@@ -138,7 +138,7 @@ export class VodClipDialogComponent {
         start_sec: this.startSec,
         end_sec: this.endSec,
       })
-      .subscribe((clip: Clip) => {
+      .subscribe(({ result: clip }) => {
         this.isPreviewCreating = false;
         this.clip = clip;
       });

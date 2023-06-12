@@ -47,12 +47,12 @@ export class UserSignInComponent {
         password: this.password.value,
       })
       .pipe(
-        switchMap((token: string) => {
+        switchMap(({ result: token }) => {
           localStorage.setItem('aengzi-auth-token', token);
           return HttpService.api().get<User>('auth-user');
         })
       )
-      .subscribe((user: User) => {
+      .subscribe(({ result: user }) => {
         AuthService.setUser(user);
         this.goPreviousPage();
       });

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import { of } from 'rxjs';
+import { map, of } from 'rxjs';
 import { MaterialModule } from 'src/app/material.module';
 import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/service/auth.service';
@@ -39,10 +39,12 @@ const routes: Routes = [
         if (AuthService.getUser()) {
           return of(AuthService.getUser());
         } else if (localStorage.getItem('aengzi-auth-token')) {
-          const obs = HttpService.api().get<User>('auth-user');
+          const obs = HttpService.api()
+            .get<User>('auth-user')
+            .pipe(map(({ result: user }) => user));
 
           obs.subscribe(
-            (user: User) => {
+            (user) => {
               AuthService.setUser(user);
             },
             () => {

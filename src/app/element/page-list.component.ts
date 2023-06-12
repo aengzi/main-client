@@ -66,12 +66,12 @@ export class PageListComponent implements OnInit {
       .get(this.apiUrl, {
         params: _.merge({}, baseParams, this.apiParams),
       })
-      .subscribe((res: any) => {
+      .subscribe(({ result: items, current_page, last_page, total }) => {
         this.isLoading = false;
-        this.items = res.data;
-        this.currentPage = res.current_page;
-        this.lastPage = res.last_page;
-        this.totalCount = res.total;
+        this.items = items;
+        this.currentPage = <number>current_page;
+        this.lastPage = <number>last_page;
+        this.totalCount = <number>total;
 
         if (this.pageSize % 2 == 0) {
           this.pageSize = this.pageSize + 1;

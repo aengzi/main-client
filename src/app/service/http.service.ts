@@ -1,8 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from 'axios';
 import * as _ from 'lodash';
-import { Observable, Observer } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Model } from 'src/app/model';
 import { environment } from 'src/environments/environment';
 import { StorageService } from './storage.service';
@@ -64,7 +68,7 @@ const responseModelifyInterceptor = (res: any) => {
   };
 
   const body = res.data;
-  console.log('body', body);
+
   if (typeof body == 'undefined') {
     return res;
   }
@@ -84,36 +88,80 @@ const responseModelifyInterceptor = (res: any) => {
     }
     throw new Error(JSON.stringify(body.errors));
   }
-  if (typeof body.result != 'object' || !body.result) {
-  } else if (typeof body.result.data != 'undefined') {
-    body.result.data = objectify(body.result.data);
-  } else {
+
+  if (body.result && typeof body.result == 'object') {
     body.result = objectify(body.result);
   }
 
-  res.data = body.result;
+  res.data = body;
+
   return res;
 };
 
+type ApiInstance = Omit<
+  AxiosInstance,
+  'get' | 'post' | 'put' | 'patch' | 'delete' | 'head' | 'options'
+> & {
+  get<T = any, D = any>(
+    url: string,
+    config?: AxiosRequestConfig<D>
+  ): Observable<{
+    result: T;
+    current_page?: number;
+    last_page?: number;
+    per_page?: number;
+    total?: number;
+  }>;
+  delete<T = any, D = any>(
+    url: string,
+    config?: AxiosRequestConfig<D>
+  ): Observable<{ result: T }>;
+  head<T = any, D = any>(
+    url: string,
+    config?: AxiosRequestConfig<D>
+  ): Observable<{ result: T }>;
+  options<T = any, D = any>(
+    url: string,
+    config?: AxiosRequestConfig<D>
+  ): Observable<{ result: T }>;
+  post<T = any, D = any>(
+    url: string,
+    data?: D,
+    config?: AxiosRequestConfig<D>
+  ): Observable<{ result: T }>;
+  put<T = any, D = any>(
+    url: string,
+    data?: D,
+    config?: AxiosRequestConfig<D>
+  ): Observable<{ result: T }>;
+  patch<T = any, D = any>(
+    url: string,
+    data?: D,
+    config?: AxiosRequestConfig<D>
+  ): Observable<{ result: T }>;
+};
+
 const setUpHttpProxy = (httpClient: any) => {
-  ['get', 'post', 'put', 'patch', 'delete', 'options'].forEach((method) => {
-    httpClient[method] = new Proxy(httpClient[method], {
-      apply: <T>(target: any, thisArgs: any, argArray: any[]) => {
-        return new Observable<T>((observer: Observer<T>) => {
-          target(...argArray)
-            .then((response: AxiosResponse) => {
-              observer.next(response.data);
-            })
-            .catch((error: AxiosError | Error) => {
-              observer.error(error);
-            })
-            .finally(() => {
-              observer.complete();
-            });
-        });
-      },
-    });
-  });
+  ['get', 'post', 'put', 'patch', 'delete', 'head', 'options'].forEach(
+    (method) => {
+      httpClient[method] = new Proxy(httpClient[method], {
+        apply: <T>(target: any, thisArgs: any, argArray: any[]) => {
+          return new Observable<{ result: T }>((observer) => {
+            target(...argArray)
+              .then((response: AxiosResponse) => {
+                observer.next(response.data);
+              })
+              .catch((error: AxiosError | Error) => {
+                observer.error(error);
+              })
+              .finally(() => {
+                observer.complete();
+              });
+          });
+        },
+      });
+    }
+  );
   return httpClient;
 };
 
@@ -121,7 +169,7 @@ const setUpHttpProxy = (httpClient: any) => {
   providedIn: 'root',
 })
 export class HttpService {
-  static api(): HttpClient {
+  static api(): ApiInstance {
     const httpClient = axios.create();
     httpClient.interceptors.request.use(requestAuthTokenInterceptor);
     httpClient.interceptors.request.use(requestBaseUrlInterceptor);

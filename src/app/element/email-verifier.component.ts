@@ -41,7 +41,7 @@ export class EmailVerifierComponent {
               code: control.value,
             })
             .pipe(
-              map((token: string) => {
+              map(({ result: token }) => {
                 if (token) {
                   this.verifiedToken = token;
                   this.success.emit(token);

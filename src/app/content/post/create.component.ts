@@ -67,7 +67,7 @@ export class PostCreateComponent implements AfterViewInit {
         title: this.titleCtrl.value,
         content: this.contentCtrl.value,
       })
-      .subscribe((post: Post) => {
+      .subscribe(() => {
         this.router.navigate(['/' + this.typeCtrl.value + '-posts']);
       });
   }
