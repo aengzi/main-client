@@ -1,6 +1,6 @@
-<div fxLayout="row" fxLayoutAlign="space-between center">
+<div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="search">
   <h2>자유 게시판</h2>
-  <nav mat-tab-nav-bar>
+  <nav mat-tab-nav-bar [tabPanel]="freePostListPanel">
     <a mat-tab-link [active]="search.order_by === undefined" queryParamsHandling="merge" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
       최신 순
     </a>
@@ -8,6 +8,8 @@
       호감 순
     </a>
   </nav>
+  <mat-tab-nav-panel #freePostListPanel>
+  </mat-tab-nav-panel>
 </div>
 <route-page-list #pageList [apiUrl]="'posts'" [apiParams]="{
   expands: 'user',

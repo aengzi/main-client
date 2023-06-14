@@ -3,7 +3,7 @@
     <p>
       정렬:
     </p>
-    <nav mat-tab-nav-bar [tabPanel]="tabPanel2">
+    <nav mat-tab-nav-bar [tabPanel]="pubgGamePanel">
       <a mat-tab-link [active]="search.order_by === undefined || search.order_by.length === 0" queryParamsHandling="merge" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
         최신날짜 순
       </a>
@@ -20,7 +20,8 @@
         러닝타임 긴 순
       </a>
     </nav>
-    <mat-tab-nav-panel #tabPanel2></mat-tab-nav-panel>
+    <mat-tab-nav-panel #pubgGamePanel>
+    </mat-tab-nav-panel>
   </div>
   <div>
     <button *ngIf="!is_search_open" color="primary" mat-raised-button (click)="is_search_open = true">

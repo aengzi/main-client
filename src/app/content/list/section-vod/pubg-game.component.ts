@@ -19,7 +19,7 @@ export class PubgGameSectionVodListComponent implements OnDestroy {
     this.route = route;
     this.selfUrl = router.url.replace(/\?.*/, '');
     this.setSearchSub = router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(filter((event: any) => event.routerEvent instanceof NavigationEnd))
       .subscribe((event) => {
         this.setSearchObj(_.merge({}, route.snapshot.queryParams));
       });

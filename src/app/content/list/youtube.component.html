@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="space-between center">
   <h2>유튜브</h2>
-  <nav mat-tab-nav-bar>
+  <nav mat-tab-nav-bar [tabPanel]="youtubePanel">
     <a mat-tab-link #rla1="routerLinkActive" [routerLink]="['/youtube/videos']" [active]="rla1.isActive" routerLinkActive>
       편집 영상
     </a>
@@ -9,4 +9,6 @@
     </a>
   </nav>
 </div>
-<router-outlet></router-outlet>
+<mat-tab-nav-panel #youtubePanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>

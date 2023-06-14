@@ -92,7 +92,7 @@ const routes: Routes = [
                 .value();
               const otherTeam = _.chain(matches.teams)
                 .filter((team) => {
-                  return team.teamId == player.teamId;
+                  return team.teamId != player.teamId;
                 })
                 .first()
                 .value();

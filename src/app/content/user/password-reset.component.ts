@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute } from '@angular/router';
 import { EmailVerifierComponent } from 'src/app/element/email-verifier.component';
+import { User } from 'src/app/model/user';
 import { HttpService } from 'src/app/service/http.service';
 import { StorageService } from 'src/app/service/storage.service';
 
@@ -41,7 +42,7 @@ export class UserPasswordResetComponent {
 
   public resetPassword() {
     HttpService.api()
-      .patch('auth-user/', {
+      .patch<User>('auth-user/', {
         token: this.emailVerifier.verifiedToken,
         password: this.passwordCtrl.value,
       })

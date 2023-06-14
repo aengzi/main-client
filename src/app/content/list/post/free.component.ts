@@ -20,7 +20,7 @@ export class FreePostListComponent {
   public constructor(route: ActivatedRoute, router: Router) {
     this.authService = AuthService;
     this.setSearchSub = router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(filter((event: any) => event.routerEvent instanceof NavigationEnd))
       .subscribe((event) => {
         this.search = _.merge({}, route.snapshot.queryParams);
       });

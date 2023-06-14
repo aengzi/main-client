@@ -18,7 +18,7 @@ export class ClipListComponent implements OnDestroy {
   public constructor(route: ActivatedRoute, router: Router) {
     this.route = route;
     this.setSearchSub = router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(filter((event: any) => event.routerEvent instanceof NavigationEnd))
       .subscribe((event) => {
         this.search = _.merge({}, route.snapshot.queryParams);
       });

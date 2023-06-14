@@ -17,7 +17,7 @@ export class AftvBcastVodPlayerComponent {
 
   public constructor(route: ActivatedRoute, router: Router) {
     this.routerSub = router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(filter((event: any) => event.routerEvent instanceof NavigationEnd))
       .subscribe((event) => {
         this.bcast = route.snapshot.data.bcast;
       });

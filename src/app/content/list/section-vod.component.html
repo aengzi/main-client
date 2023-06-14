@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="space-between center">
   <h2>주제별 부분영상</h2>
-  <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+  <nav mat-tab-nav-bar [tabPanel]="sectionVodPanel">
     <a mat-tab-link #rla1="routerLinkActive" [routerLink]="['/section/lol-games']" [active]="rla1.isActive" routerLinkActive>
       리그 오브 레전드
     </a>
@@ -9,6 +9,6 @@
     </a>
   </nav>
 </div>
-<mat-tab-nav-panel #tabPanel>
+<mat-tab-nav-panel #sectionVodPanel>
   <router-outlet></router-outlet>
 </mat-tab-nav-panel>

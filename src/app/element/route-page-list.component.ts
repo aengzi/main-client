@@ -28,7 +28,7 @@ export class RoutePageListComponent
   public override ngOnInit() {
     this.getListWith(this.route.snapshot.queryParams);
     this.subscription = this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(filter((event: any) => event.routerEvent instanceof NavigationEnd))
       .subscribe((event) => {
         this.getListWith(this.route.snapshot.queryParams);
       });

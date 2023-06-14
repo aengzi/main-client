@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserDataEditComponent } from 'src/app/element/user-data/edit.component';
+import { User } from 'src/app/model/user';
 import { HttpService } from 'src/app/service/http.service';
 import { StorageService } from 'src/app/service/storage.service';
 
@@ -30,7 +31,7 @@ export class PasswordEditUserDataComponent extends UserDataEditComponent {
 
   public submit$(): Observable<any> {
     return HttpService.api()
-      .patch('auth-user/', {
+      .patch<User>('auth-user/', {
         password: this.passwordCtrl.value,
       })
       .pipe(

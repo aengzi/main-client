@@ -1,6 +1,6 @@
-<div fxLayout="row" fxLayoutAlign="space-between center">
+<div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="search">
   <h2>유저 클립 영상</h2>
-  <nav mat-tab-nav-bar>
+  <nav mat-tab-nav-bar [tabPanel]="clipListPanel">
     <a mat-tab-link [active]="search.order_by === undefined" [queryParams]="{order_by: undefined}" [routerLink]="['./']">
       최근 순
     </a>
@@ -8,6 +8,8 @@
       좋아요 많은 순
     </a>
   </nav>
+  <mat-tab-nav-panel #clipListPanel>
+  </mat-tab-nav-panel>
 </div>
 <route-page-list #pageList [apiUrl]="'clips'" [apiParams]="{
   expands: 'vod, user',

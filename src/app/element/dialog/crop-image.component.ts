@@ -47,7 +47,7 @@ export class CropImageDialogComponent {
 
     const base64 = canvas.toDataURL('image/jpeg').split(',')[1];
     HttpService.api()
-      .patch<User>('users/' + AuthService.getUser().getAttrs().id, {
+      .patch<User>('auth-user/', {
         thumbnail: base64,
       })
       .subscribe(({ result: user }) => {

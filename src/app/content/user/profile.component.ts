@@ -82,7 +82,7 @@ export class UserProfileComponent {
 
   public changeNick() {
     HttpService.api()
-      .patch<User>('users/' + this.user.getAttrs().id, {
+      .patch<User>('auth-user/', {
         nick: this.nickCtrl.value,
       })
       .subscribe(({ result: user }) => {
